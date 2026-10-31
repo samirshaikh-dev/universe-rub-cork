@@ -32,7 +32,7 @@ export default async function ProductPage({ params }) {
   if (!product) notFound();
 
   return (
-    <div className="container page-content">
+    <div className="mx-auto w-full max-w-[1200px] px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
       <PageHeading
         breadcrumbs={[
           { name: "Products", path: "/products" },
@@ -49,8 +49,13 @@ export default async function ProductPage({ params }) {
       >
         <ContactActions compact />
       </PageCta>
-      <p className="back-link">
-        <Link href="/products">Back to all products</Link>
+      <p className="mt-8">
+        <Link
+          className="inline-flex min-h-11 items-center font-semibold text-montado underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
+          href="/products"
+        >
+          ← Back to all products
+        </Link>
       </p>
     </div>
   );

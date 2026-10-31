@@ -17,7 +17,9 @@ export default function RootLayout({ children }) {
     <html className={archivo.variable} lang="en-IN">
       <body>
         <Navbar />
-        <main id="main">{children}</main>
+        <main className="min-h-[65vh]" id="main">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -2,39 +2,52 @@ import ContactActions from "../contact-actions";
 
 export default function HomeHero() {
   return (
-    <section className="home-hero">
-      <div className="container hero-grid">
-        <div className="hero-copy">
-          <p className="hero-location">Manufacturer · GIDC, Vapi, Gujarat</p>
-          <h1>Cork and rubberised cork, made to your drawing.</h1>
-          <p className="hero-lede">
+    <section className="bg-sheet py-12 sm:py-16 lg:py-24">
+      <div className="mx-auto grid w-full max-w-[1200px] items-center gap-10 px-5 sm:px-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:gap-16">
+        <div>
+          <p className="mb-4 text-sm font-semibold text-montado">
+            Manufacturer · GIDC, Vapi, Gujarat
+          </p>
+          <h1 className="mb-6 max-w-[12ch] text-montado">
+            Cork and rubberised cork, made to your drawing.
+          </h1>
+          <p className="mb-7 max-w-[54ch] text-lg leading-relaxed text-charcoal sm:text-xl">
             Sheets, strips and gaskets for industrial applications, with cork
             ranges for construction and decorative use.
           </p>
           <ContactActions />
-          <ul className="hero-proof-list" aria-label="Documented product facts">
-            <li>
-              <strong>1.0 to 20 mm</strong>
-              <span>Rubberised cork sheets</span>
+          <ul
+            aria-label="Documented product facts"
+            className="mt-8 grid gap-4 p-0 sm:grid-cols-3"
+          >
+            <li className="list-none border-l-2 border-cork pl-3">
+              <strong className="block text-montado">1.0 to 20 mm</strong>
+              <span className="text-sm text-charcoal">
+                Rubberised cork sheets
+              </span>
             </li>
-            <li>
-              <strong>IS 4253 Part II</strong>
-              <span>Published specification</span>
+            <li className="list-none border-l-2 border-cork pl-3">
+              <strong className="block text-montado">IS 4253 Part II</strong>
+              <span className="text-sm text-charcoal">
+                Published specification
+              </span>
             </li>
-            <li>
-              <strong>Drawing or sample</strong>
-              <span>For gasket requirements</span>
+            <li className="list-none border-l-2 border-cork pl-3">
+              <strong className="block text-montado">Drawing or sample</strong>
+              <span className="text-sm text-charcoal">
+                For gasket requirements
+              </span>
             </li>
           </ul>
         </div>
-        <figure className="hero-visual">
-          <div className="hero-visual-heading">
+        <figure className="m-0 min-w-0 bg-montado p-5 sm:p-8">
+          <div className="mb-4 flex justify-between gap-3 text-xs text-paper">
             <span>Material study</span>
             <span>Illustrative geometry</span>
           </div>
           <svg
             aria-labelledby="hero-art-title"
-            className="hero-art"
+            className="block h-auto w-full"
             role="img"
             viewBox="0 0 640 420"
           >
@@ -87,7 +100,7 @@ export default function HomeHero() {
               strokeWidth="1.5"
             />
           </svg>
-          <figcaption className="hero-visual-caption">
+          <figcaption className="mb-0 mt-4 text-sm text-paper">
             Rubberised cork sheet and a cut gasket form. Not to scale.
           </figcaption>
         </figure>

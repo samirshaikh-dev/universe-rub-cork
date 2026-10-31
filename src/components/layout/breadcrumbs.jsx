@@ -13,32 +13,37 @@ import Link from "next/link";
  * @param {string} [props.className] - Applied to the outer <nav>, for page-level spacing.
  * @param {string} [props.listClassName] - Applied to the <ol>.
  */
-export function Breadcrumbs({ items = [], className, listClassName }) {
+export function Breadcrumbs({ items = [] }) {
   if (items.length === 0) return null;
 
   const lastIndex = items.length - 1;
 
   return (
-    <nav aria-label="Breadcrumb" className={className}>
+    <nav aria-label="Breadcrumb" className="mb-8 text-sm text-montado">
       <ol
         // `role="list"` is explicit because Tailwind preflight sets
         // `list-style: none`, and WebKit drops list semantics for a list with no
         // marker — VoiceOver then reads the trail as loose text (finding S5).
         role="list"
-        className={listClassName}
+        className="m-0 flex flex-wrap items-center gap-2 p-0"
       >
         {items.map((item, index) => {
           const isCurrent = index === lastIndex;
           return (
             <li
               key={`${item.name}-${index}`}
-              className={isCurrent ? "breadcrumb-current" : undefined}
+              className={isCurrent ? "font-semibold" : undefined}
               aria-current={isCurrent ? "page" : undefined}
             >
               {isCurrent || !item.path ? (
                 item.name
               ) : (
-                <Link href={item.path}>{item.name}</Link>
+                <Link
+                  className="underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
+                  href={item.path}
+                >
+                  {item.name}
+                </Link>
               )}
             </li>
           );

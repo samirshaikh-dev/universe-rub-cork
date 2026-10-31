@@ -11,7 +11,7 @@ export const metadata = createPageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <div className="container page-content">
+    <div className="mx-auto w-full max-w-[1200px] px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
       <PageHeading
         breadcrumbs={[{ name: "Privacy notice", path: "/privacy" }]}
         description="Information about contact through this website."

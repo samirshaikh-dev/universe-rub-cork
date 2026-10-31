@@ -11,16 +11,23 @@ export default function IndustryContent({ industry, relatedProducts }) {
 
   return (
     <>
-      <section className="content-section">
-        <p className="content-lede">{industry.body}</p>
+      <section className="max-w-[900px]">
+        <p className="mb-10 max-w-[68ch] text-lg leading-relaxed text-charcoal">
+          {industry.body}
+        </p>
         <SpecificationList items={specifications} />
       </section>
-      <section className="related-products">
-        <h2>Related products</h2>
-        <ul>
+      <section className="mt-14 border-t border-montado/20 pt-8">
+        <h2 className="mb-5">Related products</h2>
+        <ul className="m-0 flex flex-wrap gap-3 p-0">
           {relatedProducts.map((product) => (
-            <li key={product.slug}>
-              <Link href={`/products/${product.slug}`}>{product.name}</Link>
+            <li className="list-none" key={product.slug}>
+              <Link
+                className="inline-flex min-h-11 items-center border border-montado/25 bg-paper px-4 font-semibold text-montado underline-offset-4 hover:border-montado hover:underline focus-visible:outline-3 focus-visible:outline-amber"
+                href={`/products/${product.slug}`}
+              >
+                {product.name}
+              </Link>
             </li>
           ))}
         </ul>

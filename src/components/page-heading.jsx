@@ -12,10 +12,12 @@ export default function PageHeading({
   const jsonLd = [getBreadcrumbsJsonLd(items), ...structuredData];
 
   return (
-    <header className="page-heading">
-      <Breadcrumbs className="breadcrumbs" items={items} />
-      <h1>{title}</h1>
-      <p className="page-lede">{description}</p>
+    <header className="mb-12 max-w-[820px] sm:mb-16">
+      <Breadcrumbs items={items} />
+      <h1 className="mb-5 max-w-[13ch] text-montado">{title}</h1>
+      <p className="mb-0 max-w-[68ch] text-lg leading-relaxed text-charcoal">
+        {description}
+      </p>
       <JsonLd data={jsonLd} />
     </header>
   );

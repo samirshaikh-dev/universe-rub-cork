@@ -13,7 +13,7 @@ export const metadata = createPageMetadata({
 
 export default function QualityPage() {
   return (
-    <div className="container page-content">
+    <div className="mx-auto w-full max-w-[1200px] px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
       <PageHeading
         breadcrumbs={[{ name: "Quality", path: "/quality" }]}
         description="Quality information and standards for rubberised cork products."

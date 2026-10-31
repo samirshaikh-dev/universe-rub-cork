@@ -1,11 +1,15 @@
 export default function PageCta({ title, description, children }) {
   return (
-    <section className="page-cta">
-      <div>
-        <h2>{title}</h2>
-        {description && <p>{description}</p>}
+    <section className="mt-16 bg-cork-light p-6 sm:p-10 lg:mt-20">
+      <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-10">
+        <div>
+          <h2 className="mb-3 text-montado">{title}</h2>
+          {description && (
+            <p className="mb-0 max-w-[60ch] text-charcoal">{description}</p>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-3">{children}</div>
       </div>
-      {children}
     </section>
   );
 }
