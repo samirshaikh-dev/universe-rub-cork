@@ -1,6 +1,6 @@
 import { Archivo } from "next/font/google";
-import SiteFooter from "../components/site-footer";
-import SiteHeader from "../components/site-header";
+import Footer from "../components/layout/footer";
+import Navbar from "../components/layout/navbar";
 import { ROOT_METADATA } from "../lib/seo/metadata";
 import "./globals.css";
 
@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
   return (
     <html className={archivo.variable} lang="en-IN">
       <body>
-        <SiteHeader />
+        <Navbar />
         <main id="main">{children}</main>
-        <SiteFooter />
+        <Footer />
       </body>
     </html>
   );

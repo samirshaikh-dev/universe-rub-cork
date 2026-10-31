@@ -591,6 +591,10 @@ address {
   color: var(--color-charcoal);
 }
 
+.breadcrumbs .breadcrumb-current {
+  font-weight: 600;
+}
+
 .page-lede,
 .content-lede {
   max-width: 68ch;

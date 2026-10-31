@@ -10,7 +10,7 @@ export default function NotFound() {
         <Link className="button button-primary" href="/products">
           Browse products
         </Link>
-        <Link className="button button-secondary" href="/request-quote">
+        <Link className="button button-secondary" href="/contact#request-a-quote">
           Request a quote
         </Link>
       </div>

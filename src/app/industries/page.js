@@ -1,6 +1,7 @@
-import Link from "next/link";
 import ContactActions from "../../components/contact-actions";
 import PageHeading from "../../components/page-heading";
+import CatalogueList from "../../components/sections/catalogue-list";
+import PageCta from "../../components/sections/page-cta";
 import { INDUSTRIES } from "../../data/site-content";
 import { createPageMetadata } from "../../lib/seo/metadata";
 
@@ -19,33 +20,17 @@ export default function IndustriesPage() {
         description="Explore the industries served and the cork products relevant to each application."
         title="Industries and applications"
       />
-      <div className="catalogue-list">
-        {INDUSTRIES.map((industry) => (
-          <article className="catalogue-item" key={industry.slug}>
-            <div>
-              <h2>
-                <Link href={`/industries/${industry.slug}`}>
-                  {industry.name}
-                </Link>
-              </h2>
-              <p>{industry.summary}</p>
-            </div>
-            <Link
-              className="text-link"
-              href={`/industries/${industry.slug}`}
-            >
-              View application
-            </Link>
-          </article>
-        ))}
-      </div>
-      <section className="page-cta">
-        <div>
-          <h2>Need help matching a product to your application?</h2>
-          <p>Share the drawing, dimensions and material requirement.</p>
-        </div>
+      <CatalogueList
+        actionLabel="View application"
+        basePath="industries"
+        items={INDUSTRIES}
+      />
+      <PageCta
+        description="Share the drawing, dimensions and material requirement."
+        title="Need help matching a product to your application?"
+      >
         <ContactActions compact />
-      </section>
+      </PageCta>
     </div>
   );
 }

@@ -1,6 +1,6 @@
-import Link from "next/link";
 import ContactActions from "../../components/contact-actions";
 import PageHeading from "../../components/page-heading";
+import CatalogueList from "../../components/sections/catalogue-list";
 import { PRODUCTS } from "../../data/site-content";
 import { createPageMetadata } from "../../lib/seo/metadata";
 
@@ -19,21 +19,11 @@ export default function ProductsPage() {
         description="Product families and documented specifications. Contact United Rubber Cork to confirm current availability."
         title="Cork products"
       />
-      <div className="catalogue-list">
-        {PRODUCTS.map((product) => (
-          <article className="catalogue-item" key={product.slug}>
-            <div>
-              <h2>
-                <Link href={`/products/${product.slug}`}>{product.name}</Link>
-              </h2>
-              <p>{product.summary}</p>
-            </div>
-            <Link className="text-link" href={`/products/${product.slug}`}>
-              View product details
-            </Link>
-          </article>
-        ))}
-      </div>
+      <CatalogueList
+        actionLabel="View product details"
+        basePath="products"
+        items={PRODUCTS}
+      />
       <div className="page-cta">
         <h2>Looking for a made-to-drawing part?</h2>
         <ContactActions compact />

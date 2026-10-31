@@ -56,8 +56,8 @@ Do not set numeric targets for RFQs until four weeks of baseline data exist.
 | `/industries/construction` | Application page |
 | `/quality` | ISO 9001:2015, IS 4253 Part II, how parts are made and checked |
 | `/about` | Company, location, capability |
-| `/contact` | Address, phones, email, map, quote form |
-| `/request-quote` | Full RFQ form (also opened from every CTA) |
+| `/contact` | Address, phones, email and quote-by-email instructions |
+| `/request-quote` | Permanent redirect to `/contact#request-a-quote` |
 | `/privacy` | Privacy notice (required because we collect personal data) |
 
 Features: RFQ form with optional drawing upload, WhatsApp click-to-chat, click-to-call, spec tables, PDF datasheets, structured data (JSON-LD), sitemap and robots, 301 redirects, analytics events.
@@ -76,6 +76,8 @@ Features: RFQ form with optional drawing upload, WhatsApp click-to-chat, click-t
 | `/contact.php` | `/contact` |
 
 All permanent (301). Test every one after deploy. These URLs belong to the previous brand's domain: they only matter if `amcorkindia.com` stays live or forwards to the new domain.
+
+The former `/request-quote` page permanently redirects to the quote section on `/contact`.
 
 ## Known content (from the former site)
 - **Rubberised cork sheets:** 2 ft x 3 ft, 3 ft x 3 ft, 1000 x 1000 mm; 1.0 to 20 mm thick; made to IS 4253 Part II or customer requirement.

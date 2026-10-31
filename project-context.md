@@ -10,7 +10,8 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 
 - Next.js 16.4.3 App Router, React 19.3.0, JavaScript/JSX, Tailwind CSS v4 and npm.
 - Route pages and global design tokens: `src/app/`.
-- Shared header, footer, breadcrumbs/page heading, contact actions and JSON-LD: `src/components/`.
+- Shared navbar, footer, breadcrumbs/page heading, contact actions and JSON-LD: `src/components/`; site chrome lives in `src/components/layout/`.
+- Page sections are composed from Server Components grouped by homepage, product, industry, contact and other route sections under `src/components/`; route files retain metadata, route data selection and page composition.
 - Company identity, wordmark, address, email and phone numbers: `src/config/site.js`.
 - Product and industry content, per-route SEO titles (`seoTitle`) and sitemap route data: `src/data/site-content.js`.
 - Canonical metadata and Schema.org generators: `src/lib/seo/`.
@@ -24,7 +25,7 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 - `/industries` — application overview.
 - `/products`, `/products/[slug]` — overview and rubberised cork, cork, decorative cork and cork gifts.
 - `/industries/[slug]` — transformer, automotive, and construction applications.
-- `/quality`, `/about`, `/contact`, `/request-quote`, `/privacy`.
+- `/quality`, `/about`, `/contact` (including quote-by-email instructions), `/privacy`; `/request-quote` permanently redirects to the quote section on `/contact`.
 - Breadcrumbs and route-specific title, description and canonical metadata on internal pages; Organization, LocalBusiness, WebSite, Product and BreadcrumbList structured data where applicable.
 - Every route title carries the brand once, through the `%s | ${SITE_NAME}` template. Product and industry routes use `seoTitle` from the content file. `createPageMetadata` re-declares the shared Open Graph and Twitter fields because Next.js replaces nested metadata objects per route.
 - The header and footer wordmark are rendered from `BRAND_WORDMARK`; `src/app/opengraph-image.js` renders the same two-line wordmark.
@@ -39,7 +40,7 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 - Supply new-domain mailboxes. Until then, `admin@amcorkindia.com` and `amcorkindustries@gmail.com` remain published in the footer, contact page, quote mailto and JSON-LD.
 - Supply approved wordmark artwork. `public/` contains no images; the header and footer currently set the wordmark as text and the favicon is the Next.js default.
 - Decide whether the legacy `.php` URLs still matter. The 301 map in `technical-docs/PLAN.md` is not live because `src/proxy.js` is deleted in the working tree.
-- The quote route currently opens a pre-addressed email draft. The site does not store a lead, send email, accept uploads or expose a completed online quote form.
+- The contact page's quote section opens a pre-addressed email draft. The site does not store a lead, send email, accept uploads or expose a completed online quote form.
 - Configure and verify PostgreSQL/Neon lead storage, transactional email, rate limiting, Turnstile and file storage before enabling the full quote flow.
 - Confirm the WhatsApp number before adding click-to-chat.
 - Obtain approved product/factory photography, datasheets, ISO certificate details in the new brand's name and any test reports.

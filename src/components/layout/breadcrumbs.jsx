@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { cn } from "../../lib/utils";
 
 /**
  * Shared breadcrumb navigation — single source of truth for every page trail.
@@ -12,7 +11,7 @@ import { cn } from "../../lib/utils";
  * @param {Object} props
  * @param {Array<{ name: string, path?: string }>} props.items - Ordered trail; the last item is the current page.
  * @param {string} [props.className] - Applied to the outer <nav>, for page-level spacing.
- * @param {string} [props.listClassName] - Applied to the <ol>, e.g. "justify-center".
+ * @param {string} [props.listClassName] - Applied to the <ol>.
  */
 export function Breadcrumbs({ items = [], className, listClassName }) {
   if (items.length === 0) return null;
@@ -26,36 +25,22 @@ export function Breadcrumbs({ items = [], className, listClassName }) {
         // `list-style: none`, and WebKit drops list semantics for a list with no
         // marker — VoiceOver then reads the trail as loose text (finding S5).
         role="list"
-        className={cn(
-          "flex flex-wrap items-center gap-1.5 text-xs text-foreground-secondary",
-          listClassName
-        )}
+        className={listClassName}
       >
         {items.map((item, index) => {
           const isCurrent = index === lastIndex;
           return (
-            <React.Fragment key={`${item.name}-${index}`}>
-              {index > 0 && (
-                <li aria-hidden="true" className="text-foreground-secondary/50">
-                  /
-                </li>
+            <li
+              key={`${item.name}-${index}`}
+              className={isCurrent ? "breadcrumb-current" : undefined}
+              aria-current={isCurrent ? "page" : undefined}
+            >
+              {isCurrent || !item.path ? (
+                item.name
+              ) : (
+                <Link href={item.path}>{item.name}</Link>
               )}
-              <li
-                className={isCurrent ? "font-semibold text-foreground" : undefined}
-                aria-current={isCurrent ? "page" : undefined}
-              >
-                {isCurrent || !item.path ? (
-                  item.name
-                ) : (
-                  <Link
-                    href={item.path}
-                    className="rounded font-medium transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2"
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </li>
-            </React.Fragment>
+            </li>
           );
         })}
       </ol>

@@ -133,6 +133,5 @@ export const ROUTES = [
   "/quality",
   "/about",
   "/contact",
-  "/request-quote",
   "/privacy",
 ];
