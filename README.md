@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AMCORK Industries website
 
-## Getting Started
+The AMCORK marketing and product catalogue website built with Next.js 16 App Router, React 19 and Tailwind CSS v4.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Validate
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Set `NEXT_PUBLIC_SITE_URL` to the canonical deployment origin when it differs from `https://www.amcorkindia.com`. Do not add credentials to public environment variables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project references
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project requirements are in [`technical-docs/`](./technical-docs/). Start with [`PLAN.md`](./technical-docs/PLAN.md), [`TECHSTACK.md`](./technical-docs/TECHSTACK.md), [`BRAND.md`](./technical-docs/BRAND.md) and [`DESIGN.md`](./technical-docs/DESIGN.md). The implementation status and open client dependencies are in [`project-context.md`](./project-context.md).
 
-## Deploy on Vercel
+Legacy PHP URLs use `src/proxy.js` to return the required 301 status; Next.js `redirects()` configuration returns 308.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Current implementation limits
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site includes static product, application, company, quality, contact, quote-request and privacy pages. The quote-request route currently opens the visitor's email application; it does not store a lead or upload a drawing. A production form requires the database, mail, anti-spam and upload services described in the technical docs. Real product photography, approved datasheets and certificate details are also pending.

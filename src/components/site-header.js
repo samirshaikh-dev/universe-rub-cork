@@ -1,0 +1,28 @@
+import Link from "next/link";
+import { NAV_ITEMS } from "../config/site";
+
+export default function SiteHeader() {
+  return (
+    <header className="site-header">
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <div className="header-inner">
+        <Link aria-label="AMCORK Industries home" className="wordmark" href="/">
+          AMCORK
+          <span>Industries</span>
+        </Link>
+        <nav aria-label="Main navigation" className="main-nav">
+          {NAV_ITEMS.map((item) => (
+            <Link href={item.href} key={item.href}>
+              {item.label}
+            </Link>
+          ))}
+          <Link className="button button-primary header-quote" href="/request-quote">
+            Request a quote
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
