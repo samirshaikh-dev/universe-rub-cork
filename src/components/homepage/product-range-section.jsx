@@ -1,38 +1,61 @@
 import Link from "next/link";
 
+const FEATURED_SPEC_ITEMS = {
+  "rubberised-cork": ["Sheets", "Strips"],
+  cork: ["Cork granules"],
+  "decorative-cork": ["Tiles"],
+};
+
 export default function ProductRangeSection({ products }) {
+  const specificationRows = products.flatMap((product) =>
+    product.items
+      .filter((item) =>
+        (FEATURED_SPEC_ITEMS[product.slug] || []).includes(item.name)
+      )
+      .map((item) => ({ product, item }))
+  );
+
   return (
-    <section className="section section-paper">
+    <section className="section section-sheet">
       <div className="container">
         <div className="section-intro">
-          <p className="section-kicker">Product range</p>
-          <h2>Find the right cork product.</h2>
+          <p className="section-kicker">Published ranges</p>
+          <h2>Check the sizes before you enquire.</h2>
           <p>
-            Review the documented sizes, then share your drawing or application
-            with United Rubber Cork.
+            These documented dimensions help you check product fit. Contact
+            United Rubber Cork to confirm current availability.
           </p>
         </div>
-        <div className="product-list">
-          {products.map((product) => (
-            <article className="product-row" key={product.slug}>
-              <div>
-                <h3>
-                  <Link href={`/products/${product.slug}`}>{product.name}</Link>
-                </h3>
-                <p>{product.summary}</p>
-              </div>
-              <Link
-                aria-label={`View ${product.name} products`}
-                className="row-link"
-                href={`/products/${product.slug}`}
-              >
-                View range <span aria-hidden="true">↗</span>
-              </Link>
-            </article>
-          ))}
+        <div
+          aria-label="Selected product specifications. Scroll horizontally to view all details."
+          className="spec-table-scroll"
+          role="region"
+          tabIndex={0}
+        >
+          <table className="spec-table">
+            <caption>Selected published product dimensions</caption>
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Published size or range</th>
+              </tr>
+            </thead>
+            <tbody>
+              {specificationRows.map(({ product, item }) => (
+                <tr key={`${product.slug}-${item.name}`}>
+                  <th scope="row">
+                    <Link href={`/products/${product.slug}`}>
+                      {product.name} — {item.name}
+                    </Link>
+                  </th>
+                  <td>{item.details}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         <Link className="text-link section-link" href="/products">
-          View all products
+          Browse all product families
         </Link>
       </div>
     </section>

@@ -8,8 +8,8 @@ export default function ContactCtaSection() {
           <p className="section-kicker">Start a conversation</p>
           <h2>Have a drawing or sample?</h2>
           <p>
-            Tell us the product, size and quantity. We will help you check the
-            next step.
+            Share the product, dimensions and quantity so we can discuss your
+            specification.
           </p>
         </div>
         <ContactActions compact />

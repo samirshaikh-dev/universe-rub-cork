@@ -18,6 +18,12 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
+          <Link
+            className="button button-secondary header-quote"
+            href="/contact#request-a-quote"
+          >
+            Request a quote
+          </Link>
         </nav>
       </div>
     </header>
