@@ -30,7 +30,7 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 - Every route title carries the brand once, through the `%s | ${SITE_NAME}` template. Product and industry routes use `seoTitle` from the content file. `createPageMetadata` re-declares the shared Open Graph and Twitter fields because Next.js replaces nested metadata objects per route.
 - The header and footer wordmark are rendered from `BRAND_WORDMARK`; `src/app/opengraph-image.js` renders the same two-line wordmark.
 - `src/app/sitemap.js`, `src/app/robots.js`, and `src/app/opengraph-image.js` — discovery and social-preview routes.
-- Responsive stylesheet includes the technical design tokens, visible focus, skip link and reduced-motion handling.
+- `src/app/globals.css` contains Tailwind's import and the design tokens; page and component styling uses Tailwind utilities. Focus and skip-link behaviour are utility classes, and the only motion transition in active chrome is gated by `motion-safe`.
 - Legacy PHP redirects are listed in `technical-docs/PLAN.md` and implemented in `src/proxy.js`.
 
 ## Active tasks and launch blockers
@@ -48,7 +48,7 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 - Confirm DNS, email continuity, Search Console property, analytics choice and deployment configuration.
 - Rebuild `.code-review-graph/graph.db`; its current index predates the rebrand and still describes the former implementation. The `code-review-graph` CLI is not currently available in this environment.
 - Validate the CSP with the deployment platform and any later third-party integrations; the current policy permits inline scripts/styles for the Next.js rendering setup.
-- Untracked files in `public/` (`about.md`, `contact.md`, `coverage.md`, `faq.md`, `services.md`, `llms.txt`, `llms-full.txt`, `.well-known/llms.txt`, `.well-known/security.txt`) describe **Meelte**, a different company, with `meelte.com` URLs, `support@meelte.com` contacts and Meelte product claims. They are served as static files if deployed, including a public `security.txt` and an `llms.txt` knowledge base for the wrong business. They are untracked user files, so they were flagged rather than deleted. **Remove or replace them before any deployment.**
+- Public Markdown and LLM reference files in `public/` now describe documented United Rubber Cork information. The stale `.well-known/security.txt` was removed because its contact, policy and canonical origin belonged to a different company; add a replacement only after a security-reporting contact and canonical domain are confirmed.
 
 ## Decisions and constraints
 

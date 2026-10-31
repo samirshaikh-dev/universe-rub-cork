@@ -42,7 +42,7 @@ export default function ProductsPage() {
             <p className="mb-3 text-sm font-semibold text-montado">
               Products for industrial and specialist use
             </p>
-            <h1 className="mb-5 max-w-[13ch] text-montado">
+            <h1 className="mb-5 max-w-[13ch] text-[clamp(2.6rem,6vw,4.5rem)] font-extrabold leading-[1.08] tracking-[-0.045em] text-montado [font-variation-settings:'wdth'_125]">
               Cork products, made to fit your requirement.
             </h1>
             <p className="mb-0 max-w-[58ch] text-lg leading-relaxed text-charcoal">
@@ -78,7 +78,7 @@ export default function ProductsPage() {
                     Industrial range
                   </p>
                   <h2
-                    className="mb-5 max-w-[12ch] text-paper!"
+                    className="mb-5 max-w-[12ch] text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-paper! [font-variation-settings:'wdth'_120]"
                     id="rubberised-cork-heading"
                   >
                     {featuredProduct.name}
@@ -120,7 +120,7 @@ export default function ProductsPage() {
           <p className="mb-3 text-sm font-semibold text-montado">
             More product families
           </p>
-          <h2 className="mb-4" id="other-products-heading">
+          <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]" id="other-products-heading">
             Browse the cork range.
           </h2>
           <p className="mb-0 text-charcoal">
@@ -137,7 +137,7 @@ export default function ProductsPage() {
               key={product.slug}
             >
               <div className="mb-6 flex items-start justify-between gap-4 border-b border-montado/15 pb-5">
-                <h3 className="mb-0 max-w-[18ch] text-montado">
+                <h3 className="mb-0 max-w-[18ch] text-[clamp(1.2rem,2vw,1.45rem)] font-bold leading-[1.08] tracking-[-0.02em] text-montado">
                   {product.name}
                 </h3>
                 <span
@@ -193,7 +193,9 @@ export default function ProductsPage() {
       <section className="bg-cork-light">
         <div className="mx-auto grid w-full max-w-[1200px] gap-6 px-5 py-10 sm:px-6 sm:py-12 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-10">
           <div>
-            <h2 className="mb-3">Have a drawing or sample?</h2>
+            <h2 className="mb-3 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+              Have a drawing or sample?
+            </h2>
             <p className="mb-0 max-w-[60ch] text-charcoal">
               Share the product, dimensions and quantity to discuss a
               specification with United Rubber Cork.

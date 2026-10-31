@@ -5,7 +5,7 @@ export function Navbar() {
   return (
     <header className="relative z-10 border-b border-montado/15 bg-paper">
       <a
-        className="absolute left-2 top-2 z-50 -translate-y-[160%] bg-paper px-4 py-3 font-semibold text-montado transition-transform focus:translate-y-0 focus-visible:outline-3 focus-visible:outline-amber"
+        className="absolute left-2 top-2 z-50 -translate-y-[160%] bg-paper px-4 py-3 font-semibold text-montado motion-safe:transition-transform focus:translate-y-0 focus-visible:outline-3 focus-visible:outline-amber"
         href="#main"
       >
         Skip to content
@@ -13,7 +13,7 @@ export function Navbar() {
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-3 px-5 py-4 sm:px-6 lg:min-h-[76px] lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         <Link
           aria-label={`${SITE_NAME} home`}
-          className="inline-flex shrink-0 flex-col items-start gap-[2px] text-[1.35rem] font-extrabold leading-none tracking-[0.015em] text-montado no-underline"
+          className="inline-flex shrink-0 flex-col items-start gap-[2px] text-[1.35rem] font-extrabold leading-none tracking-[0.015em] text-montado no-underline focus-visible:outline-3 focus-visible:outline-amber"
           href="/"
         >
           {BRAND_WORDMARK.primary}

@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="mx-auto min-h-[55vh] w-full max-w-[1200px] px-5 py-20 sm:px-6 sm:py-28">
       <p className="mb-4 text-sm font-semibold text-montado">Page not found</p>
-      <h1 className="mb-5 max-w-[14ch]">
+      <h1 className="mb-5 max-w-[14ch] text-[clamp(2.6rem,6vw,4.5rem)] font-extrabold leading-[1.08] tracking-[-0.045em] text-montado [font-variation-settings:'wdth'_125]">
         This page has moved or does not exist.
       </h1>
       <p className="mb-7 max-w-[58ch] text-charcoal">

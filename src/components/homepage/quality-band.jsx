@@ -8,7 +8,7 @@ export default function QualityBand() {
           <p className="mb-3 text-sm font-semibold text-paper">
             Quality and specification
           </p>
-          <h2 className="mb-0 max-w-[14ch] text-paper!">
+          <h2 className="mb-0 max-w-[14ch] text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-paper! [font-variation-settings:'wdth'_120]">
             Make the specification clear from the start.
           </h2>
         </div>

@@ -1,47 +1,44 @@
-# Meelte — Services & Feature Directory
+# United Rubber Cork product directory
 
-> A summary of what residents, businesses, and event hosts can do on Meelte, a hyperlocal community platform for India.
+United Rubber Cork supplies cork and rubberised cork products from GIDC, Vapi,
+Gujarat, India. Product availability and specifications should be confirmed
+for each requirement.
 
-Official Website: https://meelte.com
-Contact: support@meelte.com
+## Rubberised cork
 
----
+Rubberised cork sheets, gaskets, frames, strips and washers. Sheets are listed
+as 1.0 to 20 mm thick in 2 ft x 3 ft, 3 ft x 3 ft and 1000 x 1000 mm sizes.
+Strips are listed as 20 to 600 mm wide and 1 to 10 mm thick. Gaskets and
+components can be discussed against a customer drawing or sample, or to IS
+4253 Part II.
 
-## 1. Local Offers (Shop Ads)
-- **URL**: https://meelte.com/discover#offers
-- **Category**: Discovery
-- **Overview**: Shops and service businesses post a single-product ad or a shop ad carrying up to 100 products, priced as an original and final price or as a flat / "up to" percentage discount. Every ad runs from 12:00 AM on its start date to 11:59 PM on its end date.
-- **Viewer actions**: like, comment, share, get one-tap Google Maps directions, follow the shop.
-- **For**: Residents looking for current local offers, and independent shops without a marketing team.
+Page: [Rubberised cork](/products/rubberised-cork)
 
-## 2. Local Events
-- **URL**: https://meelte.com/discover#events
-- **Category**: Events
-- **Overview**: Events carry a category, joining cost in ₹, start and end time, cover image, map location and public or private visibility. Attendees send a "Request to Join" alone or with a group, stating the group size; the host approves, rejects or removes people.
-- **For**: Individuals, clubs and small organisers running local gatherings, activities or paid meet-ups.
+## Cork
 
-## 3. People & Chat
-- **URL**: https://meelte.com/discover#people
-- **Category**: Community
-- **Overview**: Friends, follows, one-to-one chat with text, emoji, documents and location sharing, and audio or video calls. Every user can block and report. Finding new people is still rolling out.
-- **For**: Newcomers to a city and residents staying in touch with people they met locally.
+The documented range includes sheets and rolls, rings and gaskets, polishing
+wheels, granules, anti-vibration slabs, Battricork and stoppers. Granule mesh
+sizes are 0.2/0.5, 0.5/1, 1/2, 3/4 and 4/8 mm. Contact the company to confirm
+current dimensions and availability.
 
-## 4. Grow with Meelte (Local Business Promotion)
-- **URL**: https://meelte.com/for-merchants
-- **Category**: Commerce
-- **Overview**: Shops are onboarded in person by Meelte's field team and can publish their offers to nearby residents, including menu or price-list import from a photo and AI-generated product images for items that were not photographed.
-- **For**: Local merchants, cafes, boutiques, clinics, and service providers.
-- **Note**: Merchant pricing is not published.
+Page: [Cork](/products/cork)
 
----
+## Decorative cork
 
-## What Meelte Does Not Do
+Decorative cork tiles are listed in 300 x 300 mm and 600 x 600 mm face sizes,
+3 to 12 mm thick. Memo boards are available by enquiry; confirm dimensions,
+finish and availability.
 
-- No in-app payments, ticketing or escrow. Purchases are settled directly with the shop, and event costs are settled directly with the host.
-- No jobs board.
-- No identity or background verification of individual users. In-person shop onboarding is not a verification badge.
+Page: [Decorative cork](/products/decorative-cork)
 
----
+## Cork gifts
 
-## Availability
-The app is published on Google Play (package: `com.meelte.classico`) and on the App Store for iPhone; the web app is in development. The field team currently onboards shops in Bengaluru, Gaya, and Ranchi. Nearby listings depend on configured city zones. Merchant pricing is not published.
+Ask about the current cork gift range, sizes and available quantities.
+
+Page: [Cork gifts](/products/cork-gifts)
+
+## Applications
+
+- [Transformers](/industries/transformers)
+- [Automotive](/industries/automotive)
+- [Construction and insulation](/industries/construction)

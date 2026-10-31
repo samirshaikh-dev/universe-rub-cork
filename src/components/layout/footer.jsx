@@ -14,7 +14,7 @@ export function Footer() {
         <div className="max-w-[32ch]">
           <Link
             aria-label={`${SITE_NAME} home`}
-            className="inline-flex flex-col items-start gap-[2px] text-[1.35rem] font-extrabold leading-none tracking-[0.015em] text-paper no-underline"
+            className="inline-flex flex-col items-start gap-[2px] text-[1.35rem] font-extrabold leading-none tracking-[0.015em] text-paper no-underline focus-visible:outline-3 focus-visible:outline-amber"
             href="/"
           >
             {BRAND_WORDMARK.primary}
@@ -27,7 +27,9 @@ export function Footer() {
           </p>
         </div>
         <div>
-          <h2 className="mb-3 text-base tracking-normal text-paper!">Contact</h2>
+          <h2 className="mb-3 text-base font-bold leading-tight tracking-normal text-paper!">
+            Contact
+          </h2>
           <address className="text-[0.95rem] leading-relaxed text-paper/90">
             {COMPANY_ADDRESS.streetAddress}
             <br />
@@ -58,7 +60,9 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <h2 className="mb-3 text-base tracking-normal text-paper!">Explore</h2>
+          <h2 className="mb-3 text-base font-bold leading-tight tracking-normal text-paper!">
+            Explore
+          </h2>
           <ul className="mt-3 grid gap-1 p-0 text-[0.95rem]">
             <li className="list-none">
               <Link className="inline-flex min-h-9 items-center text-paper underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber" href="/products">Products</Link>

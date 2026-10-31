@@ -5,7 +5,9 @@ export default function PrivacyContent() {
     <section className="grid max-w-[900px] gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-14">
       <div className="space-y-8">
         <section>
-          <h2 className="mb-4">Information you send directly</h2>
+          <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+            Information you send directly
+          </h2>
           <p className="mb-0 text-charcoal">
             This website currently has no online quote form or file upload. If
             you contact United Rubber Cork by email or telephone, the details
@@ -14,14 +16,18 @@ export default function PrivacyContent() {
           </p>
         </section>
         <section>
-          <h2 className="mb-4">Cookies and analytics</h2>
+          <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+            Cookies and analytics
+          </h2>
           <p className="mb-0 text-charcoal">
             This website does not currently include advertising cookies or
             analytics tools.
           </p>
         </section>
         <section>
-          <h2 className="mb-4">Questions about privacy</h2>
+          <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+            Questions about privacy
+          </h2>
           <p className="mb-0 text-charcoal">
             For questions about information you have sent to United Rubber
             Cork, contact{" "}

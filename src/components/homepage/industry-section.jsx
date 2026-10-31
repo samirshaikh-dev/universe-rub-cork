@@ -8,7 +8,9 @@ export default function IndustrySection({ industries }) {
           <p className="mb-3 text-sm font-semibold text-montado">
             Applications
           </p>
-          <h2 className="mb-4">Start with the application.</h2>
+          <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+            Start with the application.
+          </h2>
           <p className="mb-0 text-charcoal">
             See the products and specification details relevant to your
             industry.

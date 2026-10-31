@@ -11,7 +11,7 @@ export default function CatalogueList({ items, basePath, actionLabel }) {
             className="flex h-full flex-col border border-montado/20 bg-paper p-6 transition-colors hover:border-montado/50 sm:p-8"
             key={item.slug}
           >
-            <h2 className="mb-4 text-montado">
+            <h2 className="mb-4 text-[clamp(1.2rem,2vw,1.45rem)] font-bold leading-[1.08] tracking-[-0.02em] text-montado">
               <Link
                 className="underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
                 href={href}

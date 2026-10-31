@@ -8,7 +8,9 @@ export default function ContactDetails() {
   return (
     <div className="mb-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <section className="border-t-4 border-montado bg-paper p-6 sm:p-7">
-        <h2 className="mb-4 text-2xl">Call</h2>
+        <h2 className="mb-4 text-2xl font-bold leading-[1.08] tracking-[-0.03em] text-montado">
+          Call
+        </h2>
         <ul className="m-0 grid gap-2 p-0">
           {COMPANY_PHONES.map((phone) => (
             <li className="list-none" key={phone.href}>
@@ -23,7 +25,9 @@ export default function ContactDetails() {
         </ul>
       </section>
       <section className="border-t-4 border-montado bg-paper p-6 sm:p-7">
-        <h2 className="mb-4 text-2xl">Email</h2>
+        <h2 className="mb-4 text-2xl font-bold leading-[1.08] tracking-[-0.03em] text-montado">
+          Email
+        </h2>
         <ul className="m-0 grid gap-2 p-0">
           {COMPANY_EMAILS.map((email) => (
             <li className="list-none" key={email}>
@@ -38,7 +42,9 @@ export default function ContactDetails() {
         </ul>
       </section>
       <section className="border-t-4 border-montado bg-paper p-6 sm:p-7">
-        <h2 className="mb-4 text-2xl">Visit</h2>
+        <h2 className="mb-4 text-2xl font-bold leading-[1.08] tracking-[-0.03em] text-montado">
+          Visit
+        </h2>
         <address className="max-w-[38ch] leading-relaxed text-charcoal">
           {COMPANY_ADDRESS.streetAddress}
           <br />

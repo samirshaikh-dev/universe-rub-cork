@@ -8,7 +8,7 @@ export default function HomeHero() {
           <p className="mb-4 text-sm font-semibold text-montado">
             Manufacturer · GIDC, Vapi, Gujarat
           </p>
-          <h1 className="mb-6 max-w-[12ch] text-montado">
+          <h1 className="mb-6 max-w-[12ch] text-[clamp(2.6rem,6vw,4.5rem)] font-extrabold leading-[1.08] tracking-[-0.045em] text-montado [font-variation-settings:'wdth'_125]">
             Cork and rubberised cork, made to your drawing.
           </h1>
           <p className="mb-7 max-w-[54ch] text-lg leading-relaxed text-charcoal sm:text-xl">

@@ -10,14 +10,19 @@ export default function QuoteContent() {
       <p className="mb-3 text-sm font-semibold text-montado">
         Quote requests
       </p>
-      <h2 className="mb-4" id="request-a-quote-heading">
+      <h2
+        className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]"
+        id="request-a-quote-heading"
+      >
         Request a quote
       </h2>
       <p className="mb-8 max-w-[68ch] text-lg leading-relaxed text-charcoal">
         The online quote form and drawing upload are not enabled yet. For now,
         email United Rubber Cork directly or call to discuss your requirement.
       </p>
-      <h3 className="mb-4">What to include</h3>
+      <h3 className="mb-4 text-[clamp(1.2rem,2vw,1.45rem)] font-bold leading-[1.08] tracking-[-0.02em] text-montado">
+        What to include
+      </h3>
       <ul className="mb-8 grid gap-2 p-0 sm:grid-cols-2">
         <li className="list-none border-l-2 border-cork pl-3 text-charcoal">
           Product name and application

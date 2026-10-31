@@ -8,7 +8,9 @@ export default function ContactCtaSection() {
           <p className="mb-3 text-sm font-semibold text-montado">
             Start a conversation
           </p>
-          <h2 className="mb-4">Have a drawing or sample?</h2>
+          <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+            Have a drawing or sample?
+          </h2>
           <p className="mb-0 text-charcoal">
             Share the product, dimensions and quantity so we can discuss your
             specification.

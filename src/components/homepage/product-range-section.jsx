@@ -22,7 +22,9 @@ export default function ProductRangeSection({ products }) {
           <p className="mb-3 text-sm font-semibold text-montado">
             Published ranges
           </p>
-          <h2 className="mb-4">Check the sizes before you enquire.</h2>
+          <h2 className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+            Check the sizes before you enquire.
+          </h2>
           <p className="mb-0 text-charcoal">
             These documented dimensions help you check product fit. Contact
             United Rubber Cork to confirm current availability.

@@ -18,7 +18,9 @@ export default function IndustryContent({ industry, relatedProducts }) {
         <SpecificationList items={specifications} />
       </section>
       <section className="mt-14 border-t border-montado/20 pt-8">
-        <h2 className="mb-5">Related products</h2>
+        <h2 className="mb-5 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]">
+          Related products
+        </h2>
         <ul className="m-0 flex flex-wrap gap-3 p-0">
           {relatedProducts.map((product) => (
             <li className="list-none" key={product.slug}>
