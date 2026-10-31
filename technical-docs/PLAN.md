@@ -1,18 +1,28 @@
 # PLAN.md: What we are building
 
 ## In one line
-A fast Next.js website for AMCORK Industries (GIDC, Vapi, Gujarat) that lets a technical buyer verify the company and send a quote request in under a minute, on a phone or a desktop.
+A fast Next.js website for United Rubber Cork (GIDC, Vapi, Gujarat) that lets a technical buyer verify the company and send a quote request in under a minute, on a phone or a desktop.
 
 ## Why rebuild
-Audit of the current site (amcorkindia.com, PHP). Based on page text only; visuals were not reviewed.
+Audit of the previous brand's site (amcorkindia.com, PHP), which this project replaces. Based on page text only; visuals were not reviewed.
 
 - Reads as a brochure. Products are long paragraphs with no spec tables, datasheets or application pages.
 - Certifications are buried. ISO 9001:2015 is only a footer badge; IS 4253 Part II appears only inside body copy.
 - One conversion path: an enquiry modal with a 13-item product list. No visible WhatsApp or click-to-call actions in the page content.
-- SEO basics are missing: empty meta description, and the page title is just "AMCORK INDUSTRIES".
+- SEO basics are missing: empty meta description, and the page title is just the company name in capitals.
 - Footer social links point to "#".
 - Copy errors: "ENVIORNMENTALLY", "ALight", "We have manufacturing...".
 - Eco claims are three bare words with no evidence, and rubberised cork is not fully biodegradable.
+
+## Rebrand
+The site is now United Rubber Cork. The previous brand name is retired from the application, metadata, structured data and documentation. The rename was applied in place: no documented product, certificate or contact fact changed.
+
+Still unconfirmed with the client:
+- Whether United Rubber Cork is the same legal entity as AMCORK Industries, and whether AMCORK remains a trading name.
+- The canonical domain. Every canonical URL, `og:url`, sitemap entry and JSON-LD `@id` currently resolves to `https://www.amcorkindia.com` because no new domain has been supplied. One environment variable (`NEXT_PUBLIC_SITE_URL`) switches the whole site.
+- New-domain mailboxes. `admin@amcorkindia.com` and `amcorkindustries@gmail.com` remain the published addresses until replacements exist.
+- Whether the legacy `.php` URLs still need permanent redirects. If `amcorkindia.com` stays live or 301s to the new domain, they do.
+- Approved wordmark artwork. None is in the repository.
 
 ## Goals
 | Goal | How we measure it |
@@ -65,21 +75,24 @@ Features: RFQ form with optional drawing upload, WhatsApp click-to-chat, click-t
 | `/cork-gift.php` | `/products/cork-gifts` |
 | `/contact.php` | `/contact` |
 
-All permanent (301). Test every one after deploy.
+All permanent (301). Test every one after deploy. These URLs belong to the previous brand's domain: they only matter if `amcorkindia.com` stays live or forwards to the new domain.
 
-## Known content (from the current site)
+## Known content (from the former site)
 - **Rubberised cork sheets:** 2 ft x 3 ft, 3 ft x 3 ft, 1000 x 1000 mm; 1.0 to 20 mm thick; made to IS 4253 Part II or customer requirement.
 - **Rubberised cork strips:** 20 to 600 mm wide, 1 to 10 mm thick (aimed at transformer makers).
 - **Cork granules:** meshes 0.2/0.5, 0.5/1, 1/2, 3/4, 4/8 mm.
 - **Decorative cork:** tiles 300 x 300 and 600 x 600 mm, 3 to 12 mm thick.
 - **Product list in the enquiry form:** cork sheets and rolls, cork rings and gaskets, cork polishing wheels, cork granules, anti-vibration cork slab, Battricork, cork stoppers, decorative cork, rubberised cork sheets, gaskets, frames, washers, strips.
-- **Contact:** AMCORK INDUSTRIES, No. 5, Balaji Complex, Opp. Hansa Engg. Compound, Near Mahakali Weight Bridge, 2nd Phase, GIDC, Vapi 396195, Gujarat. Phones +91 9924304617 / 18 / 19. Email admin@amcorkindia.com and amcorkindustries@gmail.com.
+- **Contact:** United Rubber Cork, No. 5, Balaji Complex, Opp. Hansa Engg. Compound, Near Mahakali Weight Bridge, 2nd Phase, GIDC, Vapi 396195, Gujarat. Phones +91 9924304617 / 18 / 19. Email admin@amcorkindia.com and amcorkindustries@gmail.com.
 
 ## Needed from the client (blockers)
-- [ ] Domain, DNS and current hosting access. The footer credits Quarter Solutions Pvt Ltd as developer, so coordinate the handover.
+- [ ] Confirmation that United Rubber Cork is the same legal entity as AMCORK Industries, and whether AMCORK remains a trading name. If it does, add `legalName` / `alternateName` to the Organization schema.
+- [ ] The canonical domain for United Rubber Cork, plus DNS access and the current hosting handover. The old footer credits Quarter Solutions Pvt Ltd as developer.
+- [ ] New-domain mailboxes. Until they exist the site publishes `admin@amcorkindia.com` and `amcorkindustries@gmail.com`.
+- [ ] Approved wordmark artwork (SVG) and the one-colour version. The repository holds no logo file.
 - [ ] Email setup details. `admin@amcorkindia.com` must keep working when DNS moves.
 - [ ] Real photos, or permission to shoot: sheets, frames, gaskets on a bench, die press, finished parts, decorative tiles.
-- [ ] ISO 9001:2015 certificate (number, validity, issuing body) and any test reports.
+- [ ] ISO 9001:2015 certificate in United Rubber Cork's name (number, validity, issuing body) and any test reports.
 - [ ] Datasheets or specs per product.
 - [ ] Client and industry list, and permission to show logos.
 - [ ] Evidence for claims: "completely leak proof", "reduce heat loss by 35 to 50 %", and any biodegradability statement.

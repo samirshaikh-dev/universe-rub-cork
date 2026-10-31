@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NAV_ITEMS } from "../config/site";
+import { BRAND_WORDMARK, NAV_ITEMS, SITE_NAME } from "../config/site";
 
 export default function SiteHeader() {
   return (
@@ -8,9 +8,9 @@ export default function SiteHeader() {
         Skip to content
       </a>
       <div className="header-inner">
-        <Link aria-label="AMCORK Industries home" className="wordmark" href="/">
-          AMCORK
-          <span>Industries</span>
+        <Link aria-label={`${SITE_NAME} home`} className="wordmark" href="/">
+          {BRAND_WORDMARK.primary}
+          <span>{BRAND_WORDMARK.secondary}</span>
         </Link>
         <nav aria-label="Main navigation" className="main-nav">
           {NAV_ITEMS.map((item) => (

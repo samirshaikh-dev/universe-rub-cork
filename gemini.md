@@ -1,12 +1,12 @@
-# AMCORK Industries website instructions
+# United Rubber Cork website instructions
 
 ## Project context
 
-This repository implements the AMCORK Industries website with Next.js 16 App Router, React 19, Tailwind CSS v4 and npm. Application routes are in `src/app/`.
+This repository implements the United Rubber Cork website with Next.js 16 App Router, React 19, Tailwind CSS v4 and npm. Application routes are in `src/app/`.
 
 Read `AGENTS.md`, `AI_RULE.md`, `project-context.md`, and the relevant references under `technical-docs/` before making changes. Use `BRAND.md` for factual claims, `PLAN.md` for route and product scope, `DESIGN.md` for visual decisions, `TECHSTACK.md` for architecture and `VOICE.md` / `feel.md` for copy and interaction.
 
-The former Meelte context is obsolete and must not be used for this project.
+The former Meelte context is obsolete and must not be used for this project. The brand renamed from AMCORK Industries to United Rubber Cork; use `src/config/site.js` for the name, wordmark and contact facts, and do not reintroduce the old brand.
 
 ## Engineering
 

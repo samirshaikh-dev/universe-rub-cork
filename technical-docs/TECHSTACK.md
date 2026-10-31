@@ -6,6 +6,11 @@
 3. **Never lose a lead.** Every quote request is stored before any email is sent.
 4. **Boring and maintainable.** Choose tools the maintainer already knows and the client can afford.
 
+## Current implementation status
+This document describes the target architecture. The repository as it stands uses JavaScript/JSX (not TypeScript), npm (not pnpm), Tailwind CSS v4, and no runtime dependencies beyond Next.js and React. Zod, Drizzle, the Neon database, Resend, file upload and Turnstile are specified below but **not installed or implemented**. The quote route currently opens a pre-addressed email draft and is not a stored lead.
+
+The brand is United Rubber Cork. Canonical origin and mailbox addresses are still carried over from the previous brand; see `PLAN.md`.
+
 ## Stack
 | Layer | Choice | Notes |
 |---|---|---|
@@ -79,14 +84,14 @@ TURNSTILE_SECRET_KEY=
 UPSTASH_REDIS_REST_URL=
 UPSTASH_REDIS_REST_TOKEN=
 R2_ACCOUNT_ID= R2_ACCESS_KEY_ID= R2_SECRET_ACCESS_KEY= R2_BUCKET=
-NEXT_PUBLIC_SITE_URL=https://www.amcorkindia.com
+NEXT_PUBLIC_SITE_URL=https://www.amcorkindia.com   # replace with the United Rubber Cork domain once confirmed
 NEXT_PUBLIC_WHATSAPP_NUMBER=
 NEXT_PUBLIC_GA_ID=
 ```
 
 ## Repo structure
 ```
-amcork-web/
+united-rubber-cork/
   content/
     products/        # one typed file per product family
     industries/
@@ -110,8 +115,8 @@ amcork-web/
 
 ## Scaffold
 ```bash
-pnpm create next-app@latest amcork-web --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --use-pnpm
-cd amcork-web
+pnpm create next-app@latest united-rubber-cork --ts --tailwind --eslint --app --src-dir --import-alias "@/*" --use-pnpm
+cd united-rubber-cork
 pnpm add zod react-hook-form drizzle-orm @neondatabase/serverless resend lucide-react
 pnpm add -D drizzle-kit vitest @playwright/test prettier
 ```

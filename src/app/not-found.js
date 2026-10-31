@@ -5,7 +5,7 @@ export default function NotFound() {
     <section className="container not-found">
       <p className="section-kicker">Page not found</p>
       <h1>This page has moved or does not exist.</h1>
-      <p>Go to Products, or contact AMCORK to discuss a quote.</p>
+      <p>Go to Products, or contact United Rubber Cork to discuss a quote.</p>
       <div className="contact-actions">
         <Link className="button button-primary" href="/products">
           Browse products

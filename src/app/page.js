@@ -11,7 +11,7 @@ export default function HomePage() {
       <section className="home-hero">
         <div className="container hero-grid">
           <div className="hero-copy">
-            <p className="section-kicker">AMCORK Industries · GIDC, Vapi</p>
+            <p className="section-kicker">United Rubber Cork, GIDC, Vapi</p>
             <h1>Cork and rubberised cork, made to your drawing.</h1>
             <p className="hero-lede">
               Sheets, gaskets, strips and cork products for industrial,
@@ -48,7 +48,7 @@ export default function HomePage() {
             <h2>Find the right cork product.</h2>
             <p>
               Review the documented sizes, then share your drawing or
-              application with AMCORK.
+              application with United Rubber Cork.
             </p>
           </div>
           <div className="product-list">
@@ -107,7 +107,7 @@ export default function HomePage() {
             <h2>Parts made to a clear specification.</h2>
           </div>
           <p>
-            AMCORK lists an ISO 9001:2015 quality system and rubberised cork
+            United Rubber Cork lists an ISO 9001:2015 quality system and rubberised cork
             products made to IS 4253 Part II or customer requirements. Ask for
             current documentation when reviewing a specification.
           </p>

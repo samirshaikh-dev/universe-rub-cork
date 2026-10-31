@@ -9,7 +9,7 @@ Companion files: `BRAND.md` (who), `VOICE.md` (words), `DESIGN.md` (tokens and l
 
 ## Recommendation
 
-| Option | Trust with B2B buyers | Speed on mid-range Android | Fit with AMCORK | Verdict |
+| Option | Trust with B2B buyers | Speed on mid-range Android | Fit with United Rubber Cork | Verdict |
 |---|---|---|---|---|
 | Minimalist and clean | High | Excellent | Strong: spec-led, honest | Right foundation, but on its own risks feeling flat |
 | **Minimalist base with subtle, purposeful motion** | High | Excellent if CSS-only | Strong: adds tactility and polish | **Recommended** |
@@ -194,7 +194,7 @@ Tokens and scales are in `DESIGN.md`. This is how they should feel.
 | Home | Confident first impression | Die-cut hero, badges visible without scrolling, "Request a quote" plus "Send your drawing on WhatsApp", industry panels below |
 | Product families | Clear and specific | Spec table first, datasheet rows, glyphs for gasket shapes, quote button repeated per row |
 | Industry pages | "They understand my problem" | Opening line names the buyer's problem; application photograph; relevant products and sizes listed beside it |
-| Quality | Reassurance | Certificate image, standard, a plain description of how parts are checked **[confirm with AMCORK]**, factory photographs |
+| Quality | Reassurance | Certificate image, standard, a plain description of how parts are checked **[confirm with United Rubber Cork]**, factory photographs |
 | Decorative and gifts | Warmer, more visual | Large imagery, swatch hover that cross-fades to a room view (240 ms), slightly looser spacing |
 | Contact and quote | Effortless | Short form first (name, company, email, phone, product); "Add size and drawing" disclosure for the rest; map and phone numbers beside it |
 | Quote sent | Satisfaction | The fit moment, then what happens next and when |
@@ -227,7 +227,7 @@ Descriptions come from third-party write-ups, not from a visual review. **Open e
 - Material-led tactile minimalism: the cork texture, not decoration, supplies the character.
 - Technical documentation clarity: tables, labelled diagrams, plain units.
 
-**Trends to reject for AMCORK:** 3D scroll experiences and glassmorphism (appear in 2026 trend lists). They add weight and style over substance, and do not help a buyer verify a supplier.
+**Trends to reject for United Rubber Cork:** 3D scroll experiences and glassmorphism (appear in 2026 trend lists). They add weight and style over substance, and do not help a buyer verify a supplier.
 
 ---
 
@@ -251,7 +251,7 @@ Descriptions come from third-party write-ups, not from a visual review. **Open e
 
 ## How we will know it works
 **Tests before launch**
-- **Five-second test:** show the home page to five people who do not know AMCORK. Ask what the company makes and what they would do next. Four of five should answer correctly.
+- **Five-second test:** show the home page to five people who do not know United Rubber Cork. Ask what the company makes and what they would do next. Four of five should answer correctly.
 - **Squint test:** blur the page. The hero image, headline and quote button should still stand out.
 - **Thumb test:** complete a quote request one-handed on a phone.
 - **Slow-phone test:** throttled mid-range Android, no jank in any animation.

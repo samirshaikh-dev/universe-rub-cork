@@ -1,4 +1,4 @@
-# AMCORK Industries project context
+# United Rubber Cork project context
 
 The canonical brand, product and design references are maintained in [`technical-docs/`](./technical-docs/):
 
@@ -9,4 +9,6 @@ The canonical brand, product and design references are maintained in [`technical
 - [`VOICE.md`](./technical-docs/VOICE.md) — customer-facing language
 - [`feel.md`](./technical-docs/feel.md) — motion and interaction guidance
 
-This file replaces the previous Meelte context, which described a different product and did not apply to this repository's AMCORK technical specification. Keep the technical docs as the source of truth; do not duplicate or contradict them here.
+This file replaces the previous Meelte context, which described a different product and did not apply to this repository's technical specification. Keep the technical docs as the source of truth; do not duplicate or contradict them here.
+
+The brand was renamed in place from AMCORK Industries to United Rubber Cork. Company identity, the wordmark lines and contact facts live in `src/config/site.js`; the canonical domain and both mailboxes are inherited from the previous brand and await confirmation (`technical-docs/PLAN.md`).

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   if (!industry) return {};
 
   return createPageMetadata({
-    title: industry.name,
+    title: industry.seoTitle ?? industry.name,
     description: industry.summary,
     path: `/industries/${industry.slug}`,
   });

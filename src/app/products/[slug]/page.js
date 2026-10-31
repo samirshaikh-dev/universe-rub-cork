@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   if (!product) return {};
 
   return createPageMetadata({
-    title: product.name,
+    title: product.seoTitle ?? product.name,
     description: product.summary,
     path: `/products/${product.slug}`,
   });
@@ -54,7 +54,7 @@ export default async function ProductPage({ params }) {
         ) : (
           <p className="notice">
             Product specifications and photographs are not yet available for
-            this range. Contact AMCORK to confirm current options.
+            this range. Contact United Rubber Cork to confirm current options.
           </p>
         )}
       </section>

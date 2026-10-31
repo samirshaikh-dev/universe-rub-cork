@@ -1,6 +1,19 @@
-export const SITE_NAME = "AMCORK Industries";
+// Brand identity. United Rubber Cork, GIDC, Vapi, Gujarat.
+//
+// Open item: SITE_URL and both mailbox addresses are carried over from the
+// previous brand and are not yet confirmed for United Rubber Cork. Replace them
+// when the new domain, DNS and mailboxes are supplied. See technical-docs/PLAN.md.
+export const SITE_NAME = "United Rubber Cork";
+
+// The wordmark is set on two lines in the header and footer.
+export const BRAND_WORDMARK = {
+  primary: "United",
+  secondary: "Rubber Cork",
+};
+
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.amcorkindia.com";
+
 export const SITE_DESCRIPTION =
   "Cork and rubberised cork products made for industrial, construction and decorative applications.";
 

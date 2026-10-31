@@ -12,7 +12,7 @@ export default function ContactActions({ compact = false }) {
       </a>
       {!compact && (
         <a className="text-link" href={`mailto:${COMPANY_EMAILS[0]}`}>
-          Email AMCORK
+          Email United Rubber Cork
         </a>
       )}
     </div>

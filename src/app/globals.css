@@ -155,8 +155,9 @@ address {
 
 .wordmark {
   display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   color: var(--color-montado);
   font-size: 1.35rem;
   font-weight: 800;

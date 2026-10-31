@@ -60,7 +60,8 @@ Implementation note: load with `next/font/google` using the `wdth` axis. If the 
 ### Home wireframe (desktop)
 ```
 +----------------------------------------------------------------+
-| AMCORK    Products  Industries  Quality  About  Contact [Quote] |
+| United Rubber Cork                                             |
+| Products Industries Quality About Contact   [Request a quote]  |
 +----------------------------------------------------------------+
 | Cork and rubberised cork          +-------------------------+  |
 | gaskets, made to your drawing     |  macro cork sheet photo |  |
@@ -87,7 +88,7 @@ Implementation note: load with `next/font/google` using the `wdth` axis. If the 
 +================================================================+
 | PROOF BAND (Montado Green): certificate image, standard,        |
 | how an order works: send drawing -> review -> quote -> sample   |
-| -> production [confirm process with AMCORK]                     |
+| -> production [confirm process with the client]                  |
 +================================================================+
 | Clients / industries served (only with permission)              |
 +----------------------------------------------------------------+

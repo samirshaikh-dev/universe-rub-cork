@@ -8,11 +8,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# AMCORK Industries website engineering rules
+# United Rubber Cork website engineering rules
 
 ## Source of truth
 
-This repository builds the AMCORK Industries website. The product and implementation references live in `technical-docs/`:
+This repository builds the United Rubber Cork website. The product and implementation references live in `technical-docs/`:
 
 1. `technical-docs/BRAND.md` is authoritative for company facts, audiences and claims.
 2. `technical-docs/PLAN.md` defines the v1 routes, scope, known product facts, redirects, risks and client dependencies.
@@ -21,13 +21,14 @@ This repository builds the AMCORK Industries website. The product and implementa
 5. `technical-docs/VOICE.md` governs customer-facing copy and terminology.
 6. `technical-docs/feel.md` governs motion and interaction details.
 
-When these references conflict with old Meelte-oriented material or the current implementation, follow the AMCORK technical docs and update the stale project documentation. Surface conflicts in the final report. Do not silently invent missing client facts.
+When these references conflict with old Meelte-oriented material or the current implementation, follow the United Rubber Cork technical docs and update the stale project documentation. Surface conflicts in the final report. Do not silently invent missing client facts.
 
-`project-context.md` records the implementation's current routes, architecture and blockers. Keep it current when those change. `brand-context.md` and `gemini.md` point to the same AMCORK sources; do not reintroduce Meelte product instructions.
+`project-context.md` records the implementation's current routes, architecture and blockers. Keep it current when those change. `brand-context.md` and `gemini.md` point to the same United Rubber Cork sources; do not reintroduce Meelte product instructions.
 
 ## Product and claim rules
 
-- Write **AMCORK** for the brand and **AMCORK Industries** for the company.
+- Write **United Rubber Cork** in full. Never abbreviate it to URC in buyer-facing copy. The two wordmark lines live in `BRAND_WORDMARK` in `src/config/site.js`.
+- The brand was renamed from AMCORK Industries. Do not reintroduce the old name in copy, metadata, structured data or accessible names. The inherited domain and mailbox addresses are documented exceptions in `src/config/site.js`.
 - Use **rubberised cork**, British spelling, and the product names in the technical docs.
 - Do not claim product properties, certifications, customer names, capacity, lead times, export reach, prices or environmental benefits unless documented and approved.
 - Treat the ISO 9001:2015 certificate number, scope, issuer and validity as unconfirmed until the client supplies the certificate.
@@ -49,7 +50,7 @@ When these references conflict with old Meelte-oriented material or the current 
 - Each indexable route needs a unique title, description, canonical URL and a single H1. Use `src/lib/seo/` for shared metadata and JSON-LD.
 - Maintain the permanent legacy URL redirects in `src/proxy.js`; Next.js config redirects return 308 rather than the 301 status required by `technical-docs/PLAN.md`.
 - Keep CSS colours and font declarations in the design tokens in `src/app/globals.css`. Prefer semantic HTML, visible focus, adequate contrast, reduced-motion support and keyboard-operable controls.
-- Add `next/image` with explicit dimensions when approved photos or product assets are supplied. Do not use stock images as a substitute for missing AMCORK photography.
+- Add `next/image` with explicit dimensions when approved photos or product assets are supplied. Do not use stock images as a substitute for missing United Rubber Cork photography.
 - Add security headers in `next.config.mjs`; review CSP whenever introducing a script, embed, analytics or third-party service.
 
 ## Implementation workflow

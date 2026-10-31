@@ -5,9 +5,9 @@ import { PRODUCTS } from "../../data/site-content";
 import { createPageMetadata } from "../../lib/seo/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Cork and rubberised cork products",
+  title: "Cork and rubberised cork product range",
   description:
-    "Browse AMCORK's rubberised cork, cork, decorative cork and cork gift product ranges.",
+    "Browse United Rubber Cork's rubberised cork, cork, decorative cork and cork gift product ranges.",
   path: "/products",
 });
 
@@ -16,7 +16,7 @@ export default function ProductsPage() {
     <div className="container page-content">
       <PageHeading
         breadcrumbs={[{ name: "Products", path: "/products" }]}
-        description="Product families and documented specifications. Contact AMCORK to confirm current availability."
+        description="Product families and documented specifications. Contact United Rubber Cork to confirm current availability."
         title="Cork products"
       />
       <div className="catalogue-list">

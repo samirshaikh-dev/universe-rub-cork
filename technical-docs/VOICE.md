@@ -13,7 +13,7 @@ A knowledgeable production engineer talking to a buyer: specific, calm, and brie
 ## Language rules
 - **Indian English, British spelling:** rubberised, colour, centre, programme.
 - Sentence case for headings and buttons. No ALL CAPS for emphasis.
-- Use "we" for AMCORK and "you" for the buyer.
+- Use "we" for United Rubber Cork and "you" for the buyer.
 - Write units with a space: 20 mm, not 20mm. Use "x" in sizes: 300 x 300 mm.
 - Spell out a standard the first time: "IS 4253 Part II (Bureau of Indian Standards)", then "IS 4253 Part II". **[confirm the standard's full title]**
 - No exclamation marks. No "world-class", "cutting-edge", "best-in-class", "solutions provider".
@@ -23,7 +23,7 @@ A knowledgeable production engineer talking to a buyer: specific, calm, and brie
 | Context | Tone | Example |
 |---|---|---|
 | Industrial product pages | Technical, compact | "Rubberised cork sheet, 1.0 to 20 mm thick. Cut to your drawing." |
-| Application pages | Problem first, then fit | "Transformer top covers need a gasket that stays compressed and resists oil." **[confirm technical wording with AMCORK]** |
+| Application pages | Problem first, then fit | "Transformer top covers need a gasket that stays compressed and resists oil." **[confirm technical wording with United Rubber Cork]** |
 | Decorative cork and gifts | Warmer, more sensory, still short | "Cork tiles with a natural grain. Quiet underfoot." |
 | Forms and errors | Neutral, instructional, never apologetic | "Enter a phone number with at least 10 digits." |
 | Sustainability | Factual, modest | "Cork bark is harvested without felling the tree." |
@@ -60,7 +60,7 @@ Name · Company · Work email · Phone or WhatsApp · Product · Size and quanti
 - Phone: "We may call to confirm the specification."
 
 **Success**
-"Quote request sent. We will reply to {email} within {time}." **[confirm reply time with AMCORK; do not publish a promise they cannot keep]**
+"Quote request sent. We will reply to {email} within {time}." **[confirm reply time with United Rubber Cork; do not publish a promise they cannot keep]**
 
 **Errors (say what is wrong and how to fix it)**
 - Missing email: "Enter an email address so we can send the quote."

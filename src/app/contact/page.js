@@ -8,9 +8,9 @@ import {
 import { createPageMetadata } from "../../lib/seo/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Contact AMCORK Industries",
+  title: "Contact: phone, email and address",
   description:
-    "Contact AMCORK Industries in GIDC, Vapi, Gujarat by phone or email about cork and rubberised cork products.",
+    "Contact United Rubber Cork in GIDC, Vapi, Gujarat by phone or email about cork and rubberised cork products.",
   path: "/contact",
 });
 
@@ -19,8 +19,8 @@ export default function ContactPage() {
     <div className="container page-content">
       <PageHeading
         breadcrumbs={[{ name: "Contact", path: "/contact" }]}
-        description="Talk with AMCORK about product availability, specifications or a quote."
-        title="Contact AMCORK"
+        description="Talk with United Rubber Cork about product availability, specifications or a quote."
+        title="Contact United Rubber Cork"
       />
       <div className="contact-grid">
         <section className="contact-block">

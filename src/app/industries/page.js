@@ -5,9 +5,9 @@ import { INDUSTRIES } from "../../data/site-content";
 import { createPageMetadata } from "../../lib/seo/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Industries and applications",
+  title: "Cork applications by industry",
   description:
-    "Explore AMCORK cork and rubberised cork applications for transformers, automotive components, construction and insulation.",
+    "Explore United Rubber Cork's cork and rubberised cork applications for transformers, automotive components, construction and insulation.",
   path: "/industries",
 });
 

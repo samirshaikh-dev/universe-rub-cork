@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  BRAND_WORDMARK,
   COMPANY_ADDRESS,
   COMPANY_EMAILS,
   COMPANY_PHONES,
@@ -12,8 +13,8 @@ export default function SiteFooter() {
       <div className="container footer-grid">
         <div>
           <Link aria-label={`${SITE_NAME} home`} className="wordmark wordmark-light" href="/">
-            AMCORK
-            <span>Industries</span>
+            {BRAND_WORDMARK.primary}
+            <span>{BRAND_WORDMARK.secondary}</span>
           </Link>
           <p className="footer-summary">
             Cork and rubberised cork products from GIDC, Vapi, Gujarat.
@@ -50,7 +51,7 @@ export default function SiteFooter() {
               <Link href="/quality">Quality</Link>
             </li>
             <li>
-              <Link href="/about">About AMCORK</Link>
+              <Link href="/about">About United Rubber Cork</Link>
             </li>
             <li>
               <Link href="/privacy">Privacy notice</Link>
@@ -59,7 +60,7 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <p>AMCORK Industries · GIDC, Vapi, Gujarat</p>
+        <p>United Rubber Cork, GIDC, Vapi, Gujarat</p>
         <Link href="/request-quote">Request a quote</Link>
       </div>
     </footer>
