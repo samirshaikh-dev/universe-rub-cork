@@ -117,10 +117,15 @@ export function Navbar() {
             className="group flex items-center gap-3 no-underline"
             href="/"
           >
-            <div className="grid size-10 shrink-0 place-items-center rounded-md bg-montado text-white shadow-sm transition-transform duration-200 group-hover:scale-105">
-              <span className="text-sm font-black tracking-widest text-cork-gold">
-                URC
-              </span>
+            <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-montado text-cork-gold shadow-sm transition-transform duration-200 group-hover:scale-105">
+              <svg aria-hidden="true" className="size-5.5 text-cork-gold" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="4.5" strokeDasharray="2.5 2.5" />
+                <circle cx="12" cy="5.5" r="1.25" fill="currentColor" />
+                <circle cx="12" cy="18.5" r="1.25" fill="currentColor" />
+                <circle cx="5.5" cy="12" r="1.25" fill="currentColor" />
+                <circle cx="18.5" cy="12" r="1.25" fill="currentColor" />
+              </svg>
             </div>
             <div className="flex flex-col">
               <span className="text-base font-extrabold tracking-tight text-montado transition-colors group-hover:text-montado-vibrant">
@@ -171,7 +176,7 @@ export function Navbar() {
               className="btn btn--primary min-h-10 px-4 py-1.5 text-sm"
               href="/contact#request-a-quote"
             >
-              <span>Instant Quote</span>
+              <span>Request a Quote</span>
               <ArrowRightIcon className="size-3.5" />
             </Link>
           </div>
@@ -213,8 +218,15 @@ export function Navbar() {
           >
             <div className="shell flex h-18 shrink-0 items-center justify-between border-b border-montado/12">
               <div className="flex items-center gap-2.5">
-                <div className="grid size-9 place-items-center rounded bg-montado text-xs font-black text-cork-gold">
-                  URC
+                <div className="grid size-9 place-items-center rounded-lg bg-montado text-cork-gold shadow-sm">
+                  <svg aria-hidden="true" className="size-5 text-cork-gold" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <circle cx="12" cy="12" r="4.5" strokeDasharray="2.5 2.5" />
+                    <circle cx="12" cy="5.5" r="1.25" fill="currentColor" />
+                    <circle cx="12" cy="18.5" r="1.25" fill="currentColor" />
+                    <circle cx="5.5" cy="12" r="1.25" fill="currentColor" />
+                    <circle cx="18.5" cy="12" r="1.25" fill="currentColor" />
+                  </svg>
                 </div>
                 <span className="text-sm font-extrabold text-montado">
                   {BRAND_WORDMARK.primary} {BRAND_WORDMARK.secondary}

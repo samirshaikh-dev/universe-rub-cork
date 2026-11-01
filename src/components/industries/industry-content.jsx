@@ -23,7 +23,7 @@ export default function IndustryContent({ industry, relatedProducts }) {
       <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 xl:gap-20">
         {/* Left Column: Application Context & Specifications */}
         <div>
-          <div className="mb-6 rounded-2xl border border-montado/12 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="mb-6 bento-card p-6 sm:p-7">
             <span className="text-xs font-bold uppercase tracking-wider text-charcoal-muted mb-2 block">
               Application Scope
             </span>
@@ -68,7 +68,7 @@ export default function IndustryContent({ industry, relatedProducts }) {
 
         {/* Right Column: Relevant Products */}
         <div className="self-start">
-          <div className="rounded-2xl border border-montado/12 bg-white p-6 sm:p-7 shadow-sm">
+          <div className="bento-card p-6 sm:p-7">
             <div className="flex items-center gap-2 mb-4 pb-3 border-b border-montado/10">
               <LayersIcon className="size-4 text-montado" />
               <h2 className="display-sm m-0 text-charcoal">

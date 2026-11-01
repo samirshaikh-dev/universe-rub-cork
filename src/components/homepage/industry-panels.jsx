@@ -7,7 +7,6 @@ import {
   CarIcon,
   BuildingIcon,
   ArrowRightIcon,
-  ShieldCheckIcon,
   FileTextIcon,
 } from "../ui/icons";
 
@@ -25,7 +24,7 @@ const INDUSTRY_CONFIG = {
   },
   automotive: {
     icon: CarIcon,
-    tag: "OEM & Component Builders",
+    tag: "OEM & Component Assemblies",
     badge: "NBR Bonded Composite",
     media: MEDIA.corkSheet,
     keyFeatures: [
@@ -40,9 +39,9 @@ const INDUSTRY_CONFIG = {
     badge: "High-Density Natural Cork",
     media: MEDIA.sheetSamples,
     keyFeatures: [
-      "Foundation isolation & machinery anti-vibration slabs",
-      "Thermal insulation barriers & acoustic floor underlay",
-      "Natural granules in 5 calibrated mesh sizes",
+      "Foundation isolation & anti-vibration slabs",
+      "Thermal insulation barriers & floor underlay",
+      "Calibrated granules in 5 mesh sizes",
     ],
   },
 };
@@ -52,9 +51,9 @@ export default function IndustryPanels({ industries }) {
     <section className="section bg-sheet border-b border-montado/10">
       <div className="shell">
         {/* Section Header */}
-        <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-montado/12 pb-6">
-          <div className="max-w-[620px]">
-            <div className="mb-2.5 flex items-center gap-2">
+        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-montado/10 pb-5">
+          <div className="max-w-[580px]">
+            <div className="mb-2 flex items-center gap-2">
               <span className="badge-tag">
                 <span>Sector Applications</span>
               </span>
@@ -63,23 +62,22 @@ export default function IndustryPanels({ industries }) {
               </span>
             </div>
             <h2 className="display-lg m-0 text-balance">
-              Engineered For Demanding Industrial Applications
+              Engineered For Industrial Applications
             </h2>
-            <p className="mt-3 mb-0 text-sm sm:text-base text-charcoal-light">
-              Different operating environments require specific elastomer binders,
-              cork granule grades, and bolt torque allowances. Explore how United Rubber Cork
-              delivers verified sealing performance across core sectors.
+            <p className="mt-2 mb-0 text-xs sm:text-sm text-charcoal-light">
+              Explore how United Rubber Cork delivers verified sealing performance across
+              transformers, automotive components, and structural insulation.
             </p>
           </div>
 
-          <Link className="btn btn--secondary min-h-10 text-sm self-start" href="/industries">
+          <Link className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold self-start" href="/industries">
             <span>Explore All Industries</span>
-            <ArrowRightIcon className="size-3.5" />
+            <ArrowRightIcon className="size-3" />
           </Link>
         </div>
 
-        {/* 3-Column Card Grid */}
-        <div className="grid gap-6 md:grid-cols-3">
+        {/* 3-Column Bento Grid */}
+        <div className="grid gap-5 md:grid-cols-3">
           {industries.map((industry) => {
             const config = INDUSTRY_CONFIG[industry.slug] || INDUSTRY_CONFIG.transformers;
             const Icon = config.icon;
@@ -87,7 +85,7 @@ export default function IndustryPanels({ industries }) {
 
             return (
               <div
-                className="card-surface flex flex-col overflow-hidden bg-white"
+                className="bento-card flex flex-col overflow-hidden"
                 key={industry.slug}
               >
                 {/* Visual Image Header */}
@@ -100,22 +98,22 @@ export default function IndustryPanels({ industries }) {
                     src={media.src}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute top-3 left-3">
-                    <span className="badge-tag badge-tag--dark text-xs backdrop-blur-md">
-                      <Icon className="size-3.5 text-cork-gold" />
+                  <div className="absolute top-2.5 left-2.5">
+                    <span className="badge-tag badge-tag--dark text-[0.68rem] backdrop-blur-md">
+                      <Icon className="size-3 text-cork-gold" />
                       <span>{config.tag}</span>
                     </span>
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
-                    <span className="text-xs font-semibold text-cork-light">
+                  <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white">
+                    <span className="text-[0.72rem] font-semibold text-cork-light">
                       {config.badge}
                     </span>
                   </div>
                 </div>
 
                 {/* Content Body */}
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="display-sm m-0 mb-2">
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="display-sm m-0 mb-1.5 text-base">
                     <Link
                       className="text-charcoal no-underline hover:text-montado transition-colors"
                       href={`/industries/${industry.slug}`}
@@ -124,14 +122,14 @@ export default function IndustryPanels({ industries }) {
                     </Link>
                   </h3>
 
-                  <p className="mb-4 text-xs sm:text-sm text-charcoal-light leading-relaxed">
+                  <p className="mb-3 text-xs text-charcoal-light leading-relaxed">
                     {industry.summary}
                   </p>
 
                   {/* Bullet Highlights */}
-                  <ul className="m-0 mb-6 grid gap-2 p-0 text-xs text-charcoal-muted">
+                  <ul className="m-0 mb-4 grid gap-1.5 p-0 text-[0.75rem] text-charcoal-muted">
                     {config.keyFeatures.map((feature, i) => (
-                      <li className="flex items-start gap-2 list-none" key={i}>
+                      <li className="flex items-start gap-1.5 list-none" key={i}>
                         <span className="text-montado font-bold mt-0.5">•</span>
                         <span>{feature}</span>
                       </li>
@@ -139,17 +137,17 @@ export default function IndustryPanels({ industries }) {
                   </ul>
 
                   {/* Footer Action */}
-                  <div className="mt-auto pt-4 border-t border-montado/10 flex items-center justify-between">
+                  <div className="mt-auto pt-3 border-t border-montado/8 flex items-center justify-between text-xs">
                     <Link
                       className="btn--plain text-xs font-bold text-montado"
                       href={`/industries/${industry.slug}`}
                     >
-                      <span>Application Details</span>
-                      <ArrowRightIcon className="size-3.5" />
+                      <span>Explore</span>
+                      <ArrowRightIcon className="size-3" />
                     </Link>
 
                     <Link
-                      className="text-xs font-semibold text-cork hover:underline"
+                      className="font-semibold text-cork-deep hover:underline"
                       href={`/contact#request-a-quote`}
                     >
                       Get Quote
@@ -161,29 +159,28 @@ export default function IndustryPanels({ industries }) {
           })}
         </div>
 
-        {/* Custom Drawing Notice Banner */}
-        <div className="mt-8 rounded-xl border border-montado/15 bg-gradient-to-r from-montado/5 via-cork/10 to-montado/5 p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex items-start gap-4">
-            <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-montado text-white">
-              <FileTextIcon className="size-5 text-cork-gold" />
+        {/* Compact Drawing Notice Banner */}
+        <div className="mt-6 rounded-lg border border-montado/12 bg-white p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="grid size-9 shrink-0 place-items-center rounded-lg bg-montado text-white">
+              <FileTextIcon className="size-4 text-cork-gold" />
             </div>
             <div>
-              <h4 className="m-0 text-base font-bold text-charcoal">
-                Need Gaskets or Cut Sheets to a Custom Engineering Drawing?
+              <h4 className="m-0 text-sm font-bold text-charcoal">
+                Have a Custom CAD Drawing or Sample?
               </h4>
-              <p className="mt-1 mb-0 text-xs sm:text-sm text-charcoal-light max-w-[60ch]">
-                Send your CAD (.dwg, .dxf) or PDF drawings directly via WhatsApp or our online
-                quote builder. Our toolroom will review your dimensions and provide a prompt quotation.
+              <p className="mt-0.5 mb-0 text-xs text-charcoal-light">
+                Send your .dwg, .dxf or PDF drawing via WhatsApp or our quick form for direct factory pricing.
               </p>
             </div>
           </div>
 
           <Link
-            className="btn btn--primary min-h-11 px-5 text-sm shrink-0 font-semibold"
+            className="btn btn--primary min-h-9 px-4 text-xs shrink-0 font-bold self-start md:self-auto"
             href="/contact#request-a-quote"
           >
-            <span>Submit Drawing Specification</span>
-            <ArrowRightIcon className="size-4" />
+            <span>Submit Drawing</span>
+            <ArrowRightIcon className="size-3" />
           </Link>
         </div>
       </div>

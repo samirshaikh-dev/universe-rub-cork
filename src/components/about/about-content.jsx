@@ -50,7 +50,7 @@ export default function AboutContent() {
 
         {/* Fact Matrix */}
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
-          <div className="rounded-xl border border-montado/10 bg-white p-4.5 shadow-sm">
+          <div className="bento-card p-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-muted mb-1">
               <MapPinIcon className="size-3.5 text-montado" />
               <span>Manufacturing Works</span>
@@ -60,7 +60,7 @@ export default function AboutContent() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-montado/10 bg-white p-4.5 shadow-sm">
+          <div className="bento-card p-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-muted mb-1">
               <ShieldCheckIcon className="size-3.5 text-montado" />
               <span>Quality Assurance</span>
@@ -70,7 +70,7 @@ export default function AboutContent() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-montado/10 bg-white p-4.5 shadow-sm">
+          <div className="bento-card p-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-muted mb-1">
               <ShieldCheckIcon className="size-3.5 text-montado" />
               <span>National Standard</span>
@@ -80,7 +80,7 @@ export default function AboutContent() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-montado/10 bg-white p-4.5 shadow-sm">
+          <div className="bento-card p-4">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-muted mb-1">
               <RulerIcon className="size-3.5 text-montado" />
               <span>Production Capability</span>
@@ -101,7 +101,7 @@ export default function AboutContent() {
 
       {/* Right Column: Visual Showcase */}
       <div className="self-start lg:sticky lg:top-24">
-        <div className="card-surface overflow-hidden bg-white rounded-2xl border border-montado/15 shadow-md">
+        <div className="bento-card overflow-hidden">
           <div className="relative aspect-[4/3] overflow-hidden bg-sheet">
             <Image
               alt={MEDIA.sheetSamples.alt}

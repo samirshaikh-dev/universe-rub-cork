@@ -37,12 +37,19 @@ export default function OpenGraphImage() {
             borderRadius: 8,
             background: "#133a2d",
             border: "1px solid #d4954d",
-            color: "#d4954d",
-            fontSize: 20,
-            fontWeight: 800,
           }}
         >
-          URC
+          <svg
+            fill="none"
+            height="26"
+            stroke="#d4954d"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="26"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="4.5" strokeDasharray="2 2" />
+          </svg>
         </div>
         <div
           style={{

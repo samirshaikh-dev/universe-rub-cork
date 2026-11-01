@@ -484,6 +484,100 @@
   .spec-table tbody tr:hover {
     background-color: rgba(19, 58, 45, 0.03);
   }
+
+  /* ---- Bento & Modern Visual Utilities ---------------------------------- */
+
+  .bento-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(19, 58, 45, 0.08);
+    border-radius: var(--radius-card);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 16px -4px rgba(19, 58, 45, 0.04);
+    transition: all 220ms var(--ease-standard);
+  }
+
+  .bento-card:hover {
+    border-color: rgba(19, 58, 45, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03), 0 12px 28px -6px rgba(19, 58, 45, 0.09);
+    transform: translateY(-2px);
+  }
+
+  .pill-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--color-charcoal-muted);
+    transition: all 180ms var(--ease-standard);
+  }
+
+  .pill-tab:hover {
+    color: var(--color-charcoal);
+    background-color: rgba(19, 58, 45, 0.04);
+  }
+
+  .pill-tab--active {
+    background-color: #ffffff;
+    color: var(--color-montado);
+    font-weight: 700;
+    border-color: rgba(19, 58, 45, 0.12);
+    box-shadow: 0 2px 8px -2px rgba(19, 58, 45, 0.1);
+  }
+
+  /* ---- Lightweight Physics-Inspired Keyframe Animations ----------------- */
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleUp {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 380ms var(--ease-standard) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 300ms var(--ease-standard) forwards;
+  }
+
+  .animate-scale-up {
+    animation: scaleUp 340ms var(--ease-standard) forwards;
+  }
+
+  .stagger-1 { animation-delay: 50ms; }
+  .stagger-2 { animation-delay: 100ms; }
+  .stagger-3 { animation-delay: 150ms; }
+  .stagger-4 { animation-delay: 200ms; }
 }
 
 /* Reduced motion accessibility */

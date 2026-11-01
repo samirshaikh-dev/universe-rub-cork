@@ -30,7 +30,7 @@ export default function CatalogueList({ items, basePath, actionLabel = "View Ran
 
         return (
           <article
-            className="card-surface flex h-full flex-col overflow-hidden bg-white rounded-xl border border-montado/12 transition-all duration-200"
+            className="bento-card flex h-full flex-col overflow-hidden"
             key={item.slug}
           >
             {/* Visual Header: Photo or Graphic Hero */}

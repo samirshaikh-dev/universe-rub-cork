@@ -21,7 +21,7 @@ export default function ContactDetails() {
   return (
     <div className="mb-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {/* 1. Telephone & WhatsApp */}
-      <section className="card-surface rounded-2xl border border-montado/12 bg-white p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+      <section className="bento-card p-6 sm:p-7 flex flex-col justify-between">
         <div>
           <div className="flex items-center gap-2.5 mb-4 text-montado">
             <div className="grid size-10 place-items-center rounded-xl bg-montado/10 text-montado">
@@ -66,7 +66,7 @@ export default function ContactDetails() {
       </section>
 
       {/* 2. Email Channels */}
-      <section className="card-surface rounded-2xl border border-montado/12 bg-white p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+      <section className="bento-card p-6 sm:p-7 flex flex-col justify-between">
         <div>
           <div className="flex items-center gap-2.5 mb-4 text-montado">
             <div className="grid size-10 place-items-center rounded-xl bg-montado/10 text-montado">
@@ -106,7 +106,7 @@ export default function ContactDetails() {
       </section>
 
       {/* 3. Works Visit & Location */}
-      <section className="card-surface rounded-2xl border border-montado/12 bg-white p-6 sm:p-7 shadow-sm flex flex-col justify-between sm:col-span-2 lg:col-span-1">
+      <section className="bento-card p-6 sm:p-7 flex flex-col justify-between sm:col-span-2 lg:col-span-1">
         <div>
           <div className="flex items-center gap-2.5 mb-4 text-montado">
             <div className="grid size-10 place-items-center rounded-xl bg-montado/10 text-montado">

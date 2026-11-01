@@ -32,10 +32,15 @@ export function Footer() {
               className="flex items-center gap-3 no-underline text-white"
               href="/"
             >
-              <div className="grid size-10 shrink-0 place-items-center rounded-md bg-montado-vibrant border border-cork-gold/40 text-white">
-                <span className="text-sm font-black tracking-widest text-cork-gold">
-                  URC
-                </span>
+              <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-montado-vibrant border border-cork-gold/30 text-cork-gold">
+                <svg aria-hidden="true" className="size-5.5 text-cork-gold" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9" />
+                  <circle cx="12" cy="12" r="4.5" strokeDasharray="2.5 2.5" />
+                  <circle cx="12" cy="5.5" r="1.25" fill="currentColor" />
+                  <circle cx="12" cy="18.5" r="1.25" fill="currentColor" />
+                  <circle cx="5.5" cy="12" r="1.25" fill="currentColor" />
+                  <circle cx="18.5" cy="12" r="1.25" fill="currentColor" />
+                </svg>
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-extrabold tracking-tight text-white">

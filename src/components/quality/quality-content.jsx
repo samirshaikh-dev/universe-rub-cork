@@ -54,7 +54,7 @@ export default function QualityContent() {
       <div className="grid gap-6">
         {MARKS.map((mark) => (
           <article
-            className="card-surface rounded-2xl border border-montado/15 bg-white p-6 sm:p-8 shadow-sm"
+            className="bento-card p-6 sm:p-8"
             key={mark.standard}
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-montado/10 mb-4">

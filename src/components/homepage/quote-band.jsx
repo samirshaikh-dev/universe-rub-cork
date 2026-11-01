@@ -11,7 +11,6 @@ import {
   PhoneIcon,
   MailIcon,
   MapPinIcon,
-  WhatsAppIcon,
   FileTextIcon,
   ArrowRightIcon,
   ShieldCheckIcon,
@@ -25,81 +24,79 @@ export default function QuoteBand() {
   return (
     <section className="section bg-sheet border-t border-montado/10" id="request-a-quote">
       <div className="shell">
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 xl:gap-20">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 xl:gap-16">
           {/* Left Column: Instant RFQ Form */}
           <div>
-            <div className="mb-6">
-              <span className="badge-tag mb-2.5">
+            <div className="mb-5">
+              <span className="badge-tag mb-2">
                 <FileTextIcon className="size-3.5 text-montado" />
                 <span>Fast Factory Turnaround</span>
               </span>
               <h2 className="display-lg m-0 text-balance">
                 Request a Custom Drawing or Material Quote
               </h2>
-              <p className="mt-2.5 mb-0 text-sm sm:text-base text-charcoal-light max-w-[54ch]">
+              <p className="mt-2 mb-0 text-xs sm:text-sm text-charcoal-light max-w-[50ch]">
                 Share your required dimensions, standard, and quantity. Our engineering
-                desk in Vapi will review your request and reply promptly with availability
-                and direct factory pricing.
+                desk in Vapi will reply promptly with availability and direct factory pricing.
               </p>
             </div>
 
             <QuoteForm variant="short" />
           </div>
 
-          {/* Right Column: Factory Engineering Desk & Direct Channels */}
-          <aside className="flex flex-col justify-between rounded-2xl border border-montado/12 bg-white p-6 sm:p-8 shadow-sm">
+          {/* Right Column: Factory Engineering Desk */}
+          <aside className="bento-card flex flex-col justify-between p-5 sm:p-6">
             <div>
-              <div className="pb-5 border-b border-montado/10 mb-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-charcoal-muted">
+              <div className="pb-4 border-b border-montado/8 mb-5">
+                <span className="text-[0.68rem] font-bold uppercase tracking-wider text-charcoal-muted">
                   Direct Factory Contact
                 </span>
-                <h3 className="display-sm m-0 text-montado mt-1">
+                <h3 className="text-base font-bold text-montado m-0 mt-0.5">
                   United Rubber Cork Works
                 </h3>
-                <p className="mt-1 mb-0 text-xs text-charcoal-muted">
+                <p className="mt-0.5 mb-0 text-xs text-charcoal-muted">
                   Manufacturing Plant • GIDC Vapi, Gujarat, India
                 </p>
               </div>
 
               {/* Works Location Card */}
-              <div className="mb-6 flex items-start gap-3 rounded-xl bg-sheet p-4 border border-montado/8">
-                <div className="grid size-8 shrink-0 place-items-center rounded bg-montado/10 text-montado">
-                  <MapPinIcon className="size-4" />
+              <div className="mb-4 flex items-start gap-3 rounded-lg bg-sheet/80 p-3.5 border border-montado/8 text-xs">
+                <div className="grid size-7 shrink-0 place-items-center rounded bg-montado/10 text-montado">
+                  <MapPinIcon className="size-3.5" />
                 </div>
-                <div className="text-xs sm:text-sm">
+                <div>
                   <span className="block font-bold text-charcoal">
                     Manufacturing Facility
                   </span>
                   <address className="not-italic leading-relaxed text-charcoal-light mt-0.5">
-                    {COMPANY_ADDRESS.streetAddress},<br />
-                    {COMPANY_ADDRESS.addressLocality} {COMPANY_ADDRESS.postalCode},{" "}
+                    {COMPANY_ADDRESS.streetAddress}, {COMPANY_ADDRESS.addressLocality} {COMPANY_ADDRESS.postalCode},{" "}
                     {COMPANY_ADDRESS.addressRegion}, India
                   </address>
                   <a
-                    className="btn--plain text-xs font-bold text-montado mt-2"
+                    className="btn--plain text-[0.72rem] font-bold text-montado mt-1.5"
                     href={`https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`}
                     rel="noopener noreferrer"
                     target="_blank"
                   >
                     <span>Open in Google Maps</span>
-                    <ArrowRightIcon className="size-3" />
+                    <ArrowRightIcon className="size-2.5" />
                   </a>
                 </div>
               </div>
 
               {/* Direct Lines */}
-              <div className="grid gap-4 mb-6">
-                <div className="rounded-xl border border-montado/10 p-4">
-                  <div className="flex items-center gap-2 mb-2 text-montado">
-                    <PhoneIcon className="size-4" />
-                    <span className="text-xs font-bold uppercase tracking-wider">
-                      Sales &amp; Dispatch Hotline
+              <div className="grid gap-3 mb-5 text-xs">
+                <div className="rounded-lg border border-montado/8 p-3">
+                  <div className="flex items-center gap-1.5 mb-1.5 text-montado">
+                    <PhoneIcon className="size-3.5" />
+                    <span className="text-[0.68rem] font-bold uppercase tracking-wider">
+                      Sales &amp; Dispatch Line
                     </span>
                   </div>
-                  <div className="grid gap-1">
+                  <div className="flex flex-wrap gap-x-4 gap-y-1">
                     {COMPANY_PHONES.map((phone) => (
                       <a
-                        className="spec-num text-sm font-semibold text-charcoal hover:text-montado"
+                        className="spec-num font-semibold text-charcoal hover:text-montado"
                         href={`tel:${phone.href}`}
                         key={phone.href}
                       >
@@ -109,17 +106,17 @@ export default function QuoteBand() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-montado/10 p-4">
-                  <div className="flex items-center gap-2 mb-2 text-montado">
-                    <MailIcon className="size-4" />
-                    <span className="text-xs font-bold uppercase tracking-wider">
+                <div className="rounded-lg border border-montado/8 p-3">
+                  <div className="flex items-center gap-1.5 mb-1.5 text-montado">
+                    <MailIcon className="size-3.5" />
+                    <span className="text-[0.68rem] font-bold uppercase tracking-wider">
                       Drawings &amp; RFQ Email
                     </span>
                   </div>
-                  <div className="grid gap-1">
+                  <div className="flex flex-wrap gap-x-4 gap-y-1">
                     {COMPANY_EMAILS.map((email) => (
                       <a
-                        className="text-xs sm:text-sm font-medium text-charcoal hover:text-montado break-all"
+                        className="font-medium text-charcoal hover:text-montado break-all"
                         href={`mailto:${email}`}
                         key={email}
                       >
@@ -132,15 +129,14 @@ export default function QuoteBand() {
             </div>
 
             {/* Drawing Acceptance Guide */}
-            <div className="rounded-xl border border-cork/25 bg-cork-light/30 p-4">
-              <div className="flex items-center gap-2 text-cork-deep font-bold text-xs mb-1">
-                <ShieldCheckIcon className="size-4" />
-                <span>Drawing &amp; Sample Guidelines</span>
+            <div className="rounded-lg border border-cork/20 bg-cork-light/20 p-3 text-xs">
+              <div className="flex items-center gap-1.5 text-cork-deep font-bold mb-0.5">
+                <ShieldCheckIcon className="size-3.5" />
+                <span>Drawing &amp; Sample Formats</span>
               </div>
-              <p className="m-0 text-xs text-charcoal-light leading-relaxed">
-                We accept drawings in <strong>PDF, DWG, DXF, or clear dimensional sketches</strong>.
-                Physical component samples can be couriered to our Vapi works for measurement
-                and prototype tooling.
+              <p className="m-0 text-[0.72rem] text-charcoal-light leading-relaxed">
+                Accepted: <strong>PDF, DWG, DXF</strong>, or clear dimensional sketches.
+                Physical samples may be couriered to our Vapi works for measurement.
               </p>
             </div>
           </aside>

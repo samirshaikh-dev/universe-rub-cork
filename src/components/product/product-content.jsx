@@ -24,7 +24,7 @@ export default function ProductContent({ product }) {
     <section className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 xl:gap-20">
       {/* Left Column: Specifications & Introduction */}
       <div>
-        <div className="mb-6 rounded-xl border border-montado/10 bg-white p-6 shadow-sm">
+        <div className="mb-6 bento-card p-6">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal-muted mb-2">
             <LayersIcon className="size-4 text-montado" />
             <span>Product Description</span>
@@ -74,7 +74,7 @@ export default function ProductContent({ product }) {
       {/* Right Column: Sticky Visual & Quality Verification Card */}
       <div className="self-start lg:sticky lg:top-24">
         {media ? (
-          <div className="card-surface overflow-hidden bg-white rounded-2xl border border-montado/15 shadow-md">
+          <div className="bento-card overflow-hidden">
             <div className="relative aspect-[4/3] overflow-hidden bg-sheet">
               <Image
                 alt={media.alt}
@@ -117,7 +117,7 @@ export default function ProductContent({ product }) {
             </div>
           </div>
         ) : (
-          <div className="rounded-2xl border border-montado/15 bg-white p-6 shadow-sm">
+          <div className="bento-card p-6">
             <h3 className="display-sm m-0 mb-2">Request Specification</h3>
             <p className="text-xs sm:text-sm text-charcoal-light leading-relaxed mb-4">
               Share your drawing, dimensions, and quantity with United Rubber Cork.
