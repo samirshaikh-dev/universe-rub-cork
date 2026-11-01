@@ -51,12 +51,12 @@ export default function HomeHeroCarousel() {
     <div
       aria-label="Product photographs"
       aria-roledescription="carousel"
-      className="bg-montado p-3 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber sm:p-4 lg:p-5"
+      className="overflow-hidden rounded-xl bg-montado p-3 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber sm:p-4 lg:p-5"
       onKeyDown={handleKeyDown}
       role="region"
       tabIndex={0}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-montado sm:aspect-[16/9]">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-montado sm:aspect-[3/2]">
         {SLIDES.map((slide, index) => {
           const isActive = index === activeIndex;
 
@@ -82,6 +82,15 @@ export default function HomeHeroCarousel() {
             </div>
           );
         })}
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-montado/40 mix-blend-multiply"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-linear-to-tr from-montado/50 via-transparent to-transparent"
+        />
 
         <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 bg-linear-to-t from-montado/95 via-montado/65 to-transparent p-4 pt-20 sm:flex-row sm:items-end sm:justify-between sm:gap-4 sm:p-6">
           <p className="m-0 max-w-[42ch] text-sm leading-snug text-paper">

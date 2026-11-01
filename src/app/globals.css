@@ -10,4 +10,5 @@
   --color-amber: #f0a500;
   --color-danger: #b3261e;
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
 }
