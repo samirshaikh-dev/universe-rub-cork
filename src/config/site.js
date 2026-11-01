@@ -37,6 +37,10 @@ export const COMPANY_PHONES = [
   { display: "+91 99243 04619", href: "+919924304619" },
 ];
 
+// Quote-form handoff. Uses the first published number until United Rubber Cork
+// confirms a dedicated WhatsApp line. See technical-docs/PLAN.md.
+export const WHATSAPP_NUMBER = COMPANY_PHONES[0].href.replace(/\D/g, "");
+
 export const NAV_ITEMS = [
   { label: "Products", href: "/products" },
   { label: "Industries", href: "/industries" },

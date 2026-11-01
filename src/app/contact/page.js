@@ -1,12 +1,12 @@
 import ContactDetails from "../../components/contact/contact-details";
-import QuoteContent from "../../components/contact/quote-content";
+import QuoteForm from "../../components/contact/quote-form";
 import PageHeading from "../../components/page-heading";
 import { createPageMetadata } from "../../lib/seo/metadata";
 
 export const metadata = createPageMetadata({
   title: "Contact and request a quote",
   description:
-    "Contact United Rubber Cork about cork and rubberised cork products, or request a quote by email.",
+    "Contact United Rubber Cork about cork and rubberised cork products, or send a quote request by WhatsApp or email.",
   path: "/contact",
 });
 
@@ -19,7 +19,7 @@ export default function ContactPage() {
         title="Contact United Rubber Cork"
       />
       <ContactDetails />
-      <QuoteContent />
+      <QuoteForm />
     </div>
   );
 }

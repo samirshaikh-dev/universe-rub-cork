@@ -25,7 +25,7 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 - `/industries` — application overview.
 - `/products`, `/products/[slug]` — overview and rubberised cork, cork, decorative cork and cork gifts.
 - `/industries/[slug]` — transformer, automotive, and construction applications.
-- `/quality`, `/about`, `/contact` (including quote-by-email instructions), `/privacy`; `/request-quote` permanently redirects to the quote section on `/contact`.
+- `/quality`, `/about`, `/contact` (including a quote form that hands off to WhatsApp, with email and phone fallbacks), `/privacy`; `/request-quote` permanently redirects to the quote section on `/contact`.
 - Breadcrumbs and route-specific title, description and canonical metadata on internal pages; Organization, LocalBusiness, WebSite, Product and BreadcrumbList structured data where applicable.
 - Every route title carries the brand once, through the `%s | ${SITE_NAME}` template. Product and industry routes use `seoTitle` from the content file. `createPageMetadata` re-declares the shared Open Graph and Twitter fields because Next.js replaces nested metadata objects per route.
 - The header and footer wordmark are rendered from `BRAND_WORDMARK`; `src/app/opengraph-image.js` renders the same two-line wordmark.
@@ -40,9 +40,9 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 - Supply new-domain mailboxes. Until then, `admin@amcorkindia.com` and `amcorkindustries@gmail.com` remain published in the footer, contact page, quote mailto and JSON-LD.
 - Supply approved wordmark artwork. `public/` contains no images; the header and footer currently set the wordmark as text and the favicon is the Next.js default.
 - Decide whether the legacy `.php` URLs still matter. The 301 map in `technical-docs/PLAN.md` is not live because `src/proxy.js` is deleted in the working tree.
-- The contact page's quote section opens a pre-addressed email draft. The site does not store a lead, send email, accept uploads or expose a completed online quote form.
+- The contact page's quote form validates on the client and opens WhatsApp with the completed request. Email and phone fallbacks remain. The site does not store a lead, send email or accept uploads.
 - Configure and verify PostgreSQL/Neon lead storage, transactional email, rate limiting, Turnstile and file storage before enabling the full quote flow.
-- Confirm the WhatsApp number before adding click-to-chat.
+- Confirm the WhatsApp number used by the quote form; it currently defaults to the first published phone number.
 - Obtain approved product/factory photography, datasheets, ISO certificate details in the new brand's name and any test reports.
 - Review the privacy notice against actual hosting, email and retention practices and applicable Indian requirements.
 - Confirm DNS, email continuity, Search Console property, analytics choice and deployment configuration.
@@ -57,7 +57,7 @@ The site was rebranded in place from AMCORK Industries to United Rubber Cork. No
 - The published address, phone numbers and mailboxes are the inherited AMCORK facts. They are retained because no replacements exist, and they are the highest-risk content on the site if the two companies are legally separate.
 - Use only product facts from `technical-docs/BRAND.md` and `technical-docs/PLAN.md`. Do not invent WhatsApp details, photography, datasheets, certification particulars, client names, performance claims or environmental claims.
 - The site identifies ISO 9001:2015 and IS 4253 Part II from the provided documents, but certificate number, scope, issuing body, validity and test evidence remain unconfirmed.
-- The quote-by-email fallback is explicitly not represented as a stored or submitted web form.
+- The quote form is a client-side WhatsApp handoff: nothing is stored or sent by the site, and drawings are sent separately by email or WhatsApp.
 - The configured canonical URL defaults to `https://www.amcorkindia.com`; override it with `NEXT_PUBLIC_SITE_URL` when deploying to another canonical origin.
 - Do not inspect or publish `.env` values. Keep private credentials server-side.
 
