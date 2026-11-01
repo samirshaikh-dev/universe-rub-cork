@@ -9,13 +9,13 @@ import {
 } from "../../config/site";
 
 const footerLink =
-  "inline-flex min-h-11 items-center text-paper no-underline border-b border-transparent hover:border-cork transition-colors duration-200 ease-standard";
+  "inline-flex items-center text-paper no-underline border-b border-transparent hover:border-cork transition-colors duration-200 ease-standard";
 
 export function Footer() {
   return (
     <footer className="bg-montado text-paper" data-surface="dark">
       <div className="shell">
-        <div className="grid gap-12 border-t border-cork/40 pt-12 pb-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.8fr] lg:gap-16">
+        <div className="grid gap-8 border-t border-cork/40 pt-10 pb-10 md:grid-cols-2 lg:grid-cols-[32fr_23fr_25fr_20fr] lg:gap-8">
           <div className="max-w-[46ch]">
             <Link
               aria-label={`${SITE_NAME} home`}
@@ -30,7 +30,7 @@ export function Footer() {
               </span>
             </Link>
 
-            <p className="mt-6 mb-6 max-w-[34ch] text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.02em] text-paper [font-variation-settings:'wdth'_112,'wght'_700]">
+            <p className="mt-5 mb-5 max-w-[34ch] text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.02em] text-paper [font-variation-settings:'wdth'_112,'wght'_700]">
               Cork, engineered to your drawing.
             </p>
 
@@ -55,14 +55,18 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="label mb-4 text-cork-light">Contact</h2>
-            <address className="mb-5 not-italic spec-num text-[0.95rem] leading-relaxed text-paper/85">
+            <h2 className="label mb-3 text-cork-light">Location</h2>
+            <address className="not-italic spec-num text-[0.95rem] leading-relaxed text-paper/85">
               {COMPANY_ADDRESS.streetAddress}
               <br />
               {COMPANY_ADDRESS.addressLocality} {COMPANY_ADDRESS.postalCode},{" "}
               {COMPANY_ADDRESS.addressRegion}, India
             </address>
-            <ul className="m-0 grid p-0">
+          </div>
+
+          <div>
+            <h2 className="label mb-3 text-cork-light">Contact</h2>
+            <ul className="m-0 grid gap-2 p-0">
               {COMPANY_PHONES.map((phone) => (
                 <li className="list-none" key={phone.href}>
                   <a className={`${footerLink} spec-num`} href={`tel:${phone.href}`}>
@@ -70,6 +74,8 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+            </ul>
+            <ul className="m-0 grid gap-1.5 p-0 mt-3">
               {COMPANY_EMAILS.map((email) => (
                 <li className="list-none" key={email}>
                   <a className={`${footerLink} break-all text-[0.95rem]`} href={`mailto:${email}`}>
@@ -81,9 +87,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="label mb-4 text-cork-light">Explore</h2>
+            <h2 className="label mb-3 text-cork-light">Explore</h2>
             <nav aria-label="Footer navigation">
-              <ul className="m-0 grid p-0">
+              <ul className="m-0 grid gap-3 p-0">
                 {[
                   ["Products", "/products"],
                   ["Industries", "/industries"],
@@ -102,7 +108,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-cork/25 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-cork/25 pt-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="spec-num m-0 text-[0.9rem] text-paper/85">
             United Rubber Cork, GIDC, Vapi, Gujarat
           </p>
