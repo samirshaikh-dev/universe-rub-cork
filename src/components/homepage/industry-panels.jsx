@@ -2,12 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { MEDIA } from "../../data/media";
+import { WHATSAPP_LINK } from "../../config/site";
 import {
   ZapIcon,
   CarIcon,
   BuildingIcon,
   ArrowRightIcon,
   FileTextIcon,
+  WhatsAppIcon,
 } from "../ui/icons";
 
 const INDUSTRY_CONFIG = {
@@ -70,7 +72,7 @@ export default function IndustryPanels({ industries }) {
             </p>
           </div>
 
-          <Link className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold self-start" href="/industries">
+          <Link className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold self-start rounded-xl" href="/industries">
             <span>Explore All Industries</span>
             <ArrowRightIcon className="size-3" />
           </Link>
@@ -85,7 +87,7 @@ export default function IndustryPanels({ industries }) {
 
             return (
               <div
-                className="bento-card flex flex-col overflow-hidden"
+                className="bento-card flex flex-col overflow-hidden rounded-2xl"
                 key={industry.slug}
               >
                 {/* Visual Image Header */}
@@ -97,7 +99,7 @@ export default function IndustryPanels({ industries }) {
                     sizes="(min-width: 768px) 33vw, 100vw"
                     src={media.src}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                   <div className="absolute top-2.5 left-2.5">
                     <span className="badge-tag badge-tag--dark text-[0.68rem] backdrop-blur-md">
                       <Icon className="size-3 text-cork-gold" />
@@ -112,7 +114,7 @@ export default function IndustryPanels({ industries }) {
                 </div>
 
                 {/* Content Body */}
-                <div className="flex flex-1 flex-col p-5">
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
                   <h3 className="display-sm m-0 mb-1.5 text-base">
                     <Link
                       className="text-charcoal no-underline hover:text-montado transition-colors"
@@ -122,14 +124,14 @@ export default function IndustryPanels({ industries }) {
                     </Link>
                   </h3>
 
-                  <p className="mb-3 text-xs text-charcoal-light leading-relaxed">
+                  <p className="mb-4 text-xs text-charcoal-light leading-relaxed">
                     {industry.summary}
                   </p>
 
                   {/* Bullet Highlights */}
-                  <ul className="m-0 mb-4 grid gap-1.5 p-0 text-[0.75rem] text-charcoal-muted">
+                  <ul className="m-0 mb-5 grid gap-2 p-0 text-[0.75rem] text-charcoal-muted">
                     {config.keyFeatures.map((feature, i) => (
-                      <li className="flex items-start gap-1.5 list-none" key={i}>
+                      <li className="flex items-start gap-2 list-none" key={i}>
                         <span className="text-montado font-bold mt-0.5">•</span>
                         <span>{feature}</span>
                       </li>
@@ -142,7 +144,7 @@ export default function IndustryPanels({ industries }) {
                       className="btn--plain text-xs font-bold text-montado"
                       href={`/industries/${industry.slug}`}
                     >
-                      <span>Explore</span>
+                      <span>Explore Application</span>
                       <ArrowRightIcon className="size-3" />
                     </Link>
 
@@ -160,10 +162,10 @@ export default function IndustryPanels({ industries }) {
         </div>
 
         {/* Compact Drawing Notice Banner */}
-        <div className="mt-6 rounded-lg border border-montado/12 bg-white p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="grid size-9 shrink-0 place-items-center rounded-lg bg-montado text-white">
-              <FileTextIcon className="size-4 text-cork-gold" />
+        <div className="mt-8 rounded-2xl border border-montado/12 bg-white p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3.5">
+            <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-montado text-white">
+              <FileTextIcon className="size-5 text-cork-gold" />
             </div>
             <div>
               <h4 className="m-0 text-sm font-bold text-charcoal">
@@ -175,13 +177,24 @@ export default function IndustryPanels({ industries }) {
             </div>
           </div>
 
-          <Link
-            className="btn btn--primary min-h-9 px-4 text-xs shrink-0 font-bold self-start md:self-auto"
-            href="/contact#request-a-quote"
-          >
-            <span>Submit Drawing</span>
-            <ArrowRightIcon className="size-3" />
-          </Link>
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0 self-start md:self-auto">
+            <a
+              className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold rounded-xl"
+              href={WHATSAPP_LINK}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <WhatsAppIcon className="size-3.5 text-[#25d366]" />
+              <span>WhatsApp Drawing</span>
+            </a>
+            <Link
+              className="btn btn--primary min-h-9 px-4 text-xs font-bold rounded-xl"
+              href="/contact#request-a-quote"
+            >
+              <span>Submit Drawing</span>
+              <ArrowRightIcon className="size-3" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -56,11 +56,11 @@ export default function PropertyBand() {
             const Icon = property.icon;
             return (
               <div
-                className="bento-card flex flex-col p-5 bg-sheet/40 hover:bg-white"
+                className="bento-card flex flex-col p-5 sm:p-6 bg-sheet/40 hover:bg-white rounded-2xl"
                 key={property.title}
               >
-                <div className="grid size-9 place-items-center rounded-lg bg-montado/10 text-montado mb-3.5">
-                  <Icon className="size-4.5" />
+                <div className="grid size-10 place-items-center rounded-xl bg-montado/10 text-montado mb-4">
+                  <Icon className="size-5" />
                 </div>
 
                 <h3 className="text-sm font-bold text-charcoal mb-2 leading-snug">
@@ -71,8 +71,8 @@ export default function PropertyBand() {
                   {property.body}
                 </p>
 
-                <div className="mt-auto pt-2.5 border-t border-montado/8">
-                  <span className="spec-num text-[0.68rem] font-bold text-cork-deep uppercase tracking-wider block">
+                <div className="mt-auto pt-3 border-t border-montado/8">
+                  <span className="spec-num text-[0.7rem] font-bold text-cork-deep uppercase tracking-wider block">
                     {property.spec}
                   </span>
                 </div>

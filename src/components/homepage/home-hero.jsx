@@ -5,16 +5,16 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { MEDIA } from "../../data/media";
-import { WHATSAPP_LINK } from "../../config/site";
+import { COMPANY_PHONES, WHATSAPP_LINK } from "../../config/site";
 import {
   ShieldCheckIcon,
   WhatsAppIcon,
   ArrowRightIcon,
-  CheckCircleIcon,
   LayersIcon,
   ZapIcon,
   CarIcon,
   RulerIcon,
+  PhoneIcon,
 } from "../ui/icons";
 
 const HERO_PARTS = [
@@ -100,9 +100,9 @@ export default function HomeHero() {
             </p>
 
             {/* Focused Action Hierarchy */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
               <Link
-                className="btn btn--primary shadow-md min-h-11 px-6 text-sm sm:text-base font-bold"
+                className="btn btn--primary shadow-md min-h-11 px-6 text-sm sm:text-base font-bold rounded-xl"
                 href="/contact#request-a-quote"
               >
                 <span>Request a Quote</span>
@@ -110,7 +110,7 @@ export default function HomeHero() {
               </Link>
 
               <a
-                className="btn btn--secondary min-h-11 px-4 text-sm sm:text-base font-semibold"
+                className="btn btn--secondary min-h-11 px-4 text-sm sm:text-base font-semibold rounded-xl"
                 href={WHATSAPP_LINK}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -120,9 +120,21 @@ export default function HomeHero() {
               </a>
             </div>
 
+            {/* Direct Phone Assistance Link */}
+            <div className="flex items-center gap-2 text-xs text-charcoal-muted mb-8">
+              <span>Need immediate assistance?</span>
+              <a
+                className="inline-flex items-center gap-1 font-semibold text-montado hover:underline spec-num"
+                href={`tel:${COMPANY_PHONES[0].href}`}
+              >
+                <PhoneIcon className="size-3 text-cork-gold" />
+                <span>Call Works Desk: {COMPANY_PHONES[0].display}</span>
+              </a>
+            </div>
+
             {/* Quick Micro-Proofs (Scannable Cards) */}
             <div className="grid grid-cols-3 gap-2.5 border-t border-montado/10 pt-5">
-              <div className="rounded-lg bg-sheet/80 p-2.5 border border-montado/8">
+              <div className="rounded-xl bg-sheet/80 p-2.5 sm:p-3 border border-montado/8 transition-all hover:bg-white hover:shadow-xs">
                 <span className="spec-num block text-xs sm:text-sm font-bold text-montado">
                   0.5 – 25 mm
                 </span>
@@ -131,7 +143,7 @@ export default function HomeHero() {
                 </span>
               </div>
 
-              <div className="rounded-lg bg-sheet/80 p-2.5 border border-montado/8">
+              <div className="rounded-xl bg-sheet/80 p-2.5 sm:p-3 border border-montado/8 transition-all hover:bg-white hover:shadow-xs">
                 <span className="spec-num block text-xs sm:text-sm font-bold text-montado">
                   100% Jointless
                 </span>
@@ -140,7 +152,7 @@ export default function HomeHero() {
                 </span>
               </div>
 
-              <div className="rounded-lg bg-sheet/80 p-2.5 border border-montado/8">
+              <div className="rounded-xl bg-sheet/80 p-2.5 sm:p-3 border border-montado/8 transition-all hover:bg-white hover:shadow-xs">
                 <span className="spec-num block text-xs sm:text-sm font-bold text-montado">
                   Factory Direct
                 </span>
@@ -153,11 +165,11 @@ export default function HomeHero() {
 
           {/* Right Column: Clean Bento Part Showcase */}
           <div className="relative">
-            <div className="bento-card overflow-hidden p-5 sm:p-6">
+            <div className="bento-card overflow-hidden p-5 sm:p-6 rounded-2xl">
               {/* Card Header & Tabs */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3.5 border-b border-montado/8">
                 <div className="flex items-center gap-2">
-                  <div className="grid size-7 place-items-center rounded-md bg-montado/10 text-montado">
+                  <div className="grid size-7 place-items-center rounded-lg bg-montado/10 text-montado">
                     <RulerIcon className="size-3.5" />
                   </div>
                   <div>
@@ -178,7 +190,7 @@ export default function HomeHero() {
               {/* Segmented Pill Selector */}
               <div
                 aria-label="Part showcase categories"
-                className="mt-3.5 flex gap-1 rounded-lg bg-sheet p-1"
+                className="mt-3.5 flex gap-1 rounded-xl bg-sheet p-1 border border-montado/6"
                 role="tablist"
               >
                 {HERO_PARTS.map((part, index) => {
@@ -187,7 +199,7 @@ export default function HomeHero() {
                     <button
                       aria-controls={`hero-panel-${part.id}`}
                       aria-selected={isActive}
-                      className={`flex-1 rounded-md py-1.5 px-2 text-center text-xs font-semibold transition-all ${
+                      className={`flex-1 rounded-lg py-1.5 px-2 text-center text-xs font-semibold transition-all cursor-pointer ${
                         isActive
                           ? "bg-white text-montado shadow-sm font-bold"
                           : "text-charcoal-muted hover:text-charcoal"
@@ -211,7 +223,7 @@ export default function HomeHero() {
                 role="tabpanel"
               >
                 {/* Showcase Image */}
-                <div className="relative mt-4 aspect-[16/9] overflow-hidden rounded-lg border border-montado/12 bg-sheet">
+                <div className="relative mt-4 aspect-[16/9] overflow-hidden rounded-xl border border-montado/12 bg-sheet">
                   <Image
                     alt={MEDIA.gaskets.alt}
                     className="object-cover object-center transition-transform duration-500 hover:scale-105"
@@ -246,7 +258,7 @@ export default function HomeHero() {
                 <div className="mt-4 grid grid-cols-2 gap-2">
                   {selected.specs.map((spec) => (
                     <div
-                      className="rounded-md border border-montado/8 bg-sheet/60 p-2"
+                      className="rounded-xl border border-montado/8 bg-sheet/60 p-2.5"
                       key={spec.label}
                     >
                       <span className="block text-[0.68rem] font-medium text-charcoal-muted">
@@ -266,7 +278,7 @@ export default function HomeHero() {
                   Have a custom CAD drawing?
                 </span>
                 <Link
-                  className="btn btn--primary min-h-8 px-3 text-xs font-bold shrink-0"
+                  className="btn btn--primary min-h-8 px-3.5 text-xs font-bold shrink-0 rounded-lg"
                   href="/contact#request-a-quote"
                 >
                   <span>Get Quote</span>

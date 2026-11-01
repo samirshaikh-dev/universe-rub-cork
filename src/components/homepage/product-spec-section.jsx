@@ -35,12 +35,12 @@ export default function ProductSpecSection() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
-            <Link className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold" href="/products">
+            <Link className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold rounded-xl" href="/products">
               <span>All Products</span>
               <ArrowRightIcon className="size-3" />
             </Link>
             <Link
-              className="btn btn--primary min-h-9 px-4 text-xs font-bold"
+              className="btn btn--primary min-h-9 px-4 text-xs font-bold rounded-xl"
               href="/contact#request-a-quote"
             >
               <span>Custom Size Quote</span>
@@ -50,7 +50,7 @@ export default function ProductSpecSection() {
 
         {/* Technical Specification Matrix (Responsive) */}
         {/* Desktop Table */}
-        <div className="hidden sm:block bento-card overflow-hidden">
+        <div className="hidden sm:block bento-card overflow-hidden rounded-2xl">
           <table className="spec-table">
             <thead>
               <tr>
@@ -86,7 +86,7 @@ export default function ProductSpecSection() {
                   </td>
                   <td className="text-right">
                     <Link
-                      className="btn btn--secondary min-h-7 px-3 py-1 text-xs font-semibold inline-flex"
+                      className="btn btn--secondary min-h-7 px-3 py-1 text-xs font-semibold inline-flex rounded-lg"
                       href={`/contact#request-a-quote`}
                     >
                       <span>Quote</span>
@@ -102,7 +102,7 @@ export default function ProductSpecSection() {
         {/* Mobile Scannable Bento Cards (Replaces awkward horizontal scroll) */}
         <div className="sm:hidden grid gap-2.5">
           {SPEC_ROWS.map((row) => (
-            <div className="bento-card p-3.5" key={`mobile-${row.product}`}>
+            <div className="bento-card p-4 rounded-xl" key={`mobile-${row.product}`}>
               <div className="flex items-center justify-between pb-2 border-b border-montado/8 mb-2">
                 <Link
                   className="font-bold text-montado text-xs no-underline"
@@ -125,7 +125,7 @@ export default function ProductSpecSection() {
                 </div>
               </div>
               <Link
-                className="btn btn--secondary min-h-8 w-full text-xs font-semibold"
+                className="btn btn--secondary min-h-8 w-full text-xs font-semibold rounded-lg"
                 href="/contact#request-a-quote"
               >
                 <span>Request Custom Quote</span>
@@ -137,9 +137,9 @@ export default function ProductSpecSection() {
 
         {/* Bottom Feature Badges */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="flex items-start gap-3 rounded-lg border border-montado/8 bg-sheet/60 p-3.5">
-            <div className="grid size-7 shrink-0 place-items-center rounded bg-montado/10 text-montado">
-              <RulerIcon className="size-3.5" />
+          <div className="flex items-start gap-3 rounded-xl border border-montado/8 bg-sheet/60 p-3.5 transition-all hover:bg-white hover:shadow-xs">
+            <div className="grid size-8 shrink-0 place-items-center rounded-lg bg-montado/10 text-montado">
+              <RulerIcon className="size-4" />
             </div>
             <div>
               <p className="m-0 text-xs font-bold text-charcoal">Custom Die Tooling</p>
@@ -149,21 +149,21 @@ export default function ProductSpecSection() {
             </div>
           </div>
 
-          <div className="flex items-start gap-3 rounded-lg border border-montado/8 bg-sheet/60 p-3.5">
-            <div className="grid size-7 shrink-0 place-items-center rounded bg-montado/10 text-montado">
-              <CheckCircleIcon className="size-3.5" />
+          <div className="flex items-start gap-3 rounded-xl border border-montado/8 bg-sheet/60 p-3.5 transition-all hover:bg-white hover:shadow-xs">
+            <div className="grid size-8 shrink-0 place-items-center rounded-lg bg-montado/10 text-montado">
+              <CheckCircleIcon className="size-4" />
             </div>
             <div>
               <p className="m-0 text-xs font-bold text-charcoal">Jointless Construction</p>
               <p className="mt-0.5 mb-0 text-[0.72rem] text-charcoal-muted">
-                One-piece gasket frames eliminate dovetail leaks.
+                One-piece continuous gasket frames eliminate dovetail leaks.
               </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-3 rounded-lg border border-montado/8 bg-sheet/60 p-3.5">
-            <div className="grid size-7 shrink-0 place-items-center rounded bg-montado/10 text-montado">
-              <FileTextIcon className="size-3.5" />
+          <div className="flex items-start gap-3 rounded-xl border border-montado/8 bg-sheet/60 p-3.5 transition-all hover:bg-white hover:shadow-xs">
+            <div className="grid size-8 shrink-0 place-items-center rounded-lg bg-montado/10 text-montado">
+              <FileTextIcon className="size-4" />
             </div>
             <div>
               <p className="m-0 text-xs font-bold text-charcoal">Batch Test Documentation</p>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { WHATSAPP_LINK } from "../../config/site";
 import {
   ZapIcon,
   CarIcon,
@@ -10,6 +11,7 @@ import {
   ShieldCheckIcon,
   ArrowRightIcon,
   CheckCircleIcon,
+  WhatsAppIcon,
 } from "../ui/icons";
 
 const APPLICATIONS = [
@@ -96,7 +98,7 @@ export default function InteractiveGradeFinder() {
           </div>
 
           <Link
-            className="btn btn--secondary min-h-9 px-4 text-xs font-semibold self-start"
+            className="btn btn--secondary min-h-9 px-4 text-xs font-semibold self-start rounded-xl"
             href="/contact#request-a-quote"
           >
             <span>Custom Formulation</span>
@@ -104,10 +106,10 @@ export default function InteractiveGradeFinder() {
           </Link>
         </div>
 
-        {/* Tab Buttons (Grid of Minimal Cards) */}
+        {/* Tab Buttons (Grid of Minimal Modern Cards) */}
         <div
           aria-label="Application sectors"
-          className="grid grid-cols-2 gap-2 sm:grid-cols-4 mb-5"
+          className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 mb-5"
           role="tablist"
         >
           {APPLICATIONS.map((app, index) => {
@@ -117,10 +119,10 @@ export default function InteractiveGradeFinder() {
               <button
                 aria-controls={`spec-panel-${app.id}`}
                 aria-selected={isActive}
-                className={`flex items-center gap-2.5 rounded-lg border p-3 text-left transition-all cursor-pointer ${
+                className={`flex items-center gap-2.5 rounded-xl border p-3.5 text-left transition-all cursor-pointer ${
                   isActive
                     ? "border-montado bg-white shadow-sm text-montado font-bold"
-                    : "border-montado/10 bg-white/50 text-charcoal-light hover:bg-white hover:border-montado/20"
+                    : "border-montado/10 bg-white/60 text-charcoal-light hover:bg-white hover:border-montado/20"
                 }`}
                 id={`spec-tab-${app.id}`}
                 key={app.id}
@@ -129,11 +131,11 @@ export default function InteractiveGradeFinder() {
                 type="button"
               >
                 <div
-                  className={`grid size-7 shrink-0 place-items-center rounded-md ${
-                    isActive ? "bg-montado text-white" : "bg-sheet text-charcoal-muted"
+                  className={`grid size-8 shrink-0 place-items-center rounded-lg transition-colors ${
+                    isActive ? "bg-montado text-cork-gold" : "bg-sheet text-charcoal-muted"
                   }`}
                 >
-                  <AppIcon className="size-3.5" />
+                  <AppIcon className="size-4" />
                 </div>
                 <div className="min-w-0">
                   <span className="block text-[0.65rem] uppercase tracking-wider text-charcoal-muted truncate">
@@ -151,7 +153,7 @@ export default function InteractiveGradeFinder() {
         {/* Interactive Specification Bento Card */}
         <div
           aria-labelledby={`spec-tab-${current.id}`}
-          className="bento-card overflow-hidden p-5 sm:p-7 animate-fade-in"
+          className="bento-card overflow-hidden p-5 sm:p-7 rounded-2xl animate-fade-in"
           id={`spec-panel-${current.id}`}
           key={current.id}
           role="tabpanel"
@@ -173,7 +175,7 @@ export default function InteractiveGradeFinder() {
                 {current.title} Specification
               </h3>
 
-              <div className="rounded-lg border border-montado/8 bg-sheet/70 p-3 mb-5">
+              <div className="rounded-xl border border-montado/8 bg-sheet/70 p-3.5 mb-5">
                 <div className="flex items-center gap-1.5 text-montado font-bold text-xs mb-1">
                   <CheckCircleIcon className="size-3.5" />
                   <span>Engineering Property</span>
@@ -185,29 +187,39 @@ export default function InteractiveGradeFinder() {
 
               <div className="flex flex-wrap items-center gap-2.5">
                 <Link
-                  className="btn btn--primary min-h-9 px-4 text-xs font-bold"
+                  className="btn btn--primary min-h-9 px-4 text-xs font-bold rounded-xl"
                   href={`/contact#request-a-quote`}
                 >
                   <span>Inquire for {current.recommendedGrade.split("/")[0].trim()}</span>
                   <ArrowRightIcon className="size-3" />
                 </Link>
 
+                <a
+                  className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold rounded-xl"
+                  href={WHATSAPP_LINK}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <WhatsAppIcon className="size-3.5 text-[#25d366]" />
+                  <span>WhatsApp Specs</span>
+                </a>
+
                 <Link
-                  className="btn btn--secondary min-h-9 px-3.5 text-xs font-semibold"
+                  className="btn btn--plain text-xs font-semibold ml-1"
                   href={`/products/${current.productSlug}`}
                 >
-                  <span>View Product Catalog</span>
+                  <span>View Product Details &rarr;</span>
                 </Link>
               </div>
             </div>
 
             {/* Right: Clean Metric Matrix */}
-            <div className="rounded-lg border border-montado/10 bg-sheet/60 p-4">
+            <div className="rounded-xl border border-montado/10 bg-sheet/60 p-4 sm:p-5">
               <span className="text-[0.7rem] font-bold uppercase tracking-wider text-charcoal-muted block mb-3 pb-1.5 border-b border-montado/8">
                 Technical Benchmarks
               </span>
 
-              <div className="grid gap-2 text-xs">
+              <div className="grid gap-2.5 text-xs">
                 <div className="flex items-center justify-between py-1 border-b border-montado/6">
                   <span className="text-charcoal-muted font-medium">Recommended Grade</span>
                   <span className="font-bold text-montado">{current.recommendedGrade}</span>
