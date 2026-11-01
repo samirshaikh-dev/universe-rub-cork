@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="bg-montado text-paper" data-surface="dark">
       <div className="shell">
-        <div className="grid gap-8 border-t border-cork/40 pt-10 pb-10 md:grid-cols-2 lg:grid-cols-[32fr_23fr_25fr_20fr] lg:gap-8">
+        <div className="grid gap-6 border-t border-cork/40 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-[32fr_23fr_25fr_20fr] lg:gap-8 lg:pt-10 lg:pb-10">
           <div className="max-w-[46ch]">
             <Link
               aria-label={`${SITE_NAME} home`}
@@ -30,7 +30,7 @@ export function Footer() {
               </span>
             </Link>
 
-            <p className="mt-5 mb-5 max-w-[34ch] text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.02em] text-paper [font-variation-settings:'wdth'_112,'wght'_700]">
+            <p className="mt-4 mb-4 sm:mt-5 sm:mb-5 max-w-[34ch] text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.02em] text-paper [font-variation-settings:'wdth'_112,'wght'_700]">
               Cork, engineered to your drawing.
             </p>
 
