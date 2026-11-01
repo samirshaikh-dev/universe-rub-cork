@@ -41,6 +41,13 @@ export const COMPANY_PHONES = [
 // confirms a dedicated WhatsApp line. See technical-docs/PLAN.md.
 export const WHATSAPP_NUMBER = COMPANY_PHONES[0].href.replace(/\D/g, "");
 
+const WHATSAPP_INTRO =
+  "Hello United Rubber Cork, I would like to discuss a cork or rubberised cork part.";
+
+export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_INTRO
+)}`;
+
 export const NAV_ITEMS = [
   { label: "Products", href: "/products" },
   { label: "Industries", href: "/industries" },

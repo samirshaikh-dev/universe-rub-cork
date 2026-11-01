@@ -112,6 +112,37 @@ Easing: standard `cubic-bezier(0.2, 0, 0, 1)`; exit `cubic-bezier(0.4, 0, 1, 1)`
 - Respect `navigator.connection.saveData`: when set, skip the signature animations.
 - Test every animation on a throttled mid-range Android profile. If it drops frames, cut it.
 
+### As built: what actually ships
+
+Everything below is implemented in `src/app/globals.css` and the components named. No animation library and no new dependency was added; it is CSS transitions, two keyframes and one scroll timeline.
+
+| Behaviour | Implementation | Detail |
+|---|---|---|
+| Die-cut hero reveal | `homepage/die-cut-hero.jsx`, `cut-lift` keyframes | Two SVG `clipPath`s (`gasket-hole`, `gasket-ring`), 600 ms after a 260 ms hold, once per session. `data-reveal` is set from an effect on the DOM node, not from state |
+| Fit (quote sent) | `contact/quote-form.jsx`, `fit-mark` / `fit-settle` | 96 x 72 dashed outline with an amber piece that settles from −10 px in 500 ms, 2 px overshoot at 70%. Shown only in the handoff state, alongside the WhatsApp button |
+| Header compression | `.site-header`, `@property --header-h`, `header-compress` | 76 → 56 px across the first 24 px of scroll. `animation-timeline: scroll()` inside `@supports` and `prefers-reduced-motion: no-preference`; every other browser keeps a static 76 px bar |
+| Sticky mobile bar | `layout/mobile-action-bar.jsx` | Slides 240 ms after 0.6 viewport heights, hides when `#request-a-quote` intersects (20% bottom margin). `tabIndex={-1}` while hidden so it cannot be tabbed to |
+| Nav underline | `.nav-link::after` | `scaleX` 0 → 1, 200 ms, on hover and on `aria-current="page"`; current page keeps the line |
+| Button and link feedback | `.btn`, `.link`, `.btn--plain` | 160 ms colour transitions, 1 px press nudge, rule thickens 1 px → 2 px on links |
+| Panel hover | `.app-panel` | Photo `scale(1.02)` at 300 ms, label underline drawn in Cork |
+| Form focus | `.field` | Border colour change plus a 3 px outline at 2 px offset; invalid fields take the danger colour |
+| Section still-ness | — | No scroll reveals, no counters, no parallax, no carousel |
+
+Reduced motion is handled twice, on purpose: the global `@media (prefers-reduced-motion: reduce)` block collapses every animation and transition to 0.001 ms, and the two signature moments also branch in their own CSS/JS so they render the finished state rather than a 1 ms flash. The hero additionally reads `navigator.connection.saveData`.
+
+**Not implemented, and why**
+
+| Planned | Status |
+|---|---|
+| Order-process step highlighting on scroll (`/`, `/quality`) | Not built. The three steps are short and read as a sequence without it; adding per-element view timelines is deferred until the band is longer |
+| View Transitions between routes | Not built. Instant client-side navigation was preferred over an unstable transition |
+| Photo press-and-release rebound | Not built. It was marked "ship last; cut it if it feels cute" |
+| Validation check mark after a valid field | Not built. Errors appear on blur and submit; no success ticks |
+| File upload chip and progress | Not built. The site accepts no uploads — drawings go by WhatsApp or email, and the form says so |
+| Submit progress state | Not built. The button opens WhatsApp immediately; it does not wait on a network request, so a "sending" label would be untrue |
+| Accordion for FAQ or specs | Not built. No accordions exist in the current routes |
+| Page cross-fade | Not built. See View Transitions above |
+
 ---
 
 ## Micro-interactions

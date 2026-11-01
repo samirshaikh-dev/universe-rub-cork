@@ -3,7 +3,14 @@ import PageHeading from "../../components/page-heading";
 import CatalogueList from "../../components/sections/catalogue-list";
 import PageCta from "../../components/sections/page-cta";
 import { INDUSTRIES } from "../../data/site-content";
+import { MEDIA } from "../../data/media";
 import { createPageMetadata } from "../../lib/seo/metadata";
+
+const INDUSTRY_MEDIA = {
+  transformers: MEDIA.gaskets,
+  automotive: MEDIA.corkSheet,
+  construction: MEDIA.sheetSamples,
+};
 
 export const metadata = createPageMetadata({
   title: "Cork applications by industry",
@@ -14,22 +21,23 @@ export const metadata = createPageMetadata({
 
 export default function IndustriesPage() {
   return (
-    <div className="mx-auto w-full max-w-[1200px] px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
         breadcrumbs={[{ name: "Industries", path: "/industries" }]}
-        description="Explore the industries served and the cork products relevant to each application."
-        title="Industries and applications"
+        description="Each application has its own thicknesses, widths and manufacturing basis. Start with the one that matches your part."
+        title="Industries and applications."
       />
       <CatalogueList
         actionLabel="View application"
         basePath="industries"
         items={INDUSTRIES}
+        mediaMap={INDUSTRY_MEDIA}
       />
       <PageCta
         description="Share the drawing, dimensions and material requirement."
         title="Need help matching a product to your application?"
       >
-        <ContactActions compact />
+        <ContactActions />
       </PageCta>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useRef, useState } from "react";
+
 import {
   COMPANY_EMAILS,
   COMPANY_PHONES,
@@ -9,15 +9,6 @@ import {
   WHATSAPP_NUMBER,
 } from "../../config/site";
 import { PRODUCTS } from "../../data/site-content";
-
-const fieldClass =
-  "min-h-12 w-full rounded-sm border border-charcoal/60 bg-paper px-4 py-3 text-charcoal placeholder:text-charcoal/70 transition-colors focus:border-montado focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-amber aria-invalid:border-danger";
-
-const labelClass = "mb-1.5 block font-semibold text-montado";
-
-const errorClass = "mt-1.5 text-sm font-medium text-danger";
-
-const hintClass = "mt-1.5 text-sm text-charcoal/80";
 
 const EMPTY_VALUES = {
   name: "",
@@ -32,7 +23,7 @@ const EMPTY_VALUES = {
   message: "",
 };
 
-function validateField(name, value) {
+function validateField(name, value, variant) {
   const trimmed = value.trim();
 
   if (name === "name") {
@@ -41,7 +32,7 @@ function validateField(name, value) {
 
   if (name === "email") {
     if (!trimmed) {
-      return "Enter an email address so we can send the quote.";
+      return variant === "short" ? "" : "Enter an email address so we can send the quote.";
     }
 
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)
@@ -63,50 +54,74 @@ function validateField(name, value) {
 }
 
 function buildMessage(values) {
-  const lines = [
-    `Quote request from the ${SITE_NAME} website`,
-    "",
-    `Name: ${values.name.trim()}`,
-  ];
+  const lines = [`Quote request from the ${SITE_NAME} website`, "", `Name: ${values.name.trim()}`];
 
-  if (values.company.trim()) {
-    lines.push(`Company: ${values.company.trim()}`);
-  }
+  if (values.company.trim()) lines.push(`Company: ${values.company.trim()}`);
+  if (values.email.trim()) lines.push(`Email: ${values.email.trim()}`);
 
-  lines.push(
-    `Email: ${values.email.trim()}`,
-    `Phone or WhatsApp: ${values.phone.trim()}`,
-    `Product: ${values.product.trim()}`
-  );
+  lines.push(`Phone or WhatsApp: ${values.phone.trim()}`, `Product: ${values.product.trim()}`);
 
-  if (values.size.trim()) {
-    lines.push(`Size and quantity: ${values.size.trim()}`);
-  }
-
-  if (values.thickness.trim()) {
-    lines.push(`Thickness: ${values.thickness.trim()}`);
-  }
-
-  if (values.standard.trim()) {
-    lines.push(`Standard or material requirement: ${values.standard.trim()}`);
-  }
-
-  if (values.drawing.trim()) {
-    lines.push(`Drawing or sample details: ${values.drawing.trim()}`);
-  }
-
-  if (values.message.trim()) {
-    lines.push("", `Message: ${values.message.trim()}`);
-  }
+  if (values.size.trim()) lines.push(`Size and quantity: ${values.size.trim()}`);
+  if (values.thickness.trim()) lines.push(`Thickness: ${values.thickness.trim()}`);
+  if (values.standard.trim()) lines.push(`Standard or material requirement: ${values.standard.trim()}`);
+  if (values.drawing.trim()) lines.push(`Drawing or sample details: ${values.drawing.trim()}`);
+  if (values.message.trim()) lines.push("", `Message: ${values.message.trim()}`);
 
   return lines.join("\n");
 }
 
-export default function QuoteForm() {
+function Field({
+  id,
+  label,
+  name,
+  optional = false,
+  hint,
+  error,
+  children,
+  ...inputProps
+}) {
+  return (
+    <div>
+      <label className="field-label" htmlFor={id}>
+        {label}
+        {optional && (
+          <span className="font-normal text-charcoal/65"> (optional)</span>
+        )}
+      </label>
+      {children ?? (
+        <input
+          aria-describedby={
+            [error ? `${id}-error` : null, hint ? `${id}-hint` : null]
+              .filter(Boolean)
+              .join(" ") || undefined
+          }
+          aria-invalid={error ? "true" : undefined}
+          className="field"
+          id={id}
+          name={name}
+          {...inputProps}
+        />
+      )}
+      {hint && (
+        <p className="mt-1.5 text-sm text-charcoal/75" id={`${id}-hint`}>
+          {hint}
+        </p>
+      )}
+      {error && (
+        <p className="mt-1.5 text-sm font-medium text-danger" id={`${id}-error`}>
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export default function QuoteForm({ variant = "full" }) {
+  const isShort = variant === "short";
   const [values, setValues] = useState(EMPTY_VALUES);
   const [errors, setErrors] = useState({});
-  const [feedback, setFeedback] = useState(null);
-  const [whatsappUrl, setWhatsappUrl] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [handoffUrl, setHandoffUrl] = useState("");
 
   const honeypotRef = useRef(null);
   const nameRef = useRef(null);
@@ -114,96 +129,123 @@ export default function QuoteForm() {
   const phoneRef = useRef(null);
   const productRef = useRef(null);
 
-  const requiredFields = [
-    ["name", nameRef],
-    ["email", emailRef],
-    ["phone", phoneRef],
-    ["product", productRef],
-  ];
+  const requiredFields = isShort
+    ? ["name", "phone", "product"]
+    : ["name", "email", "phone", "product"];
 
   function handleChange(event) {
     const { name, value } = event.target;
-
     setValues((current) => ({ ...current, [name]: value }));
-    setErrors((current) =>
-      current[name] ? { ...current, [name]: "" } : current
-    );
-    setFeedback(null);
+    setErrors((current) => (current[name] ? { ...current, [name]: "" } : current));
+    setStatus("idle");
   }
 
   function handleBlur(event) {
     const { name, value } = event.target;
-    const message = validateField(name, value);
-
-    setErrors((current) => ({ ...current, [name]: message }));
+    setErrors((current) => ({
+      ...current,
+      [name]: validateField(name, value, variant),
+    }));
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (honeypotRef.current?.value) {
-      return;
-    }
+    if (honeypotRef.current?.value) return;
 
     const nextErrors = {};
-
-    for (const [name] of requiredFields) {
-      const message = validateField(name, values[name]);
-
-      if (message) {
-        nextErrors[name] = message;
-      }
+    for (const name of requiredFields) {
+      const message = validateField(name, values[name], variant);
+      if (message) nextErrors[name] = message;
     }
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
-      setWhatsappUrl("");
-      setFeedback({
-        type: "error",
-        message: "Check the highlighted fields and send again.",
-      });
+      setStatus("error");
 
-      const firstInvalid = requiredFields.find(([name]) => nextErrors[name]);
-      firstInvalid?.[1].current?.focus();
-
+      const refs = { name: nameRef, email: emailRef, phone: phoneRef, product: productRef };
+      const firstInvalid = requiredFields.find((name) => nextErrors[name]);
+      refs[firstInvalid]?.current?.focus();
       return;
     }
 
-    const message = buildMessage(values);
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      buildMessage(values)
+    )}`;
 
-    setWhatsappUrl(url);
-    setFeedback({
-      type: "info",
-      message:
-        "WhatsApp is opening in a new tab with your request. Press send in WhatsApp to reach United Rubber Cork.",
-    });
-
+    setHandoffUrl(url);
+    setStatus("handoff");
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
-  return (
-    <section
-      aria-labelledby="request-a-quote-heading"
-      className="max-w-[850px] border-t-4 border-montado bg-paper p-6 sm:p-10"
-      id="request-a-quote"
-    >
-      <p className="mb-3 text-sm font-semibold text-montado">
-        Quote requests
-      </p>
-      <h2
-        className="mb-4 text-[clamp(1.7rem,3vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-montado [font-variation-settings:'wdth'_120]"
-        id="request-a-quote-heading"
+  if (status === "handoff") {
+    return (
+      <div
+        aria-live="polite"
+        className="panel p-6 sm:p-8"
+        id={isShort ? undefined : "request-a-quote"}
       >
-        Request a quote
-      </h2>
-      <p className="mb-8 max-w-[68ch] text-lg leading-relaxed text-charcoal">
-        Tell us what you need and we will reply with a quote. This form opens
-        WhatsApp with your details filled in, so nothing is sent until you press
-        send there.
-      </p>
+        <div aria-hidden="true" className="fit-mark mb-6">
+          <span className="fit-mark__outline" />
+          <span className="fit-mark__piece" />
+        </div>
+        <h2 className="display-md m-0 mb-3">Ready to send.</h2>
+        <p className="mb-2 max-w-[50ch] text-charcoal">
+          WhatsApp has opened in a new tab with your request filled in. Press
+          send there to reach United Rubber Cork.
+        </p>
+        <p className="mb-6 max-w-[50ch] text-sm text-charcoal/75">
+          Nothing has been sent from this site yet. If the tab did not open, use
+          the button below.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a
+            className="btn btn--primary"
+            href={handoffUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Open WhatsApp
+          </a>
+          <a className="btn btn--secondary" href={`mailto:${COMPANY_EMAILS[0]}`}>
+            Email instead
+          </a>
+        </div>
+        <p className="mt-5 mb-0 text-sm text-charcoal/75">
+          Prefer to talk? Call{" "}
+          <a className="link spec-num" href={`tel:${COMPANY_PHONES[0].href}`}>
+            {COMPANY_PHONES[0].display}
+          </a>
+          .
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={isShort ? "panel p-6 sm:p-8" : "panel p-6 sm:p-10"}
+      id={isShort ? undefined : "request-a-quote"}
+    >
+      {!isShort && (
+        <>
+          <h2 className="display-md m-0 mb-3" id="request-a-quote-heading">
+            Request a quote
+          </h2>
+          <p className="mb-8 max-w-[62ch] text-charcoal">
+            Send the product, size and standard. This form opens WhatsApp with
+            your details filled in, so nothing is sent until you press send
+            there.
+          </p>
+        </>
+      )}
+
+      {isShort && (
+        <h3 className="display-sm m-0 mb-5">Request a quote</h3>
+      )}
 
       <form
+        aria-describedby={status === "error" ? "quote-status" : undefined}
         className="grid gap-5 sm:grid-cols-2"
         noValidate
         onSubmit={handleSubmit}
@@ -220,86 +262,33 @@ export default function QuoteForm() {
           />
         </div>
 
-        <div>
-          <label className={labelClass} htmlFor="quote-name">
-            Name
-          </label>
-          <input
-            aria-describedby={errors.name ? "quote-name-error" : undefined}
-            aria-invalid={errors.name ? "true" : undefined}
-            autoComplete="name"
-            className={fieldClass}
-            id="quote-name"
-            name="name"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            ref={nameRef}
-            required
-            type="text"
-            value={values.name}
-          />
-          {errors.name && (
-            <p className={errorClass} id="quote-name-error">
-              {errors.name}
-            </p>
-          )}
-        </div>
+        <Field
+          autoComplete="name"
+          error={errors.name}
+          id="quote-name"
+          label="Name"
+          name="name"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          ref={nameRef}
+          required
+          type="text"
+          value={values.name}
+        />
 
         <div>
-          <label className={labelClass} htmlFor="quote-company">
-            Company
-            <span className="font-normal text-charcoal/70"> (optional)</span>
-          </label>
-          <input
-            autoComplete="organization"
-            className={fieldClass}
-            id="quote-company"
-            name="company"
-            onChange={handleChange}
-            type="text"
-            value={values.company}
-          />
-        </div>
-
-        <div>
-          <label className={labelClass} htmlFor="quote-email">
-            Work email
-          </label>
-          <input
-            aria-describedby={errors.email ? "quote-email-error" : undefined}
-            aria-invalid={errors.email ? "true" : undefined}
-            autoComplete="email"
-            className={fieldClass}
-            id="quote-email"
-            inputMode="email"
-            name="email"
-            onBlur={handleBlur}
-            onChange={handleChange}
-            ref={emailRef}
-            required
-            type="email"
-            value={values.email}
-          />
-          {errors.email && (
-            <p className={errorClass} id="quote-email-error">
-              {errors.email}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label className={labelClass} htmlFor="quote-phone">
+          <label className="field-label" htmlFor="quote-phone">
             Phone or WhatsApp
           </label>
           <input
             aria-describedby={
-              errors.phone
-                ? "quote-phone-hint quote-phone-error"
-                : "quote-phone-hint"
+              [errors.phone ? "quote-phone-error" : null, "quote-phone-hint"]
+                .filter(Boolean)
+                .join(" ")
             }
             aria-invalid={errors.phone ? "true" : undefined}
             autoComplete="tel"
-            className={fieldClass}
+            className="field spec-num"
             id="quote-phone"
             inputMode="tel"
             name="phone"
@@ -310,24 +299,50 @@ export default function QuoteForm() {
             type="tel"
             value={values.phone}
           />
-          <p className={hintClass} id="quote-phone-hint">
+          <p className="mt-1.5 text-sm text-charcoal/75" id="quote-phone-hint">
             We may call to confirm the specification.
           </p>
           {errors.phone && (
-            <p className={errorClass} id="quote-phone-error">
+            <p className="mt-1.5 text-sm font-medium text-danger" id="quote-phone-error">
               {errors.phone}
             </p>
           )}
         </div>
 
+        <Field
+          autoComplete="organization"
+          id="quote-company"
+          label="Company"
+          name="company"
+          onChange={handleChange}
+          optional
+          type="text"
+          value={values.company}
+        />
+
+        <Field
+          autoComplete="email"
+          error={errors.email}
+          id="quote-email"
+          inputMode="email"
+          label="Work email"
+          name="email"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          optional={isShort}
+          ref={emailRef}
+          type="email"
+          value={values.email}
+        />
+
         <div className="sm:col-span-2">
-          <label className={labelClass} htmlFor="quote-product">
+          <label className="field-label" htmlFor="quote-product">
             Product
           </label>
           <select
             aria-describedby={errors.product ? "quote-product-error" : undefined}
             aria-invalid={errors.product ? "true" : undefined}
-            className={fieldClass}
+            className="field"
             id="quote-product"
             name="product"
             onBlur={handleBlur}
@@ -345,96 +360,89 @@ export default function QuoteForm() {
             <option value="Not sure yet">Not sure yet</option>
           </select>
           {errors.product && (
-            <p className={errorClass} id="quote-product-error">
+            <p className="mt-1.5 text-sm font-medium text-danger" id="quote-product-error">
               {errors.product}
             </p>
           )}
         </div>
 
-        <div aria-live="polite" className="min-h-6 sm:col-span-2" role="status">
-          {feedback && (
-            <p
-              className={
-                feedback.type === "error"
-                  ? "mb-0 text-sm font-medium text-danger"
-                  : "mb-0 text-sm text-montado"
-              }
-            >
-              {feedback.message}
-            </p>
-          )}
-        </div>
+        <Field
+          id="quote-size"
+          label="Size and quantity"
+          name="size"
+          onChange={handleChange}
+          optional
+          placeholder="e.g. 3 ft x 3 ft sheet, 12 sheets"
+          type="text"
+          value={values.size}
+        />
 
-        {whatsappUrl && (
-          <p className="mb-0 text-sm text-charcoal sm:col-span-2">
-            If WhatsApp did not open,{" "}
-            <a
-              className="font-semibold text-montado underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
-              href={whatsappUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              open the message again
-            </a>
-            .
-          </p>
+        {!isShort && (
+          <>
+            <Field
+              id="quote-thickness"
+              label="Thickness"
+              name="thickness"
+              onChange={handleChange}
+              optional
+              placeholder="e.g. 6 mm"
+              type="text"
+              value={values.thickness}
+            />
+
+            <Field
+              id="quote-standard"
+              label="Standard or material requirement"
+              name="standard"
+              onChange={handleChange}
+              optional
+              placeholder="e.g. IS 4253 Part II"
+              type="text"
+              value={values.standard}
+            />
+
+            <Field
+              id="quote-drawing"
+              label="Drawing or sample"
+              name="drawing"
+              onChange={handleChange}
+              optional
+              type="text"
+              value={values.drawing}
+            />
+
+            <div className="sm:col-span-2">
+              <label className="field-label" htmlFor="quote-message">
+                Message
+                <span className="font-normal text-charcoal/65"> (optional)</span>
+              </label>
+              <textarea
+                className="field min-h-32"
+                id="quote-message"
+                name="message"
+                onChange={handleChange}
+                rows={4}
+                value={values.message}
+              />
+            </div>
+          </>
         )}
 
         <div className="sm:col-span-2">
-          <button
-            className="inline-flex min-h-12 items-center justify-center rounded-sm bg-amber px-5 py-3 font-semibold text-charcoal transition-colors hover:bg-amber/90 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-amber"
-            type="submit"
-          >
-            Send quote request on WhatsApp
+          <button className="btn btn--primary w-full sm:w-auto" type="submit">
+            Send quote request
           </button>
+          <p className="mt-3 mb-0 max-w-[58ch] text-sm text-charcoal/75">
+            Opens WhatsApp. Send drawings by WhatsApp or email; this site does
+            not accept file uploads yet.
+          </p>
+          <p aria-live="polite" className="mt-3 mb-0 text-sm font-medium text-danger">
+            {status === "error"
+              ? "Check the highlighted fields and send again."
+              : ""}
+          </p>
         </div>
       </form>
-
-      <p className="mb-0 mt-6 max-w-[68ch] text-sm text-charcoal">
-        Your details are shared only to answer this request. Read the{" "}
-        <Link
-          className="font-semibold text-montado underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
-          href="/privacy"
-        >
-          privacy notice
-        </Link>
-        .
-      </p>
-
-      <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 border-t border-charcoal/15 pt-5">
-        <a
-          className="inline-flex min-h-11 items-center font-semibold text-montado underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
-          href={`mailto:${COMPANY_EMAILS[0]}?subject=${encodeURIComponent(`Quote request for ${SITE_NAME} products`)}`}
-        >
-          Email a quote request instead
-        </a>
-        <a
-          className="inline-flex min-h-11 items-center font-semibold text-montado underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
-          href={`tel:${COMPANY_PHONES[0].href}`}
-        >
-          Call {COMPANY_PHONES[0].display}
-        </a>
-      </div>
-
-      <noscript>
-        <p className="mb-0 mt-6 border-l-4 border-cork bg-cork-light/60 p-5 text-sm text-charcoal">
-          This form needs JavaScript to open WhatsApp. Email{" "}
-          <a
-            className="font-semibold text-montado underline-offset-4 hover:underline"
-            href={`mailto:${COMPANY_EMAILS[0]}`}
-          >
-            {COMPANY_EMAILS[0]}
-          </a>{" "}
-          or call{" "}
-          <a
-            className="font-semibold text-montado underline-offset-4 hover:underline"
-            href={`tel:${COMPANY_PHONES[0].href}`}
-          >
-            {COMPANY_PHONES[0].display}
-          </a>
-          .
-        </p>
-      </noscript>
-    </section>
+    </div>
   );
 }

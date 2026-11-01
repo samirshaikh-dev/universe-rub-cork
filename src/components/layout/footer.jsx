@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import {
   BRAND_WORDMARK,
   COMPANY_ADDRESS,
@@ -8,120 +9,119 @@ import {
 } from "../../config/site";
 
 const footerLink =
-  "inline-flex min-h-9 items-center text-paper no-underline underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber";
+  "inline-flex min-h-11 items-center text-paper no-underline border-b border-transparent hover:border-cork transition-colors duration-200 ease-standard";
 
 export function Footer() {
   return (
-    <footer className="bg-montado text-paper">
-      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
-        <div className="border-t border-cork/25 pt-8" />
-
-        <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr_0.7fr] lg:gap-12">
-          {/* Column 1: Brand */}
-          <div className="max-w-[50ch]">
+    <footer className="bg-montado text-paper" data-surface="dark">
+      <div className="shell">
+        <div className="grid gap-12 border-t border-cork/40 pt-12 pb-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.8fr] lg:gap-16">
+          <div className="max-w-[46ch]">
             <Link
               aria-label={`${SITE_NAME} home`}
-              className="inline-flex flex-col items-start gap-[2px] text-[1.45rem] font-extrabold leading-none tracking-[0.015em] text-paper no-underline focus-visible:outline-3 focus-visible:outline-amber"
+              className="inline-flex flex-col items-start gap-0.5 text-paper no-underline"
               href="/"
             >
-              {BRAND_WORDMARK.primary}
-              <span className="text-[0.9rem] font-normal tracking-normal">
+              <span className="display-md text-paper!">
+                {BRAND_WORDMARK.primary}
+              </span>
+              <span className="label font-normal tracking-[0.06em] text-paper/80">
                 {BRAND_WORDMARK.secondary}
               </span>
             </Link>
-            <span className="block w-10 h-[1px] mt-5 mb-7 bg-cork" aria-hidden="true" />
-            <p className="mb-5 text-[clamp(1.15rem,3vw,1.6rem)] font-extrabold leading-[1.12] tracking-[-0.02em] [font-variation-settings:'wdth'_125]">
-              Engineered with Cork. Built for Industry.
-            </p>
-            <p className="text-[0.95rem] leading-relaxed text-paper/90 max-w-[44ch]">
-              Cork and rubberised cork products from GIDC, Vapi, Gujarat.
-            </p>
-          </div>
 
-          {/* Column 2: Contact */}
-          <div className="max-w-[42ch]">
-            <h2 className="mb-4 text-sm font-bold leading-tight tracking-[0.03em] [font-variation-settings:'wdth'_125] text-paper">
-              Contact
-            </h2>
-            <address className="mb-5 text-[0.95rem] leading-relaxed text-paper/90">
-              {COMPANY_ADDRESS.streetAddress}<br />
-              {COMPANY_ADDRESS.addressLocality} {COMPANY_ADDRESS.postalCode},{" "}
-              {COMPANY_ADDRESS.addressRegion}, India
-            </address>
-            <ul className="space-y-2 p-0 text-[0.95rem]">
-              {COMPANY_PHONES.map((phone) => (
-                <li className="list-none" key={phone.href}>
-                  <a className={footerLink} href={`tel:${phone.href}`}>
-                    {phone.display}
-                  </a>
-                </li>
-              ))}
-              <li className="list-none mt-3 pt-3 border-t border-cork/15">
-                {COMPANY_EMAILS.map((email) => (
-                  <a
-                    key={email}
-                    className={`${footerLink} block`}
-                    href={`mailto:${email}`}
-                  >
-                    {email}
-                  </a>
-                ))}
+            <p className="mt-6 mb-6 max-w-[34ch] text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.02em] text-paper [font-variation-settings:'wdth'_112,'wght'_700]">
+              Cork, engineered to your drawing.
+            </p>
+
+            <ul className="m-0 flex flex-wrap gap-2 p-0">
+              <li className="list-none">
+                <Link
+                  className="badge border-paper/35 text-paper!"
+                  href="/quality"
+                >
+                  ISO 9001:2015
+                </Link>
+              </li>
+              <li className="list-none">
+                <Link
+                  className="badge border-paper/35 text-paper!"
+                  href="/quality"
+                >
+                  IS 4253 Part II
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Explore */}
           <div>
-            <h2 className="mb-4 text-sm font-bold leading-tight tracking-[0.03em] [font-variation-settings:'wdth'_125] text-paper">
-              Explore
-            </h2>
+            <h2 className="label mb-4 text-cork-light">Contact</h2>
+            <address className="mb-5 not-italic spec-num text-[0.95rem] leading-relaxed text-paper/85">
+              {COMPANY_ADDRESS.streetAddress}
+              <br />
+              {COMPANY_ADDRESS.addressLocality} {COMPANY_ADDRESS.postalCode},{" "}
+              {COMPANY_ADDRESS.addressRegion}, India
+            </address>
+            <ul className="m-0 grid p-0">
+              {COMPANY_PHONES.map((phone) => (
+                <li className="list-none" key={phone.href}>
+                  <a className={`${footerLink} spec-num`} href={`tel:${phone.href}`}>
+                    {phone.display}
+                  </a>
+                </li>
+              ))}
+              {COMPANY_EMAILS.map((email) => (
+                <li className="list-none" key={email}>
+                  <a className={`${footerLink} break-all text-[0.95rem]`} href={`mailto:${email}`}>
+                    {email}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="label mb-4 text-cork-light">Explore</h2>
             <nav aria-label="Footer navigation">
-              <ul className="mt-1 grid gap-1 p-0 text-[0.95rem]">
-                <li className="list-none">
-                  <Link className={footerLink} href="/products">Products</Link>
-                </li>
-                <li className="list-none">
-                  <Link className={footerLink} href="/industries">Industries</Link>
-                </li>
-                <li className="list-none">
-                  <Link className={footerLink} href="/quality">Quality</Link>
-                </li>
-                <li className="list-none">
-                  <Link className={footerLink} href="/about">
-                    About United Rubber Cork
-                  </Link>
-                </li>
-                <li className="list-none">
-                  <Link className={footerLink} href="/contact">Contact</Link>
-                </li>
-                <li className="list-none">
-                  <Link className={footerLink} href="/privacy">
-                    Privacy notice
-                  </Link>
-                </li>
+              <ul className="m-0 grid p-0">
+                {[
+                  ["Products", "/products"],
+                  ["Industries", "/industries"],
+                  ["Quality", "/quality"],
+                  ["About", "/about"],
+                  ["Contact", "/contact"],
+                ].map(([label, href]) => (
+                  <li className="list-none" key={href}>
+                    <Link className={footerLink} href={href}>
+                      {label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div
-          className="border-t border-cork/20 mt-8 pt-6 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
-        >
-          <p className="mb-0 text-[0.9rem] text-paper">
+        <div className="flex flex-col gap-3 border-t border-cork/25 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="spec-num m-0 text-[0.9rem] text-paper/85">
             United Rubber Cork, GIDC, Vapi, Gujarat
           </p>
-          <p className="mb-0 text-[0.9rem] text-paper/85">
-            Designed and developed by{" "}
-            <a
-              className="underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
-              href="https://samir-portfolio-dev.vercel.app/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Samir Shaikh
-            </a>
-          </p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.9rem] text-paper/85">
+            <Link className={footerLink} href="/privacy">
+              Privacy notice
+            </Link>
+            <p className="m-0">
+              Designed and developed by{" "}
+              <a
+                className="text-paper underline-offset-4 hover:underline"
+                href="https://samir-portfolio-dev.vercel.app/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Samir Shaikh
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

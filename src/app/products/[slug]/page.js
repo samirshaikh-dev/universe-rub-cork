@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+
 import ContactActions from "../../../components/contact-actions";
 import PageHeading from "../../../components/page-heading";
 import ProductContent from "../../../components/product/product-content";
@@ -32,7 +32,7 @@ export default async function ProductPage({ params }) {
   if (!product) notFound();
 
   return (
-    <div className="mx-auto w-full max-w-[1200px] px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
         breadcrumbs={[
           { name: "Products", path: "/products" },
@@ -47,14 +47,11 @@ export default async function ProductPage({ params }) {
         description="Include your required dimensions and quantity."
         title={`Ask about ${product.name.toLowerCase()}.`}
       >
-        <ContactActions compact />
+        <ContactActions />
       </PageCta>
-      <p className="mt-8">
-        <Link
-          className="inline-flex min-h-11 items-center font-semibold text-montado underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-amber"
-          href="/products"
-        >
-          ← Back to all products
+      <p className="mt-10">
+        <Link className="btn--plain text-montado" href="/products">
+          <span aria-hidden="true">←</span> All product families
         </Link>
       </p>
     </div>

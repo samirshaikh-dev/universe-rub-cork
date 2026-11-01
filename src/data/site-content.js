@@ -80,6 +80,35 @@ export const PRODUCTS = [
   },
 ];
 
+// Documented dimensions only. Every number here also appears in PRODUCTS above;
+// keep the two in step when client-approved specifications change.
+export const SPEC_ROWS = [
+  {
+    product: "Rubberised cork sheet",
+    slug: "rubberised-cork",
+    thickness: "1.0 to 20 mm",
+    sizes: "2 ft x 3 ft · 3 ft x 3 ft · 1000 x 1000 mm",
+  },
+  {
+    product: "Rubberised cork strip",
+    slug: "rubberised-cork",
+    thickness: "1 to 10 mm",
+    sizes: "20 to 600 mm wide",
+  },
+  {
+    product: "Cork granules",
+    slug: "cork",
+    thickness: "0.2/0.5 to 4/8 mm",
+    sizes: "Five mesh sizes",
+  },
+  {
+    product: "Decorative cork tile",
+    slug: "decorative-cork",
+    thickness: "3 to 12 mm",
+    sizes: "300 x 300 mm · 600 x 600 mm",
+  },
+];
+
 export const INDUSTRIES = [
   {
     slug: "transformers",

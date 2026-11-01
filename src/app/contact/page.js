@@ -12,11 +12,11 @@ export const metadata = createPageMetadata({
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto w-full max-w-[1200px] px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
         breadcrumbs={[{ name: "Contact", path: "/contact" }]}
-        description="Talk with United Rubber Cork about product availability, specifications or a quote."
-        title="Contact United Rubber Cork"
+        description="Talk with United Rubber Cork about availability, a specification or a quote. WhatsApp is usually the fastest route for a drawing."
+        title="Contact United Rubber Cork."
       />
       <ContactDetails />
       <QuoteForm />

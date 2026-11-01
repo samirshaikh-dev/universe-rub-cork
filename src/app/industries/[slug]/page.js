@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+
 import IndustryContent from "../../../components/industries/industry-content";
 import PageHeading from "../../../components/page-heading";
 import { INDUSTRIES, PRODUCTS } from "../../../data/site-content";
@@ -28,11 +29,11 @@ export default async function IndustryPage({ params }) {
   if (!industry) notFound();
 
   const relatedProducts = PRODUCTS.filter((product) =>
-    industry.productSlugs.includes(product.slug),
+    industry.productSlugs.includes(product.slug)
   );
 
   return (
-    <div className="mx-auto w-full max-w-[1200px] px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
         breadcrumbs={[
           { name: "Industries", path: "/industries" },
