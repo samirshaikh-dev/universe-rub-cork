@@ -9,7 +9,6 @@ import {
   COMPANY_PHONES,
   NAV_ITEMS,
   SITE_NAME,
-  WHATSAPP_LINK,
 } from "../../config/site";
 
 function MenuIcon() {
@@ -191,14 +190,6 @@ export function Navbar() {
             </Link>
             <a className="btn btn--secondary w-full" href={`tel:${COMPANY_PHONES[0].href}`}>
               Call {COMPANY_PHONES[0].display}
-            </a>
-            <a
-              className="btn btn--plain justify-center"
-              href={WHATSAPP_LINK}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Send your drawing on WhatsApp
             </a>
             <p className="spec-num m-0 pt-2 text-sm text-charcoal/70">
               GIDC, Vapi, Gujarat

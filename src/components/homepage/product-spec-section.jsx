@@ -7,7 +7,7 @@ export default function ProductSpecSection() {
   return (
     <section className="section bg-paper">
       <div className="shell">
-        <div className="mb-9 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,0.7fr)] md:items-end">
+        <div className="mb-6 grid gap-4 sm:gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,0.7fr)] md:items-end">
           <h2 className="display-lg m-0 max-w-[22ch]">
             Check the sizes before you enquire.
           </h2>
