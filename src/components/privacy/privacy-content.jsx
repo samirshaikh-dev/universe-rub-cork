@@ -1,34 +1,37 @@
 import { COMPANY_EMAILS } from "../../config/site";
+import { ShieldCheckIcon, MailIcon } from "../ui/icons";
 
 const SECTIONS = [
   {
-    title: "Information you send",
+    title: "1. Information Processed via Quote & WhatsApp Handoff",
     body: (
       <>
-        The quote form on this website does not send or store your details on a
-        server. It prepares a message and opens WhatsApp with that message
-        filled in. Nothing reaches United Rubber Cork until you press send in
-        WhatsApp, and the message is then handled by WhatsApp and by United
-        Rubber Cork&rsquo;s WhatsApp account. The site does not accept file
-        uploads; drawings are sent through WhatsApp or email.
+        The quotation form on this website does not store personal data or engineering
+        drawings on a server database. It prepares a structured inquiry message and opens
+        WhatsApp with that message populated. No information reaches United Rubber Cork
+        until you click send within WhatsApp. Once sent, messages are handled securely
+        under WhatsApp&apos;s privacy infrastructure and received directly by United Rubber Cork.
       </>
     ),
   },
   {
-    title: "Contact by phone or email",
+    title: "2. Direct Telephone and Email Communications",
     body: (
       <>
-        If you call or email United Rubber Cork, the details you choose to share
-        are received through that service so the enquiry can be answered.
+        When you reach United Rubber Cork via direct phone call or email, details you share
+        (such as technical specifications, dimensional drawings, company identity, and delivery
+        addresses) are used solely to evaluate technical feasibility, generate commercial quotations,
+        and fulfill purchase orders.
       </>
     ),
   },
   {
-    title: "Cookies and analytics",
+    title: "3. Cookies & Tracking Technologies",
     body: (
       <>
-        This website does not currently set advertising cookies and does not
-        include an analytics tool.
+        This website operates without advertising cookies, tracking pixels, or third-party
+        analytics trackers. Only essential browser preferences (such as reduced-motion settings)
+        are respected locally on your client device.
       </>
     ),
   },
@@ -36,33 +39,51 @@ const SECTIONS = [
 
 export default function PrivacyContent() {
   return (
-    <section className="grid max-w-[1000px] gap-10 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16">
-      <div className="grid gap-8">
+    <section className="grid max-w-[1000px] gap-10 lg:grid-cols-[1fr_300px] lg:gap-14">
+      <div className="grid gap-6">
         {SECTIONS.map((section) => (
-          <section className="border-t border-montado/20 pt-5" key={section.title}>
-            <h2 className="display-sm m-0 mb-3">{section.title}</h2>
-            <p className="m-0 max-w-[66ch] text-charcoal">{section.body}</p>
-          </section>
+          <article
+            className="rounded-2xl border border-montado/12 bg-white p-6 sm:p-7 shadow-sm"
+            key={section.title}
+          >
+            <h2 className="text-base font-bold text-charcoal m-0 mb-3">
+              {section.title}
+            </h2>
+            <p className="m-0 text-sm leading-relaxed text-charcoal-light">
+              {section.body}
+            </p>
+          </article>
         ))}
 
-        <section className="border-t border-montado/20 pt-5">
-          <h2 className="display-sm m-0 mb-3">Questions about privacy</h2>
-          <p className="m-0 max-w-[66ch] text-charcoal">
-            For questions about information you have sent to United Rubber Cork,
-            contact{" "}
-            <a className="link break-all" href={`mailto:${COMPANY_EMAILS[0]}`}>
+        <article className="rounded-2xl border border-montado/12 bg-white p-6 sm:p-7 shadow-sm">
+          <h2 className="text-base font-bold text-charcoal m-0 mb-3">
+            4. Inquiries &amp; Privacy Contact
+          </h2>
+          <p className="m-0 text-sm leading-relaxed text-charcoal-light">
+            For questions regarding specifications or contact information shared with United
+            Rubber Cork, contact our administrative desk:
+          </p>
+          <div className="mt-3 flex items-center gap-2">
+            <MailIcon className="size-4 text-montado" />
+            <a
+              className="text-sm font-semibold text-montado hover:underline break-all"
+              href={`mailto:${COMPANY_EMAILS[0]}`}
+            >
               {COMPANY_EMAILS[0]}
             </a>
-            .
-          </p>
-        </section>
+          </div>
+        </article>
       </div>
 
-      <aside className="h-fit border-l-2 border-cork pl-5">
-        <p className="spec-num m-0 text-sm leading-relaxed text-charcoal/75">
-          United Rubber Cork should review this notice against its email,
-          hosting and record-retention practices and applicable Indian
-          data-protection requirements before launch.
+      <aside className="h-fit rounded-xl border border-cork/25 bg-cork-light/30 p-5">
+        <div className="flex items-center gap-2 text-cork-deep font-bold text-xs mb-2">
+          <ShieldCheckIcon className="size-4" />
+          <span>Statutory Compliance Note</span>
+        </div>
+        <p className="spec-num m-0 text-xs leading-relaxed text-charcoal-light">
+          United Rubber Cork maintains transparent data handling in accordance with Indian
+          Information Technology and data protection regulations. Contact our works desk
+          for record-retention inquiries.
         </p>
       </aside>
     </section>

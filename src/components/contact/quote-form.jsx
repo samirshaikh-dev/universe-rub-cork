@@ -9,6 +9,15 @@ import {
   WHATSAPP_NUMBER,
 } from "../../config/site";
 import { PRODUCTS } from "../../data/site-content";
+import {
+  WhatsAppIcon,
+  PhoneIcon,
+  MailIcon,
+  CheckCircleIcon,
+  CopyIcon,
+  ArrowRightIcon,
+  ShieldCheckIcon,
+} from "../ui/icons";
 
 const EMPTY_VALUES = {
   name: "",
@@ -23,97 +32,60 @@ const EMPTY_VALUES = {
   message: "",
 };
 
+const COMMON_THICKNESSES = ["1.5 mm", "3.0 mm", "5.0 mm", "6.0 mm", "8.0 mm", "10.0 mm"];
+
 function validateField(name, value, variant) {
   const trimmed = value.trim();
 
   if (name === "name") {
-    return trimmed ? "" : "Enter your name.";
+    return trimmed ? "" : "Please enter your name or company contact.";
   }
 
   if (name === "email") {
     if (!trimmed) {
-      return variant === "short" ? "" : "Enter an email address so we can send the quote.";
+      return variant === "short" ? "" : "Please provide a work email for the official quote.";
     }
-
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)
       ? ""
-      : "That email looks incomplete. Check it and send again.";
+      : "Please enter a valid email address.";
   }
 
   if (name === "phone") {
     return trimmed.replace(/\D/g, "").length >= 10
       ? ""
-      : "Enter a phone number with at least 10 digits.";
+      : "Please enter a valid 10-digit mobile or WhatsApp number.";
   }
 
   if (name === "product") {
-    return trimmed ? "" : "Select a product, or choose Not sure yet.";
+    return trimmed ? "" : "Please select a product range or Choose 'Not sure yet'.";
   }
 
   return "";
 }
 
 function buildMessage(values) {
-  const lines = [`Quote request from the ${SITE_NAME} website`, "", `Name: ${values.name.trim()}`];
+  const lines = [
+    `*NEW QUOTE REQUEST — ${SITE_NAME.toUpperCase()}*`,
+    `----------------------------------------`,
+    `👤 Contact: ${values.name.trim()}`,
+  ];
 
-  if (values.company.trim()) lines.push(`Company: ${values.company.trim()}`);
-  if (values.email.trim()) lines.push(`Email: ${values.email.trim()}`);
+  if (values.company.trim()) lines.push(`🏢 Company: ${values.company.trim()}`);
+  if (values.email.trim()) lines.push(`✉️ Email: ${values.email.trim()}`);
 
-  lines.push(`Phone or WhatsApp: ${values.phone.trim()}`, `Product: ${values.product.trim()}`);
+  lines.push(`📱 Phone: ${values.phone.trim()}`);
+  lines.push(`📦 Product Range: ${values.product.trim()}`);
 
-  if (values.size.trim()) lines.push(`Size and quantity: ${values.size.trim()}`);
-  if (values.thickness.trim()) lines.push(`Thickness: ${values.thickness.trim()}`);
-  if (values.standard.trim()) lines.push(`Standard or material requirement: ${values.standard.trim()}`);
-  if (values.drawing.trim()) lines.push(`Drawing or sample details: ${values.drawing.trim()}`);
-  if (values.message.trim()) lines.push("", `Message: ${values.message.trim()}`);
+  if (values.size.trim()) lines.push(`📐 Size / Quantity: ${values.size.trim()}`);
+  if (values.thickness.trim()) lines.push(`📏 Thickness: ${values.thickness.trim()}`);
+  if (values.standard.trim()) lines.push(`📋 Standard: ${values.standard.trim()}`);
+  if (values.drawing.trim()) lines.push(`📎 Drawing Ref: ${values.drawing.trim()}`);
+  if (values.message.trim()) {
+    lines.push(`----------------------------------------`);
+    lines.push(`💬 Remarks: ${values.message.trim()}`);
+  }
 
   return lines.join("\n");
-}
-
-function Field({
-  id,
-  label,
-  name,
-  optional = false,
-  hint,
-  error,
-  children,
-  ...inputProps
-}) {
-  return (
-    <div>
-      <label className="field-label" htmlFor={id}>
-        {label}
-        {optional && (
-          <span className="font-normal text-charcoal/65"> (optional)</span>
-        )}
-      </label>
-      {children ?? (
-        <input
-          aria-describedby={
-            [error ? `${id}-error` : null, hint ? `${id}-hint` : null]
-              .filter(Boolean)
-              .join(" ") || undefined
-          }
-          aria-invalid={error ? "true" : undefined}
-          className="field"
-          id={id}
-          name={name}
-          {...inputProps}
-        />
-      )}
-      {hint && (
-        <p className="mt-1.5 text-sm text-charcoal/75" id={`${id}-hint`}>
-          {hint}
-        </p>
-      )}
-      {error && (
-        <p className="mt-1.5 text-sm font-medium text-danger" id={`${id}-error`}>
-          {error}
-        </p>
-      )}
-    </div>
-  );
 }
 
 export default function QuoteForm({ variant = "full" }) {
@@ -122,6 +94,7 @@ export default function QuoteForm({ variant = "full" }) {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
   const [handoffUrl, setHandoffUrl] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const honeypotRef = useRef(null);
   const nameRef = useRef(null);
@@ -135,17 +108,21 @@ export default function QuoteForm({ variant = "full" }) {
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setValues((current) => ({ ...current, [name]: value }));
-    setErrors((current) => (current[name] ? { ...current, [name]: "" } : current));
+    setValues((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => (prev[name] ? { ...prev, [name]: "" } : prev));
     setStatus("idle");
   }
 
   function handleBlur(event) {
     const { name, value } = event.target;
-    setErrors((current) => ({
-      ...current,
+    setErrors((prev) => ({
+      ...prev,
       [name]: validateField(name, value, variant),
     }));
+  }
+
+  function handleQuickThickness(th) {
+    setValues((prev) => ({ ...prev, thickness: th }));
   }
 
   function handleSubmit(event) {
@@ -162,99 +139,142 @@ export default function QuoteForm({ variant = "full" }) {
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setStatus("error");
-
       const refs = { name: nameRef, email: emailRef, phone: phoneRef, product: productRef };
       const firstInvalid = requiredFields.find((name) => nextErrors[name]);
       refs[firstInvalid]?.current?.focus();
       return;
     }
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      buildMessage(values)
-    )}`;
+    const message = buildMessage(values);
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     setHandoffUrl(url);
     setStatus("handoff");
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
+  function handleCopy() {
+    navigator.clipboard.writeText(buildMessage(values));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  }
+
   if (status === "handoff") {
     return (
       <div
         aria-live="polite"
-        className="panel p-6 sm:p-8"
+        className="card-surface p-6 sm:p-10 border-2 border-montado/20 bg-white shadow-xl rounded-2xl"
         id={isShort ? undefined : "request-a-quote"}
       >
-        <div aria-hidden="true" className="fit-mark mb-6">
-          <span className="fit-mark__outline" />
-          <span className="fit-mark__piece" />
+        <div className="flex items-center gap-3 text-montado mb-4">
+          <div className="grid size-12 place-items-center rounded-xl bg-montado/10 text-montado">
+            <CheckCircleIcon className="size-6 text-[#16a34a]" />
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-charcoal m-0">
+              Ready to Send via WhatsApp
+            </h3>
+            <p className="text-xs text-charcoal-muted m-0">
+              Your inquiry message has been prepared for our engineering desk.
+            </p>
+          </div>
         </div>
-        <h2 className="display-md m-0 mb-3">Ready to send.</h2>
-        <p className="mb-2 max-w-[50ch] text-charcoal">
-          WhatsApp has opened in a new tab with your request filled in. Press
-          send there to reach United Rubber Cork.
+
+        <p className="text-sm text-charcoal-light leading-relaxed mb-6">
+          WhatsApp has opened in a new tab with your pre-filled inquiry. Click{" "}
+          <strong>Send</strong> in WhatsApp to deliver your specification directly to the United
+          Rubber Cork technical desk in Vapi.
         </p>
-        <p className="mb-6 max-w-[50ch] text-sm text-charcoal/75">
-          Nothing has been sent from this site yet. If the tab did not open, use
-          the button below.
-        </p>
-        <div className="flex flex-wrap gap-3">
+
+        {/* Message Preview Box */}
+        <div className="mb-6 rounded-xl border border-montado/15 bg-sheet p-4 text-xs font-mono text-charcoal whitespace-pre-wrap leading-relaxed max-h-48 overflow-y-auto">
+          {buildMessage(values)}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3">
           <a
-            className="btn btn--primary"
+            className="btn btn--whatsapp min-h-11 px-5 text-sm font-semibold"
             href={handoffUrl}
             rel="noopener noreferrer"
             target="_blank"
           >
-            Open WhatsApp
+            <WhatsAppIcon className="size-4" />
+            <span>Open WhatsApp Tab Again</span>
           </a>
-          <a className="btn btn--secondary" href={`mailto:${COMPANY_EMAILS[0]}`}>
-            Email instead
+
+          <button
+            className="btn btn--secondary min-h-11 px-4 text-sm font-semibold"
+            onClick={handleCopy}
+            type="button"
+          >
+            <CopyIcon className="size-4" />
+            <span>{copied ? "Copied!" : "Copy Inquiry"}</span>
+          </button>
+
+          <a
+            className="btn btn--secondary min-h-11 px-4 text-sm font-semibold"
+            href={`mailto:${COMPANY_EMAILS[0]}?subject=Quote%20Request%20-%20${encodeURIComponent(
+              values.product || "Cork Parts"
+            )}&body=${encodeURIComponent(buildMessage(values))}`}
+          >
+            <MailIcon className="size-4" />
+            <span>Email Instead</span>
           </a>
         </div>
-        <p className="mt-5 mb-0 text-sm text-charcoal/75">
-          Prefer to talk? Call{" "}
-          <a className="link spec-num" href={`tel:${COMPANY_PHONES[0].href}`}>
-            {COMPANY_PHONES[0].display}
-          </a>
-          .
-        </p>
+
+        <div className="mt-6 pt-5 border-t border-montado/10 flex items-center justify-between text-xs text-charcoal-muted">
+          <span>Need to attach PDF or CAD files? Send them in the WhatsApp chat.</span>
+          <button
+            className="text-montado font-bold hover:underline"
+            onClick={() => setStatus("idle")}
+            type="button"
+          >
+            Edit Form
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
     <div
-      className={isShort ? "panel p-6 sm:p-8" : "panel p-6 sm:p-10"}
+      className={`card-surface bg-white shadow-xl rounded-2xl ${
+        isShort ? "p-6 sm:p-8" : "p-6 sm:p-10"
+      }`}
       id={isShort ? undefined : "request-a-quote"}
     >
-      {!isShort && (
-        <>
-          <h2 className="display-md m-0 mb-3" id="request-a-quote-heading">
-            Request a quote
-          </h2>
-          <p className="mb-8 max-w-[62ch] text-charcoal">
-            Send the product, size and standard. This form opens WhatsApp with
-            your details filled in, so nothing is sent until you press send
-            there.
-          </p>
-        </>
-      )}
+      <div className="mb-6 pb-5 border-b border-montado/10">
+        <div className="flex items-center gap-2 mb-1.5">
+          <span className="badge-tag">
+            <WhatsAppIcon className="size-3.5 text-[#16a34a]" />
+            <span>Fast WhatsApp Handoff</span>
+          </span>
+          <span className="text-xs text-charcoal-muted">
+            • 24hr Quotation Turnaround
+          </span>
+        </div>
 
-      {isShort && (
-        <h3 className="display-sm m-0 mb-5">Request a quote</h3>
-      )}
+        <h3 className="display-sm m-0 text-charcoal">
+          {isShort ? "Get an Instant Specification Quote" : "Request a Technical Quotation"}
+        </h3>
+        <p className="mt-1.5 mb-0 text-xs sm:text-sm text-charcoal-light">
+          Share your dimensions or sample details. This opens WhatsApp with your pre-formatted
+          message ready to send to our Vapi engineering works.
+        </p>
+      </div>
 
       <form
-        aria-describedby={status === "error" ? "quote-status" : undefined}
-        className="grid gap-5 sm:grid-cols-2"
+        aria-describedby={status === "error" ? "quote-form-error" : undefined}
+        className="grid gap-4 sm:grid-cols-2"
         noValidate
         onSubmit={handleSubmit}
       >
+        {/* Anti-spam honeypot */}
         <div aria-hidden="true" className="hidden">
-          <label htmlFor="quote-website">Website</label>
+          <label htmlFor="quote-website-field">Website</label>
           <input
             autoComplete="off"
-            id="quote-website"
+            id="quote-website-field"
             name="website"
             ref={honeypotRef}
             tabIndex={-1}
@@ -262,30 +282,36 @@ export default function QuoteForm({ variant = "full" }) {
           />
         </div>
 
-        <Field
-          autoComplete="name"
-          error={errors.name}
-          id="quote-name"
-          label="Name"
-          name="name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          ref={nameRef}
-          required
-          type="text"
-          value={values.name}
-        />
-
+        {/* Name */}
         <div>
-          <label className="field-label" htmlFor="quote-phone">
-            Phone or WhatsApp
+          <label className="field-label" htmlFor="quote-name">
+            Contact Name <span className="text-danger">*</span>
           </label>
           <input
-            aria-describedby={
-              [errors.phone ? "quote-phone-error" : null, "quote-phone-hint"]
-                .filter(Boolean)
-                .join(" ")
-            }
+            aria-invalid={errors.name ? "true" : undefined}
+            autoComplete="name"
+            className="field"
+            id="quote-name"
+            name="name"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="e.g. Rajesh Kumar"
+            ref={nameRef}
+            required
+            type="text"
+            value={values.name}
+          />
+          {errors.name && (
+            <p className="mt-1 text-xs font-semibold text-danger">{errors.name}</p>
+          )}
+        </div>
+
+        {/* Phone / WhatsApp */}
+        <div>
+          <label className="field-label" htmlFor="quote-phone">
+            Phone / WhatsApp Number <span className="text-danger">*</span>
+          </label>
+          <input
             aria-invalid={errors.phone ? "true" : undefined}
             autoComplete="tel"
             className="field spec-num"
@@ -294,55 +320,71 @@ export default function QuoteForm({ variant = "full" }) {
             name="phone"
             onBlur={handleBlur}
             onChange={handleChange}
+            placeholder="e.g. +91 98765 43210"
             ref={phoneRef}
             required
             type="tel"
             value={values.phone}
           />
-          <p className="mt-1.5 text-sm text-charcoal/75" id="quote-phone-hint">
-            We may call to confirm the specification.
-          </p>
-          {errors.phone && (
-            <p className="mt-1.5 text-sm font-medium text-danger" id="quote-phone-error">
-              {errors.phone}
+          {errors.phone ? (
+            <p className="mt-1 text-xs font-semibold text-danger">{errors.phone}</p>
+          ) : (
+            <p className="mt-1 text-[0.72rem] text-charcoal-muted">
+              We send the quote &amp; drawing verification to this number.
             </p>
           )}
         </div>
 
-        <Field
-          autoComplete="organization"
-          id="quote-company"
-          label="Company"
-          name="company"
-          onChange={handleChange}
-          optional
-          type="text"
-          value={values.company}
-        />
+        {/* Company */}
+        <div>
+          <label className="field-label" htmlFor="quote-company">
+            Company Name <span className="text-xs text-charcoal-muted font-normal">(optional)</span>
+          </label>
+          <input
+            autoComplete="organization"
+            className="field"
+            id="quote-company"
+            name="company"
+            onChange={handleChange}
+            placeholder="e.g. Acme Transformers Ltd."
+            type="text"
+            value={values.company}
+          />
+        </div>
 
-        <Field
-          autoComplete="email"
-          error={errors.email}
-          id="quote-email"
-          inputMode="email"
-          label="Work email"
-          name="email"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          optional={isShort}
-          ref={emailRef}
-          type="email"
-          value={values.email}
-        />
+        {/* Work Email */}
+        <div>
+          <label className="field-label" htmlFor="quote-email">
+            Work Email {!isShort && <span className="text-danger">*</span>}
+          </label>
+          <input
+            aria-invalid={errors.email ? "true" : undefined}
+            autoComplete="email"
+            className="field"
+            id="quote-email"
+            inputMode="email"
+            name="email"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="e.g. engineer@acme.com"
+            ref={emailRef}
+            required={!isShort}
+            type="email"
+            value={values.email}
+          />
+          {errors.email && (
+            <p className="mt-1 text-xs font-semibold text-danger">{errors.email}</p>
+          )}
+        </div>
 
+        {/* Product Selector */}
         <div className="sm:col-span-2">
           <label className="field-label" htmlFor="quote-product">
-            Product
+            Product Range Required <span className="text-danger">*</span>
           </label>
           <select
-            aria-describedby={errors.product ? "quote-product-error" : undefined}
             aria-invalid={errors.product ? "true" : undefined}
-            className="field"
+            className="field font-medium"
             id="quote-product"
             name="product"
             onBlur={handleBlur}
@@ -351,96 +393,153 @@ export default function QuoteForm({ variant = "full" }) {
             required
             value={values.product}
           >
-            <option value="">Select a product</option>
+            <option value="">Select a product category...</option>
             {PRODUCTS.map((product) => (
               <option key={product.slug} value={product.name}>
-                {product.name}
+                {product.name} (Sheets, Strips, Finished Gaskets)
               </option>
             ))}
-            <option value="Not sure yet">Not sure yet</option>
+            <option value="Transformer Specific Gaskets (IS 4253)">
+              Transformer Specific Gaskets (IS 4253 Part II)
+            </option>
+            <option value="Automotive Flange Gaskets">Automotive Flange Gaskets</option>
+            <option value="Not sure yet / Need technical recommendation">
+              Not sure yet / Need technical recommendation
+            </option>
           </select>
           {errors.product && (
-            <p className="mt-1.5 text-sm font-medium text-danger" id="quote-product-error">
-              {errors.product}
-            </p>
+            <p className="mt-1 text-xs font-semibold text-danger">{errors.product}</p>
           )}
         </div>
 
-        <Field
-          id="quote-size"
-          label="Size and quantity"
-          name="size"
-          onChange={handleChange}
-          optional
-          placeholder="e.g. 3 ft x 3 ft sheet, 12 sheets"
-          type="text"
-          value={values.size}
-        />
+        {/* Thickness Quick Selectors & Field */}
+        <div>
+          <label className="field-label" htmlFor="quote-thickness">
+            Thickness Required
+          </label>
+          <input
+            className="field spec-num"
+            id="quote-thickness"
+            name="thickness"
+            onChange={handleChange}
+            placeholder="e.g. 3.0 mm or 6.0 mm"
+            type="text"
+            value={values.thickness}
+          />
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {COMMON_THICKNESSES.map((th) => (
+              <button
+                className={`text-[0.7rem] px-2 py-0.5 rounded border transition-colors ${
+                  values.thickness === th
+                    ? "bg-montado text-white border-montado font-bold"
+                    : "bg-sheet text-charcoal border-montado/15 hover:border-montado"
+                }`}
+                key={th}
+                onClick={() => handleQuickThickness(th)}
+                type="button"
+              >
+                {th}
+              </button>
+            ))}
+          </div>
+        </div>
 
+        {/* Size / Dimensions / Quantity */}
+        <div>
+          <label className="field-label" htmlFor="quote-size">
+            Dimensions &amp; Quantity
+          </label>
+          <input
+            className="field spec-num"
+            id="quote-size"
+            name="size"
+            onChange={handleChange}
+            placeholder="e.g. 1000 x 1000 mm, 50 sheets"
+            type="text"
+            value={values.size}
+          />
+          <p className="mt-1 text-[0.72rem] text-charcoal-muted">
+            Or describe gasket outer/inner diameter and bolt-hole count.
+          </p>
+        </div>
+
+        {/* Full-form extra fields */}
         {!isShort && (
           <>
-            <Field
-              id="quote-thickness"
-              label="Thickness"
-              name="thickness"
-              onChange={handleChange}
-              optional
-              placeholder="e.g. 6 mm"
-              type="text"
-              value={values.thickness}
-            />
+            <div>
+              <label className="field-label" htmlFor="quote-standard">
+                Applicable Standard
+              </label>
+              <input
+                className="field"
+                id="quote-standard"
+                name="standard"
+                onChange={handleChange}
+                placeholder="e.g. IS 4253 Part II or ASTM F36"
+                type="text"
+                value={values.standard}
+              />
+            </div>
 
-            <Field
-              id="quote-standard"
-              label="Standard or material requirement"
-              name="standard"
-              onChange={handleChange}
-              optional
-              placeholder="e.g. IS 4253 Part II"
-              type="text"
-              value={values.standard}
-            />
-
-            <Field
-              id="quote-drawing"
-              label="Drawing or sample"
-              name="drawing"
-              onChange={handleChange}
-              optional
-              type="text"
-              value={values.drawing}
-            />
+            <div>
+              <label className="field-label" htmlFor="quote-drawing">
+                Drawing or Sample Details
+              </label>
+              <input
+                className="field"
+                id="quote-drawing"
+                name="drawing"
+                onChange={handleChange}
+                placeholder="e.g. Drawing No. TR-442 / Sample available"
+                type="text"
+                value={values.drawing}
+              />
+            </div>
 
             <div className="sm:col-span-2">
               <label className="field-label" htmlFor="quote-message">
-                Message
-                <span className="font-normal text-charcoal/65"> (optional)</span>
+                Specific Application Notes / Fluid Conditions
               </label>
               <textarea
-                className="field min-h-32"
+                className="field min-h-24 resize-y"
                 id="quote-message"
                 name="message"
                 onChange={handleChange}
-                rows={4}
+                placeholder="Mention operating temperature, fluid type (mineral oil, fuel, water), bolt load, or any special tolerances..."
+                rows={3}
                 value={values.message}
               />
             </div>
           </>
         )}
 
-        <div className="sm:col-span-2">
-          <button className="btn btn--primary w-full sm:w-auto" type="submit">
-            Send quote request
-          </button>
-          <p className="mt-3 mb-0 max-w-[58ch] text-sm text-charcoal/75">
-            Opens WhatsApp. Send drawings by WhatsApp or email; this site does
-            not accept file uploads yet.
-          </p>
-          <p aria-live="polite" className="mt-3 mb-0 text-sm font-medium text-danger">
-            {status === "error"
-              ? "Check the highlighted fields and send again."
-              : ""}
-          </p>
+        {/* Submit Button */}
+        <div className="sm:col-span-2 mt-2 pt-3 border-t border-montado/10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <button
+              className="btn btn--whatsapp min-h-12 px-6 text-base font-bold shadow-md justify-center"
+              type="submit"
+            >
+              <WhatsAppIcon className="size-5" />
+              <span>Generate WhatsApp Quote</span>
+              <ArrowRightIcon className="size-4" />
+            </button>
+
+            <div className="flex items-center gap-2 text-xs text-charcoal-muted">
+              <ShieldCheckIcon className="size-4 text-montado" />
+              <span>Direct factory pricing from Vapi Works. No spam.</span>
+            </div>
+          </div>
+
+          {status === "error" && (
+            <p
+              aria-live="polite"
+              className="mt-3 mb-0 text-xs font-semibold text-danger"
+              id="quote-form-error"
+            >
+              Please review the highlighted fields above to continue.
+            </p>
+          )}
         </div>
       </form>
     </div>

@@ -1,38 +1,84 @@
+import {
+  GaugeIcon,
+  ShieldCheckIcon,
+  FlameIcon,
+  SparklesIcon,
+  LayersIcon,
+} from "../ui/icons";
+
 const PROPERTIES = [
   {
-    title: "Jointless",
-    body: "Gaskets are made jointless, so there is no seam for fluid to find.",
+    icon: GaugeIcon,
+    title: "Controlled Compressibility & High Recovery",
+    body: "Unlike pure rubber which flows laterally under flange pressure, cork's closed cellular matrix compresses inward and rebounds when load fluctuates, maintaining a constant seal.",
+    spec: "ASTM F36: 25-45% Compressibility, >75% Recovery",
   },
   {
-    title: "Compresses and recovers",
-    body: "Cork takes compression under a cover or flange, then springs back when the load is released.",
+    icon: FlameIcon,
+    title: "Hydrocarbon & Dielectric Oil Resilience",
+    body: "Formulated with synthetic nitrile elastomers (NBR) to withstand hot transformer oils, hydraulic fluids, diesel fuel, and automotive lubricants up to 125°C.",
+    spec: "Tested against IS 4253 Part II Immersion",
   },
   {
-    title: "Renewable",
-    body: "Cork bark is harvested without felling the tree, and the bark grows back.",
+    icon: ShieldCheckIcon,
+    title: "Jointless Die-Cut Integrity",
+    body: "Manufactured as continuous one-piece frames and slit strips up to 1000mm width, eliminating dovetail seams where pressurized oil finds leakage paths.",
+    spec: "Precision CNC & Hydraulic Die Punched",
+  },
+  {
+    icon: SparklesIcon,
+    title: "100% Renewable Mediterranean Biomaterial",
+    body: "Natural cork bark is ethically harvested from mature cork oaks without felling the tree. The tree regenerates its outer bark layer every nine years, absorbing carbon throughout its life.",
+    spec: "Zero Synthetic Microplastics",
   },
 ];
 
 export default function PropertyBand() {
   return (
-    <section className="section--tight bg-paper pb-16">
+    <section className="section bg-white border-b border-montado/10">
       <div className="shell">
-        <div className="grid gap-8 border-t border-montado/20 pt-8 md:grid-cols-3 md:gap-12">
-          <h2 className="display-md m-0 max-w-[14ch] md:col-span-1">
-            Why cork works as a gasket.
+        <div className="mb-12 max-w-[700px]">
+          <span className="badge-tag mb-2.5">
+            <LayersIcon className="size-3.5 text-montado" />
+            <span>Material Science</span>
+          </span>
+          <h2 className="display-lg m-0 text-balance">
+            Why Technical Buyers &amp; Engineers Specify Rubberised Cork
           </h2>
-          <dl className="m-0 grid gap-8 md:col-span-2 md:grid-cols-3 md:gap-8">
-            {PROPERTIES.map((property) => (
-              <div className="border-t border-cork pt-4" key={property.title}>
-                <dt className="mb-2 font-semibold text-montado">
+          <p className="mt-3 mb-0 text-sm sm:text-base text-charcoal-light">
+            Combining the natural elastic resilience of cellular cork with the fluid
+            impermeability of vulcanized synthetic elastomers.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {PROPERTIES.map((property) => {
+            const Icon = property.icon;
+            return (
+              <div
+                className="card-surface flex flex-col p-6 rounded-xl border border-montado/10 bg-sheet/50 hover:bg-white"
+                key={property.title}
+              >
+                <div className="grid size-11 place-items-center rounded-lg bg-montado/10 text-montado mb-5">
+                  <Icon className="size-5" />
+                </div>
+
+                <h3 className="text-base font-bold text-charcoal mb-2.5 leading-snug">
                   {property.title}
-                </dt>
-                <dd className="m-0 text-[0.98rem] leading-relaxed text-charcoal">
+                </h3>
+
+                <p className="m-0 mb-4 text-xs sm:text-sm text-charcoal-muted leading-relaxed">
                   {property.body}
-                </dd>
+                </p>
+
+                <div className="mt-auto pt-3 border-t border-montado/8">
+                  <span className="spec-num text-[0.72rem] font-bold text-cork-deep uppercase tracking-wider block">
+                    {property.spec}
+                  </span>
+                </div>
               </div>
-            ))}
-          </dl>
+            );
+          })}
         </div>
       </div>
     </section>

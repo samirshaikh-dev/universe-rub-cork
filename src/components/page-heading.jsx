@@ -5,6 +5,7 @@ import { getBreadcrumbsJsonLd } from "../lib/seo/structured-data";
 export default function PageHeading({
   title,
   description,
+  badge,
   breadcrumbs = [],
   structuredData = [],
 }) {
@@ -12,10 +13,23 @@ export default function PageHeading({
   const jsonLd = [getBreadcrumbsJsonLd(items), ...structuredData];
 
   return (
-    <header className="mb-12 max-w-[900px] sm:mb-16">
-      <Breadcrumbs items={items} />
-      <h1 className="display-xl m-0 max-w-[16ch]">{title}</h1>
-      <p className="lede mt-6 mb-0 text-charcoal">{description}</p>
+    <header className="mb-12 max-w-[960px] sm:mb-16">
+      <div className="mb-4">
+        <Breadcrumbs items={items} />
+      </div>
+
+      {badge && (
+        <div className="mb-3">
+          <span className="badge-tag">{badge}</span>
+        </div>
+      )}
+
+      <h1 className="display-xl m-0 max-w-[22ch]">{title}</h1>
+      {description && (
+        <p className="lede mt-5 mb-0 text-charcoal-light max-w-[65ch]">
+          {description}
+        </p>
+      )}
       <JsonLd data={jsonLd} />
     </header>
   );

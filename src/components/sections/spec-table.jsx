@@ -1,46 +1,57 @@
 import Link from "next/link";
+import { ArrowRightIcon, ShieldCheckIcon } from "../ui/icons";
 
 /**
- * Specification table. Rows scroll horizontally inside their own container and
- * the first column stays pinned, so the table works at 360 px wide.
+ * High-precision specification table with horizontal scroll support and sticky header.
  */
 export default function SpecTable({ rows, caption, label, actionLabel = "View" }) {
   return (
     <div
       aria-label={label ?? caption}
-      className="spec-scroll"
+      className="spec-table-container"
       role="region"
       tabIndex={0}
     >
-      <table className="spec">
-        <caption>{caption}</caption>
+      <table className="spec-table">
+        {caption && <caption>{caption}</caption>}
         <thead>
           <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Thickness or grade</th>
-            <th scope="col">Size</th>
-            <th scope="col">
-              <span className="sr-only">Product page</span>
+            <th scope="col">Product Material</th>
+            <th scope="col">Thickness / Range</th>
+            <th scope="col">Manufactured Sizes</th>
+            <th scope="col">Quality Basis</th>
+            <th scope="col" className="text-right">
+              Action
             </th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row) => (
             <tr key={`${row.product}-${row.thickness}`}>
-              <th scope="row">
-                <Link className="link" href={`/products/${row.slug}`}>
+              <th scope="row" className="font-bold text-montado">
+                <Link
+                  className="no-underline hover:text-montado-vibrant hover:underline"
+                  href={`/products/${row.slug}`}
+                >
                   {row.product}
                 </Link>
               </th>
-              <td className="spec-num text-charcoal">{row.thickness}</td>
-              <td className="spec-num text-charcoal">{row.sizes}</td>
-              <td className="whitespace-nowrap">
+              <td className="spec-num font-semibold text-charcoal">{row.thickness}</td>
+              <td className="spec-num text-charcoal-light">{row.sizes}</td>
+              <td>
+                <span className="inline-flex items-center gap-1.5 text-xs text-charcoal-muted">
+                  <ShieldCheckIcon className="size-3.5 text-cork" />
+                  <span>IS 4253 / Drawing</span>
+                </span>
+              </td>
+              <td className="text-right whitespace-nowrap">
                 <Link
                   aria-label={`${actionLabel} ${row.product}`}
-                  className="link"
+                  className="btn btn--secondary min-h-8 px-3 py-1 text-xs font-semibold inline-flex"
                   href={`/products/${row.slug}`}
                 >
-                  {actionLabel}
+                  <span>{actionLabel}</span>
+                  <ArrowRightIcon className="size-3" />
                 </Link>
               </td>
             </tr>

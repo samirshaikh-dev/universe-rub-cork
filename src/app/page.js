@@ -1,7 +1,8 @@
 import JsonLd from "../components/json-ld";
 import HomeHero from "../components/homepage/home-hero";
-import IndustryPanels from "../components/homepage/industry-panels";
+import InteractiveGradeFinder from "../components/homepage/interactive-grade-finder";
 import ProductSpecSection from "../components/homepage/product-spec-section";
+import IndustryPanels from "../components/homepage/industry-panels";
 import PropertyBand from "../components/homepage/property-band";
 import ProofBand from "../components/homepage/proof-band";
 import QuoteBand from "../components/homepage/quote-band";
@@ -13,6 +14,7 @@ export default function HomePage() {
     <>
       <JsonLd data={getOrganizationJsonLd()} />
       <HomeHero />
+      <InteractiveGradeFinder />
       <ProductSpecSection />
       <IndustryPanels industries={INDUSTRIES} />
       <PropertyBand />

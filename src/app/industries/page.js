@@ -5,6 +5,7 @@ import PageCta from "../../components/sections/page-cta";
 import { INDUSTRIES } from "../../data/site-content";
 import { MEDIA } from "../../data/media";
 import { createPageMetadata } from "../../lib/seo/metadata";
+import { ShieldCheckIcon } from "../../components/ui/icons";
 
 const INDUSTRY_MEDIA = {
   transformers: MEDIA.gaskets,
@@ -23,19 +24,24 @@ export default function IndustriesPage() {
   return (
     <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
+        badge="Sector Applications"
         breadcrumbs={[{ name: "Industries", path: "/industries" }]}
-        description="Each application has its own thicknesses, widths and manufacturing basis. Start with the one that matches your part."
-        title="Industries and applications."
+        description="Each sector presents distinct sealing and isolation challenges — from transformer dielectric mineral oil resilience to automotive engine vibration. Review how our formulations and cut components perform across core applications."
+        title="Industrial Applications &amp; Sector Solutions."
       />
-      <CatalogueList
-        actionLabel="View application"
-        basePath="industries"
-        items={INDUSTRIES}
-        mediaMap={INDUSTRY_MEDIA}
-      />
+
+      <section className="mb-16">
+        <CatalogueList
+          actionLabel="View Sector Solutions"
+          basePath="industries"
+          items={INDUSTRIES}
+          mediaMap={INDUSTRY_MEDIA}
+        />
+      </section>
+
       <PageCta
-        description="Share the drawing, dimensions and material requirement."
-        title="Need help matching a product to your application?"
+        description="Share your engineering drawing, fluid exposure criteria, and dimensions to match the optimal grade."
+        title="Need assistance matching material to your specific application?"
       >
         <ContactActions />
       </PageCta>

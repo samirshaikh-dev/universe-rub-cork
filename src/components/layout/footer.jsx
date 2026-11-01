@@ -6,127 +6,202 @@ import {
   COMPANY_EMAILS,
   COMPANY_PHONES,
   SITE_NAME,
+  WHATSAPP_LINK,
 } from "../../config/site";
-
-const footerLink =
-  "inline-flex items-center text-paper no-underline border-b border-transparent hover:border-cork transition-colors duration-200 ease-standard";
+import {
+  PhoneIcon,
+  MailIcon,
+  MapPinIcon,
+  WhatsAppIcon,
+  ShieldCheckIcon,
+  ArrowUpRightIcon,
+} from "../ui/icons";
 
 export function Footer() {
+  const currentYear = 2026;
+
   return (
-    <footer className="bg-montado text-paper" data-surface="dark">
-      <div className="shell">
-        <div className="grid gap-6 border-t border-cork/40 pt-6 pb-6 md:grid-cols-2 lg:grid-cols-[32fr_23fr_25fr_20fr] lg:gap-8 lg:pt-10 lg:pb-10">
-          <div className="max-w-[46ch]">
+    <footer className="border-t border-white/10 bg-[#0c1411] text-white" data-surface="dark">
+      <div className="shell pt-14 pb-12 lg:pt-18 lg:pb-14">
+        {/* Top Grid */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 pb-12 border-b border-white/10">
+          {/* Column 1: Brand & Factory Identity */}
+          <div className="flex flex-col">
             <Link
               aria-label={`${SITE_NAME} home`}
-              className="inline-flex flex-col items-start gap-0.5 text-paper no-underline"
+              className="flex items-center gap-3 no-underline text-white"
               href="/"
             >
-              <span className="display-md text-paper!">
-                {BRAND_WORDMARK.primary}
-              </span>
-              <span className="label font-normal tracking-[0.06em] text-paper/80">
-                {BRAND_WORDMARK.secondary}
-              </span>
+              <div className="grid size-10 shrink-0 place-items-center rounded-md bg-montado-vibrant border border-cork-gold/40 text-white">
+                <span className="text-sm font-black tracking-widest text-cork-gold">
+                  URC
+                </span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-lg font-extrabold tracking-tight text-white">
+                  {BRAND_WORDMARK.primary} {BRAND_WORDMARK.secondary}
+                </span>
+                <span className="text-[0.7rem] font-semibold tracking-wider text-cork-light/70 uppercase">
+                  Manufacturing Works • Vapi, Gujarat
+                </span>
+              </div>
             </Link>
 
-            <p className="mt-4 mb-4 sm:mt-5 sm:mb-5 max-w-[34ch] text-[1.35rem] font-semibold leading-[1.15] tracking-[-0.02em] text-paper [font-variation-settings:'wdth'_112,'wght'_700]">
-              Cork, engineered to your drawing.
+            <p className="mt-5 mb-5 text-sm leading-relaxed text-white/70 max-w-[34ch]">
+              Specialist manufacturer of natural cork and rubberised cork sheets,
+              strips, gaskets, and frames engineered to drawing or to IS 4253 Part II.
             </p>
 
-            <ul className="m-0 flex flex-wrap gap-2 p-0">
-              <li className="list-none">
-                <Link
-                  className="badge border-paper/35 text-paper!"
-                  href="/quality"
-                >
-                  ISO 9001:2015
-                </Link>
-              </li>
-              <li className="list-none">
-                <Link
-                  className="badge border-paper/35 text-paper!"
-                  href="/quality"
-                >
-                  IS 4253 Part II
-                </Link>
-              </li>
-            </ul>
+            <div className="flex flex-wrap gap-2">
+              <span className="badge-tag badge-tag--dark text-xs">
+                <ShieldCheckIcon className="size-3.5 text-cork-gold" />
+                ISO 9001:2015 System
+              </span>
+              <span className="badge-tag badge-tag--dark text-xs">
+                IS 4253 Part II
+              </span>
+            </div>
           </div>
 
+          {/* Column 2: Product Families */}
           <div>
-            <h2 className="label mb-3 text-cork-light">Location</h2>
-            <address className="not-italic spec-num text-[0.95rem] leading-relaxed text-paper/85">
-              {COMPANY_ADDRESS.streetAddress}
-              <br />
-              {COMPANY_ADDRESS.addressLocality} {COMPANY_ADDRESS.postalCode},{" "}
-              {COMPANY_ADDRESS.addressRegion}, India
-            </address>
-          </div>
-
-          <div>
-            <h2 className="label mb-3 text-cork-light">Contact</h2>
-            <ul className="m-0 grid gap-2 p-0">
-              {COMPANY_PHONES.map((phone) => (
-                <li className="list-none" key={phone.href}>
-                  <a className={`${footerLink} spec-num`} href={`tel:${phone.href}`}>
-                    {phone.display}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <ul className="m-0 grid gap-1.5 p-0 mt-3">
-              {COMPANY_EMAILS.map((email) => (
-                <li className="list-none" key={email}>
-                  <a className={`${footerLink} break-all text-[0.95rem]`} href={`mailto:${email}`}>
-                    {email}
-                  </a>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-cork-gold mb-4">
+              Product Families
+            </h2>
+            <ul className="m-0 grid gap-2.5 p-0 text-sm">
+              {[
+                ["Rubberised Cork Sheets & Gaskets", "/products/rubberised-cork"],
+                ["Natural Cork Sheets & Rolls", "/products/cork"],
+                ["Decorative Cork & Acoustic Tiles", "/products/decorative-cork"],
+                ["Cork Granules & Vibration Slabs", "/products/cork"],
+                ["Custom Cork Gifts & Novelties", "/products/cork-gifts"],
+                ["All Product Specifications", "/products"],
+              ].map(([label, href]) => (
+                <li className="list-none" key={label}>
+                  <Link
+                    className="text-white/70 hover:text-white transition-colors duration-150 no-underline"
+                    href={href}
+                  >
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Column 3: Industries & Quality */}
           <div>
-            <h2 className="label mb-3 text-cork-light">Explore</h2>
-            <nav aria-label="Footer navigation">
-              <ul className="m-0 grid gap-3 p-0">
-                {[
-                  ["Products", "/products"],
-                  ["Industries", "/industries"],
-                  ["Quality", "/quality"],
-                  ["About", "/about"],
-                  ["Contact", "/contact"],
-                ].map(([label, href]) => (
-                  <li className="list-none" key={href}>
-                    <Link className={footerLink} href={href}>
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-cork-gold mb-4">
+              Applications & Quality
+            </h2>
+            <ul className="m-0 grid gap-2.5 p-0 text-sm">
+              {[
+                ["Power Transformers & Switchgears", "/industries/transformers"],
+                ["Automotive Engine & Flanges", "/industries/automotive"],
+                ["Construction & Acoustic Insulation", "/industries/construction"],
+                ["Quality Assurance & Standards", "/quality"],
+                ["About United Rubber Cork", "/about"],
+                ["Direct Factory Quote", "/contact#request-a-quote"],
+              ].map(([label, href]) => (
+                <li className="list-none" key={label}>
+                  <Link
+                    className="text-white/70 hover:text-white transition-colors duration-150 no-underline"
+                    href={href}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Factory Contact & Dispatch */}
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-cork-gold mb-4">
+              Factory & Sales Desk
+            </h2>
+
+            <div className="grid gap-3.5 text-sm text-white/80">
+              <div className="flex items-start gap-2.5">
+                <MapPinIcon className="size-4 shrink-0 text-cork-gold mt-1" />
+                <address className="not-italic text-xs leading-relaxed text-white/75">
+                  {COMPANY_ADDRESS.streetAddress},<br />
+                  {COMPANY_ADDRESS.addressLocality} - {COMPANY_ADDRESS.postalCode},<br />
+                  {COMPANY_ADDRESS.addressRegion}, India
+                </address>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <PhoneIcon className="size-4 shrink-0 text-cork-gold" />
+                <div className="grid gap-0.5">
+                  <a
+                    className="spec-num text-xs text-white/80 hover:text-white"
+                    href={`tel:${COMPANY_PHONES[0].href}`}
+                  >
+                    {COMPANY_PHONES[0].display}
+                  </a>
+                  <a
+                    className="spec-num text-xs text-white/80 hover:text-white"
+                    href={`tel:${COMPANY_PHONES[1].href}`}
+                  >
+                    {COMPANY_PHONES[1].display}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                <MailIcon className="size-4 shrink-0 text-cork-gold" />
+                <a
+                  className="text-xs text-white/80 hover:text-white break-all"
+                  href={`mailto:${COMPANY_EMAILS[0]}`}
+                >
+                  {COMPANY_EMAILS[0]}
+                </a>
+              </div>
+
+              <div className="pt-2">
+                <a
+                  className="btn btn--whatsapp min-h-9 px-3 text-xs w-full justify-center"
+                  href={WHATSAPP_LINK}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <WhatsAppIcon className="size-3.5" />
+                  <span>Direct WhatsApp Line</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-cork/25 pt-4 pb-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="spec-num m-0 text-[0.9rem] text-paper/85">
-            United Rubber Cork, GIDC, Vapi, Gujarat
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-xs text-white/60">
+          <p className="m-0">
+            © {currentYear} {SITE_NAME}. All rights reserved. GIDC Vapi, Gujarat.
           </p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[0.9rem] text-paper/85">
-            <Link className={footerLink} href="/privacy">
-              Privacy notice
+
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link
+              className="text-white/60 hover:text-white transition-colors"
+              href="/privacy"
+            >
+              Privacy Notice
             </Link>
-            <p className="m-0">
-              Designed and developed by{" "}
-              <a
-                className="text-paper underline-offset-4 hover:underline"
-                href="https://samir-portfolio-dev.vercel.app/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Samir Shaikh
-              </a>
-            </p>
+            <Link
+              className="text-white/60 hover:text-white transition-colors"
+              href="/quality"
+            >
+              Quality & Standards
+            </Link>
+            <a
+              className="inline-flex items-center gap-1 text-white/60 hover:text-white transition-colors"
+              href="https://samir-portfolio-dev.vercel.app/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span>Designed & Developed by Samir Shaikh</span>
+              <ArrowUpRightIcon className="size-3" />
+            </a>
           </div>
         </div>
       </div>

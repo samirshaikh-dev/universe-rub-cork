@@ -15,14 +15,15 @@ export default function QualityPage() {
   return (
     <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
+        badge="Quality &amp; Material Compliance"
         breadcrumbs={[{ name: "Quality", path: "/quality" }]}
-        description="The ISO 9001:2015 quality system referenced in United Rubber Cork's company information, and IS 4253 Part II for rubberised cork. Request current documentation for the specification you are reviewing."
-        title="Quality and standards."
+        description="Review the ISO 9001:2015 quality management system referenced in company records and the IS 4253 Part II product standard for rubberised cork. Request current test certificates and batch documentation for purchase verification."
+        title="Quality Systems &amp; National Standards."
       />
       <QualityContent />
       <PageCta
-        description="Contact United Rubber Cork with the product and standard you need to verify."
-        title="Need documentation for a specification review?"
+        description="Contact our Vapi works with the specific product standard or batch inspection requirements you need to verify."
+        title="Need documentation for a formal specification review or purchase order?"
       >
         <ContactActions />
       </PageCta>

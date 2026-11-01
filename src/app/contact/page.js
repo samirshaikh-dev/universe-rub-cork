@@ -14,12 +14,15 @@ export default function ContactPage() {
   return (
     <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
+        badge="Works Sales &amp; Dispatch Desk"
         breadcrumbs={[{ name: "Contact", path: "/contact" }]}
-        description="Talk with United Rubber Cork about availability, a specification or a quote. WhatsApp is usually the fastest route for a drawing."
-        title="Contact United Rubber Cork."
+        description="Connect with our technical desk in GIDC Vapi, Gujarat regarding material availability, drawing reviews, or custom tooling. WhatsApp is our fastest channel for sharing engineering blueprints and CAD files."
+        title="Contact Our Manufacturing Works."
       />
       <ContactDetails />
-      <QuoteForm />
+      <div className="mt-8 max-w-[840px]">
+        <QuoteForm variant="full" />
+      </div>
     </div>
   );
 }

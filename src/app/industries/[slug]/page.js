@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import IndustryContent from "../../../components/industries/industry-content";
@@ -35,6 +36,7 @@ export default async function IndustryPage({ params }) {
   return (
     <div className="shell py-10 sm:py-14 lg:py-20">
       <PageHeading
+        badge="Sector Application Profile"
         breadcrumbs={[
           { name: "Industries", path: "/industries" },
           { name: industry.name, path: `/industries/${industry.slug}` },
@@ -43,6 +45,18 @@ export default async function IndustryPage({ params }) {
         title={industry.name}
       />
       <IndustryContent industry={industry} relatedProducts={relatedProducts} />
+
+      <div className="mt-10 pt-6 border-t border-montado/10 flex items-center justify-between">
+        <Link className="btn--plain text-montado text-sm font-bold" href="/industries">
+          <span aria-hidden="true">←</span> Back to all applications
+        </Link>
+        <Link
+          className="text-xs font-semibold text-charcoal-muted hover:text-montado"
+          href="/contact#request-a-quote"
+        >
+          Request Custom Application Quote →
+        </Link>
+      </div>
     </div>
   );
 }
